@@ -13,6 +13,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {RegisterComponent} from "./register/register.component";
 import {ReactiveFormsModule} from "@angular/forms";
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,10 +30,10 @@ import {ReactiveFormsModule} from "@angular/forms";
     HouseModule,
     HttpClientModule,
     ReactiveFormsModule,
+    HttpClientModule
 
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-// @ts-ignore
 export class AppModule {}
