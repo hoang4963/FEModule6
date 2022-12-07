@@ -1,58 +1,39 @@
-import { Component, OnInit } from '@angular/core';
-// Import the User model
-import { User } from '../model/user';
-
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {HttpClient} from "@angular/common/http";
+import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-signup-form',
-  templateUrl: './signup-form.component.html',
-  styleUrls: ['./signup-form.component.css']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
 
-  //Inject the formbuilder into the constructor
-  constructor(private fb:FormBuilder) {}
 
-  //Property for the user
-  // @ts-ignore
-  private user:User;
+  signupForm! : FormGroup;
+  constructor(private formBuilder: FormBuilder, private http : HttpClient,
+              private router : Router) { }
 
-
-  // @ts-ignore
-  signupForm: FormGroup;
-  ngOnInit() {
-
-    // Use the formbuilder to build the Form model
-    this.signupForm  = this.fb.group({
-      username: ['',[Validators.required,
-        Validators.minLength(8)]],
-      password: this.fb.group({
-        pwd: ['', [Validators.required,
-          Validators.minLength(8)]],
-        confirmPwd: ['', [Validators.required,
-          Validators.minLength(8)]]
-
-      }),
-      gender: ['', Validators.required],
-      terms: ['', Validators.requiredTrue]
+  ngOnInit(): void {
+    this.signupForm = this.formBuilder.group({
+      username:['',Validators.required],
+      email:['',Validators.required],
+      password:['',Validators.required],
+      confirmpassword:['',Validators.required],
+      phone:['',Validators.required],
     })
+  }
+  signUp(){
+    this.http.post<any>("http://localhost:8080/signup",this.signupForm.value)
+      .subscribe(res=>{
+        alert("Signup successfull");
+        this.signupForm.reset();
+        this.router.navigate(['login']);
+      },err=>{
+        alert("Please Try again");
+      })
 
   }
 
-  get username() { return this.signupForm.get('username'); }
-
-  get password() { return this.signupForm.get('password'); }
-
-  get email() { return this.signupForm.get('email'); }
-
-  get phone() { return this.signupForm.get('phone'); }
-
-  public onFormSubmit() {
-    if(this.signupForm.valid) {
-      this.user = this.signupForm.value;
-      console.log(this.user);
-      /* Any API call logic via services goes here */
-    }
-  }
 }

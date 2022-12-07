@@ -9,7 +9,7 @@ const API_URL = `${environment.apiUrl}`
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class RegisterService {
 
   constructor(private http:HttpClient) {
   }

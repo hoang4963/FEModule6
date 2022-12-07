@@ -1,104 +1,50 @@
-<!--<div class="row">-->
-<!--  <div class= "col-sm-7  custom-row jumbotron">-->
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="text-center">
+          <h1 style="font-weight: 600;">Sign Up</h1>
+          <h5>Please signup to continue</h5>
+        </div>
+        <form>
+          <form [formGroup]="signupForm" (ngSubmit)="signUp()">
+            <div class="mb-3">
+              <label class="form-label">User Name</label>
+              <input type="text" formControlName="username" class="form-control" id="formGroupExampleInput" placeholder="First Name">
+              <small *ngIf="signupForm.get('username')?.invalid && signupForm.get('username')?.touched" class="text-danger">&nbsp;User Name is required!</small>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Password</label>
+              <input formControlName="password" type="password" class="form-control" placeholder="password">
+              <small *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched" class="text-danger">&nbsp;Password is required!</small>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Confirm Password</label>
+              <input formControlName="confirmpassword" type="password" class="form-control" placeholder="confirm password">
+              <small *ngIf="signupForm.get('confirmpassword')?.invalid && signupForm.get('confirmpassword')?.touched" class="text-danger">&nbsp;Confirm Password is required!</small>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Email Address</label>
+              <input formControlName="email" type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email">
+              <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+              <small *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched" class="text-danger">&nbsp;Email is required!</small>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Phone Number</label>
+              <input formControlName="phone" type="phone" class="form-control" id="phone" placeholder="Phone">
+              <div class="form-text">We'll never share your phone with anyone else.</div>
+              <small *ngIf="signupForm.get('phone')?.invalid && signupForm.get('phone')?.touched" class="text-danger">&nbsp;Phone is required!</small>
+            </div>
 
-<!--    <form class="form-horizontal"  [formGroup]="signupForm"-->
-<!--          (ngSubmit)="onFormSubmit()">-->
-
-<!--      <fieldset>-->
-<!--        <legend>SignUp</legend>-->
-
-<!--        &lt;!&ndash;- Email Block &ndash;&gt;-->
-<!--        <div class="form-group">-->
-<!--          <label for="inputEmail" class="col-lg-2-->
-<!--              control-label">Email</label>-->
-
-<!--          <div class="col-lg-7">-->
-<!--            <input type="text"  class="form-control"-->
-<!--                   id="inputEmail" formControlName = "email"-->
-<!--                   placeholder="Email">-->
-<!--          </div>-->
-
-<!--          &lt;!&ndash; Email error block &ndash;&gt;-->
-<!--          <div *ngIf="email.invalid && email.touched"-->
-<!--               class="col-sm-3 text-danger">-->
-
-<!--            <div *ngIf = "email.errors?.required">-->
-<!--              Email field can't be blank-->
-<!--            </div>-->
-
-<!--            <div *ngIf = "email.errors?.pattern">-->
-<!--              The email id doesn't seem right-->
-<!--            </div>-->
-
-<!--          </div>-->
-<!--        </div>-->
-<!--        &lt;!&ndash;- Password Block &ndash;&gt;-->
-<!--        <div formGroupName = "password">-->
-<!--          <div class="form-group">-->
-<!--            <label for="inputPassword" class="col-lg-2 control-label">Password</label>-->
-<!--            <div class="col-lg-7">-->
-<!--              <input type="password" formControlName = "pwd"-->
-<!--                     id="inputPassword"  class="form-control"-->
-<!--                     placeholder="Password">-->
-<!--            </div>-->
-<!--          </div>-->
-
-<!--          <div class="form-group">-->
-<!--            <label for="confirmPassword" class="col-lg-2 control-label">Confirm Password</label>-->
-<!--            <div class="col-lg-7">-->
-<!--              <input type="password" formControlName = "confirmPwd"-->
-<!--                     id="confirmPassword"  class="form-control"-->
-<!--                     placeholder="Password">-->
-<!--            </div>-->
-
-<!--            &lt;!&ndash; Password error block &ndash;&gt;-->
-<!--            <div *ngIf="(password.invalid && password.touched)" class="col-sm-3 text-danger">-->
-
-<!--              Password needs to be more than 8 characters-->
-<!--            </div>-->
-<!--          </div>-->
-
-<!--        </div>-->
-
-<!--        &lt;!&ndash; Gender Block &ndash;&gt;-->
-<!--        <div class="form-group">-->
-<!--          <label for="select" class="col-lg-2 control-label">Gender</label>-->
-<!--          <div class="col-lg-7">-->
-<!--            <select id="select"  class="form-control" formControlName="gender">-->
-
-<!--              <option *ngFor = "let g of genderList"-->
-<!--                      [value] = "g"> {{g}}-->
-<!--              </option>-->
-<!--            </select>-->
-<!--          </div>-->
-<!--        </div>-->
-
-<!--        &lt;!&ndash;- Terms and conditions Block &ndash;&gt;-->
-<!--        <div class="form-group checkbox">-->
-<!--          <div class="col-lg-6 ">-->
-<!--            <input type="checkbox" formControlName="terms"> Confirm that you've read the Terms and-->
-<!--            Conditions-->
-<!--          </div>-->
-
-<!--          &lt;!&ndash;- Terms error block &ndash;&gt;-->
-<!--          <div *ngIf="(terms.invalid && terms.touched)"-->
-<!--               class="col-lg-4 text-danger">-->
-
-<!--            Please accept the Terms and conditions first.-->
-<!--          </div>-->
-<!--        </div>-->
-
-
-<!--        &lt;!&ndash;- Buttons Block &ndash;&gt;-->
-<!--        <div class="form-group">-->
-<!--          <div class="col-lg-10 col-lg-offset-2">-->
-<!--            <button type="reset" class="btn btn-default">Cancel</button>-->
-<!--            <button type="submit" [disabled] = "!signupForm.valid" class="btn btn-primary">Submit</button>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </fieldset>-->
-<!--    </form>-->
-<!--    &lt;!&ndash;- Log the FormGroup values to see if the binding is working &ndash;&gt;-->
-
-<!--  </div>-->
-<!--</div>-->
+            <div id="signup">
+              <button type="submit" class="btn btn-primary" style="width: 300px; font-size: 15px;"[disabled]="signupForm.invalid">Sign Up</button>
+            </div>
+          </form>
+          <div id="route">
+            <a routerLink="/login" style="color: white;">Already have an account? Please Login</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
