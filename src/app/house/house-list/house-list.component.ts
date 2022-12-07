@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
+
 import {House} from "../../model/house";
 import {HouseService} from "../../service/house.service";
+
 
 @Component({
   selector: 'app-house-list',
@@ -8,6 +10,7 @@ import {HouseService} from "../../service/house.service";
   styleUrls: ['./house-list.component.css']
 })
 export class HouseListComponent implements OnInit{
+
     houses: House[] = [];
   constructor() {
   }
@@ -20,4 +23,5 @@ export class HouseListComponent implements OnInit{
     //   }
     // )
   }
+
 }
