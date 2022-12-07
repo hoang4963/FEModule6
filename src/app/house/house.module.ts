@@ -15,6 +15,9 @@ import { HouseDeleteComponent } from './house-delete/house-delete.component';
     HouseEditComponent,
     HouseDeleteComponent
   ],
+  exports: [
+    HouseListComponent
+  ],
   imports: [
     CommonModule,
     HouseRoutingModule
