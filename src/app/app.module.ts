@@ -14,6 +14,7 @@ import {HouseModule} from "./house/house.module";
 
 import { RegisterComponent } from './register/register.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
