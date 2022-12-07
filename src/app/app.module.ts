@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import {ShareModule} from "./share/share.module";
 import { LoginComponent } from './jwt/login/login.component';
 
 @NgModule({
@@ -12,7 +13,8 @@ import { LoginComponent } from './jwt/login/login.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ShareModule
   ],
   providers: [],
   bootstrap: [AppComponent]
