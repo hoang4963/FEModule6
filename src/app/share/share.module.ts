@@ -3,14 +3,17 @@ import { CommonModule } from '@angular/common';
 
 import { ShareRoutingModule } from './share-routing.module';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
   declarations: [
-    NavBarComponent
+    NavBarComponent,
+    FooterComponent
   ],
   exports: [
-    NavBarComponent
+    NavBarComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
