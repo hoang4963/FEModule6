@@ -1,1 +1,20 @@
-<p>house-list works!</p>
+<h1>Danh sách</h1>
+<!--<a routerLink="/save" class="btn btn-info">Tạo mới</a>-->
+<table class="table">
+  <tr>
+    <td>STT</td>
+    <td>Producer</td>
+    <td>Giá</td>
+    <td colspan="2"></td>
+  </tr>
+  <tr *ngFor="let house of houses; index as i">
+    <td>{{i + 1}}</td>
+<!--    <td><a [routerLink]="['/detail',smartphone.id]" class="btn btn-info">{{smartphone.title}}</a></td>-->
+    <td>{{house.houseName}}</td>
+    <td>{{house.rent}}</td>
+    <td>{{house.houseAddress}}</td>
+    <td><img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pinterest.com%2Fpin%2F1101341283848604060%2F&psig=AOvVaw0FZLSy-dyF0WBKXE2JIzFo&ust=1670473906766000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCMCxsrDW5vsCFQAAAAAdAAAAABAE"></td>
+<!--    <td><a [routerLink]="['/edit',smartphone.id]" class="btn btn-info">Edit</a></td>-->
+<!--    <td><a [routerLink]="['/delete',smartphone.id]" class="btn btn-warning">Delete</a></td>-->
+  </tr>
+</table>
