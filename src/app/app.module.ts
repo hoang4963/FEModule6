@@ -12,11 +12,13 @@ import {ShareModule} from "./share/share.module";
 import { LoginComponent } from './jwt/login/login.component';
 import {HouseModule} from "./house/house.module";
 
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -29,4 +31,4 @@ import {HouseModule} from "./house/house.module";
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
