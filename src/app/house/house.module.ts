@@ -6,6 +6,8 @@ import { HouseListComponent } from './house-list/house-list.component';
 import { HouseCreateComponent } from './house-create/house-create.component';
 import { HouseEditComponent } from './house-edit/house-edit.component';
 import { HouseDeleteComponent } from './house-delete/house-delete.component';
+import { HouseDetailComponent } from './house-detail/house-detail.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -13,14 +15,16 @@ import { HouseDeleteComponent } from './house-delete/house-delete.component';
     HouseListComponent,
     HouseCreateComponent,
     HouseEditComponent,
-    HouseDeleteComponent
+    HouseDeleteComponent,
+    HouseDetailComponent
   ],
   exports: [
     HouseListComponent
   ],
-  imports: [
-    CommonModule,
-    HouseRoutingModule
-  ]
+    imports: [
+        CommonModule,
+        HouseRoutingModule,
+        ReactiveFormsModule
+    ]
 })
 export class HouseModule { }

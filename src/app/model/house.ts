@@ -1,3 +1,8 @@
+import {User} from "./user";
+import {Status} from "./status";
+import {Image} from "./Image";
+
+
 export interface House {
   id?: number;
   houseName?: string;
@@ -6,7 +11,7 @@ export interface House {
   bathrooms?: number;
   rent?: number;
   description?: string;
-  user?: any;
-  status?: any;
-  image?: any;
+  user?: User;
+  status?: Status;
+  image?: Image[];
 }

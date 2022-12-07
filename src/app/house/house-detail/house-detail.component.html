@@ -1,0 +1,27 @@
+<h1>Detail</h1>
+<form [formGroup]="houseForm">
+
+
+  <p>Name:</p>
+  <input type="text" formControlName="Name" readonly>
+  <p>Rent:</p>
+  <input type="text" formControlName="Rent" readonly>
+  <p>Address:</p>
+  <input type="text" formControlName="Address" readonly>
+  <p>Description:</p>
+  <input type="text" formControlName="bathrooms" readonly>
+  <p>Description:</p>
+  <input type="text" formControlName="bedrooms" readonly>
+  <p>Description:</p>
+  <input type="text" formControlName="HouseStatus" readonly>
+  <p>Description:</p>
+  <input type="text" formControlName="description" readonly>
+  <br>
+  <a [routerLink]="['/house/list']" class="btn btn-info">Back</a>
+
+
+</form>
+<img src='{{image1}}}'>
+<img src='{{image2}}}'>
+<img src='{{image3}}}'>
+
