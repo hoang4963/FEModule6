@@ -11,17 +11,21 @@ import {HouseService} from "../../service/house.service";
 })
 export class HouseListComponent implements OnInit{
 
-    houses: House[] = [];
-  constructor() {
+  houses: House[] = [];
+  constructor(private houseService: HouseService) {
   }
+
   ngOnInit() {
-    // this.houseService.getAll().subscribe(result => {
-    //     this.houses = result;
-    //     console.log(this.houses)
-    //   }, error => {
-    //     console.log(error);
-    //   }
-    // )
+    this.houseService.getAll().subscribe(result => {
+        this.houses = result;
+        console.log(this.houses)
+      }, error => {
+        console.log(error);
+      }
+    )
   }
+
+
+
 
 }
