@@ -1,19 +1,87 @@
-<h1>Danh sách</h1>
-<table class="table">
-  <tr>
-    <td>STT</td>
-    <td>Name</td>
-    <td>Giá</td>
-    <td>Dia chi</td>
-  </tr>
-  <tr *ngFor="let house of houses; index as i">
-    <td>{{i + 1}}</td>
-    <td><a [routerLink]="['/detail',house.id]" class="btn btn-info">{{house.houseName}}</a></td>
-    <td>{{house.rent}}</td>
-    <td><a href="https://goo.gl/maps/stZyBnKrmfxc1hAm7">{{house.houseAddress}}</a></td>
-<!--    <td><img src="{{house.image[0]}}"></td>-->
-<!--    <td><a [routerLink]="['/edit',smartphone.id]" class="btn btn-info">Edit</a></td>-->
-<!--    <td><a [routerLink]="['/delete',smartphone.id]" class="btn btn-warning">Delete</a></td>-->
-  </tr>
-</table>
+<!--<h1>Danh sách</h1>-->
+<!--<table class="table">-->
+<!--  <tr>-->
+<!--    <td>STT</td>-->
+<!--    <td>Name</td>-->
+<!--    <td>Giá</td>-->
+<!--    <td>Dia chi</td>-->
+<!--  </tr>-->
+<!--  <tr *ngFor="let house of houses; index as i">-->
+<!--    <td>{{i + 1}}</td>-->
+<!--    <td><a [routerLink]="['/detail',house.id]" class="btn btn-info">{{house.houseName}}</a></td>-->
+<!--    <td>{{house.rent}}</td>-->
+<!--    <td><a href="https://goo.gl/maps/stZyBnKrmfxc1hAm7">{{house.houseAddress}}</a></td>-->
+<!--&lt;!&ndash;    <td><img src="{{house.image[0]}}"></td>&ndash;&gt;-->
+<!--&lt;!&ndash;    <td><a [routerLink]="['/edit',smartphone.id]" class="btn btn-info">Edit</a></td>&ndash;&gt;-->
+<!--&lt;!&ndash;    <td><a [routerLink]="['/delete',smartphone.id]" class="btn btn-warning">Delete</a></td>&ndash;&gt;-->
+<!--  </tr>-->
+<!--</table>-->
 
+
+
+<section class="property-grid grid">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="grid-option">
+          <form>
+            <select class="custom-select">
+              <option selected>Tất cả</option>
+              <option value="1">Mới nhất</option>
+              <option value="1">Cũ nhất</option>
+              <option value="2">Giá thấp nhất</option>
+              <option value="3">Giá cao nhất</option>
+            </select>
+          </form>
+        </div>
+      </div>
+      <div class="col-md-4" *ngFor="let house of houses; index as i">
+        <div class="card-box-a card-shadow">
+          <div class="img-box-a">
+            <img src="https://homestayreview.vn/wp-content/uploads/2020/12/homestay-ha-noi-47.jpg" alt="" class="img-a img-fluid">
+          </div>
+          <div class="card-overlay">
+            <div class="card-overlay-a-content">
+              <div class="card-header-a">
+                <h2 class="card-title-a">
+                  <a href="#">{{house.houseName}}|
+                    {{house.houseAddress}}</a>
+                </h2>
+              </div>
+              <div class="card-body-a">
+                <div class="price-box d-flex">
+                  <span class="price-a">rent | VND {{house.rent}}</span>
+                </div>
+                <a routerLink="###" class="link-a">Click here to view
+                  <span class="ion-ios-arrow-forward"></span>
+                </a>
+              </div>
+              <div class="card-footer-a">
+                <ul class="card-info d-flex justify-content-around">
+                  <li>
+                    <h4 class="card-info-title">Area</h4>
+                    <span>340m
+                        <sup>2</sup>
+                      </span>
+                  </li>
+                  <li>
+                    <h4 class="card-info-title">Beds</h4>
+                    <span>{{house.bedrooms}}</span>
+                  </li>
+                  <li>
+                    <h4 class="card-info-title">Baths</h4>
+                    <span>{{house.bathrooms}}</span>
+                  </li>
+                  <li>
+                    <h4 class="card-info-title">Garages</h4>
+                    <span>0</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
