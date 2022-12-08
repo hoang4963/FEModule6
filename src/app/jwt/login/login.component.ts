@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
           //   this.router.navigate(['/list'])
           // } else
             if (data.roles[0].authority == "ROLE_USER"){
-            this.router.navigate(['/list']);
+            this.router.navigate(['/house/list']);
           }
 
         },
