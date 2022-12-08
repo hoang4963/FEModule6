@@ -1,0 +1,27 @@
+<h1>Detail</h1>
+<form [formGroup]="houseForm">
+
+
+  <p>Name:</p>
+  <input type="text" formControlName="Name" readonly>
+  <p>Rent:</p>
+  <input type="text" formControlName="Rent" readonly>
+  <p>Address:</p>
+  <input type="text" formControlName="Address" readonly>
+  <p>Description:</p>
+  <input type="text" formControlName="bathrooms" readonly>
+  <p>Description:</p>
+  <input type="text" formControlName="bedrooms" readonly>
+  <p>Description:</p>
+  <input type="text" formControlName="HouseStatus" readonly>
+  <p>Description:</p>
+  <input type="text" formControlName="description" readonly>
+  <br>
+  <a [routerLink]="['/house/list']" class="btn btn-info">Back</a>
+
+
+</form>
+<!--<img src="https://sieupet.com/sites/default/files/hinh_anh_meo_dep.jpg" height="10px" width="10px" >-->
+<img src='{{image2}}' height="100px" width="100px">
+<img src='{{image3}}' height="100px" width="100px">
+
