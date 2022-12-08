@@ -60,11 +60,10 @@ export class HouseDetailComponent {
     return this.houseService.findImageByHouseId(id).subscribe( listImage => {
         // @ts-ignore
       this.listImage = listImage;
-      this.image1 = this.listImage[0];
-      this.image2 = this.listImage[1];
-      this.image3 = this.listImage[2];
-
-
+      console.log(listImage[0].imageName);
+      this.image1 = listImage[0].imageName;
+      this.image2 = listImage[1].imageName;
+      this.image3 = listImage[2].imageName;
     })
   }
 }
