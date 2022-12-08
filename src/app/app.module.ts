@@ -10,15 +10,16 @@ import { LoginComponent } from './jwt/login/login.component';
 import {HouseModule} from "./house/house.module";
 import {HttpClientModule} from "@angular/common/http";
 import {RegisterComponent} from "./register/register.component";
-import {ReactiveFormsModule} from "@angular/forms";
 
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { UserProfileComponent } from './user/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    UserProfileComponent
 
   ],
   imports: [

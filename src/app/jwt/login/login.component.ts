@@ -60,4 +60,12 @@ export class LoginComponent implements OnInit {
         });
   }
 
+  logout() {
+    this.authenticationService.logout()
+    localStorage.removeItem("ACCESS_TOKEN");
+    localStorage.removeItem("ROLE");
+    localStorage.removeItem("USERNAME");
+    localStorage.removeItem("ID'");
+  }
+
 }
