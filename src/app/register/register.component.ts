@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
+import {Register} from "../model/register";
 
 @Component({
   selector: 'app-register',
@@ -17,21 +18,22 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.signupForm = this.formBuilder.group({
-      username:['',Validators.required],
-      email:['',Validators.required],
-      password:['',Validators.required],
+      userName:['',Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
       confirmpassword:['',Validators.required],
       phone:['',Validators.required],
     })
   }
   signUp(){
-    this.http.post<any>("http://localhost:8080/signup",this.signupForm.value)
+    this.http.post<Register>("http://localhost:8080/register",this.signupForm.value)
       .subscribe(res=>{
-        alert("Signup successfull");
+        alert("Đăng ký tài khoản thành công");
         this.signupForm.reset();
         this.router.navigate(['login']);
       },err=>{
-        alert("Please Try again");
+        console.log(err);
+        alert("Tài khoản đã tồn tại. Vui lòng đăng ký lại");
       })
 
   }
