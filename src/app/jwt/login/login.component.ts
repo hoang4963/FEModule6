@@ -7,7 +7,7 @@ import {FormControl, FormGroup} from "@angular/forms";
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
 
@@ -15,8 +15,8 @@ export class LoginComponent implements OnInit {
     username: new FormControl(''),
     password: new FormControl('')
   });
-  returnUrl?: string;
-  adminUrl?: string;
+  // returnUrl?: string;
+  // adminUrl?: string;
   error = '';
   loading = false;
   submitted = false;
@@ -31,8 +31,8 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.returnUrl = '/user';
-    this.adminUrl = '/admin'
+    // this.returnUrl = '';
+    // this.adminUrl = '/admin'
   }
 
   login() {
@@ -46,10 +46,11 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('ROLE', data.roles[0].authority);
           localStorage.setItem('USERNAME', data.username);
           localStorage.setItem('ID', data.id);
-          if (data.roles[0].authority == "ROLE_ADMIN") {
-            this.router.navigate([this.adminUrl])
-          } else {
-            this.router.navigate([this.returnUrl]);
+          // if (data.roles[0].authority == "ROLE_ADMIN") {
+          //   this.router.navigate(['/list'])
+          // } else
+            if (data.roles[0].authority == "ROLE_USER"){
+            this.router.navigate(['/list']);
           }
 
         },
