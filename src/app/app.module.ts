@@ -15,6 +15,7 @@ import {RegisterComponent} from "./register/register.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { UserProfileComponent } from './user/user-profile/user-profile.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,4 +39,5 @@ import { UserProfileComponent } from './user/user-profile/user-profile.component
   providers: [],
   bootstrap: [AppComponent]
 })
+// @ts-ignore
 export class AppModule {}
