@@ -19,7 +19,8 @@ import {ReactiveFormsModule} from "@angular/forms";
     HouseDetailComponent
   ],
   exports: [
-    HouseListComponent
+    HouseListComponent,
+    HouseEditComponent
   ],
     imports: [
         CommonModule,
