@@ -1,4 +1,3 @@
-
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -11,14 +10,20 @@ import { LoginComponent } from './jwt/login/login.component';
 import {HouseModule} from "./house/house.module";
 import {HttpClientModule} from "@angular/common/http";
 import {RegisterComponent} from "./register/register.component";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { HomeComponent } from './home/home.component';
+
+import { UserProfileComponent } from './user/user-profile/user-profile.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    HomeComponent,
+    UserProfileComponent
+
 
   ],
   imports: [
@@ -26,14 +31,15 @@ import {ReactiveFormsModule} from "@angular/forms";
     AppRoutingModule,
     AngularFireStorageModule,
     AngularFireModule.initializeApp(environment.firebaseConfig, "cloud"),
-    ShareModule,
     HouseModule,
     HttpClientModule,
     ReactiveFormsModule,
-    HttpClientModule
 
+    ShareModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
+// @ts-ignore
 export class AppModule {}

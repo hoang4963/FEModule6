@@ -11,12 +11,20 @@ import {Image} from "../../model/Image";
 })
 export class HouseDetailComponent {
   houseForm: FormGroup | any;
+  houseId! : any;
   id: number | any;
   // @ts-ignore
   listImage: Image[];
   image1: any;
   image2: any;
   image3: any;
+  houseName: any;
+  Address: any;
+  Rent!: any;
+  description! : any;
+  bedrooms! : any;
+  bathrooms! : any;
+
   constructor(private houseService: HouseService,
               private router: Router,
               private activatedRoute: ActivatedRoute) {
@@ -45,15 +53,23 @@ export class HouseDetailComponent {
 
   getHouse(id: number) {
     return this.houseService.findById(id).subscribe(house => {
-      this.houseForm = new FormGroup({
-        Name: new FormControl(house.houseName),
-        Address: new FormControl(house.houseAddress),
-        Rent: new FormControl(house.rent),
-        description: new FormControl(house.description),
-        bedrooms: new FormControl(house.bedrooms),
-        bathrooms: new FormControl(house.bathrooms),
-        HouseStatus: new FormControl(house.status?.statusName)
-      });
+      this.houseId = house.id
+      this.houseName = house.houseName
+      this.Address = house.houseAddress
+      this.Rent = house.rent
+      this.description = house.description
+      this.bedrooms = house.bedrooms
+      this.bathrooms = house.bathrooms
+
+      // this.houseForm = new FormGroup({
+      //   Name: new FormControl(house.houseName),
+      //   Address: new FormControl(house.houseAddress),
+      //   Rent: new FormControl(house.rent),
+      //   description: new FormControl(house.description),
+      //   bedrooms: new FormControl(house.bedrooms),
+      //   bathrooms: new FormControl(house.bathrooms),
+      //   HouseStatus: new FormControl(house.status?.statusName)
+      // });
     });
   }
   getImage(id: number){
