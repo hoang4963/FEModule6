@@ -1,86 +1,242 @@
-<h1>Tạo danh mục mới</h1>
-<form [formGroup]="houseForm" (ngSubmit)="submit()">
-  <table>
-    <tr>
-      <td>Name:</td>
-      <td><input type="text" formControlName="houseName"></td>
-    </tr>
-    <tr>
-      <td>Address:</td>
-      <td><input type="text" formControlName="houseAddress"></td>
-    </tr>
-    <tr>
-      <td><label for="bedrooms">bedrooms:</label></td>
-      <td>
-        <select id="bedrooms" formControlName="bedrooms">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-          <option value="9">9</option>
-          <option value="10">10</option>
-        </select></td>
-    </tr>
-    <tr>
-      <td><label for="bathrooms">bathrooms:</label></td>
-      <td>
-        <select id="bathrooms" formControlName="bathrooms">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-        </select></td>
-    </tr>
-    <tr>
-      <td>description:</td>
-      <td><input type="text" formControlName="description"></td>
-    </tr>
-    <tr>
-      <td>rent:</td>
-      <td><input type="number" formControlName="rent"></td>
-    </tr>
-    <tr>
-      <td><label for="statusId">status:</label></td>
-      <td>
-        <select id="statusId" formControlName="statusId">
-          <option *ngFor="let status of houseStatusList; index as i " value="{{i+1}}">{{status.statusName}}</option>
-        </select></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>
-        <button class="btn btn-success">Tao moi</button>
-      </td>
-    </tr>
-  </table>
-</form>
-<div class="form-group col-12">
-  <input type="file"
-         id="file1"
-         #userPhoto
-         (change)="onFileSelected($event)"
-         name="image"
-         autocomplete="off"
-  />
+<!--<h1>Tạo danh mục mới</h1>-->
+<!--<form [formGroup]="houseForm" (ngSubmit)="submit()">-->
+<!--  <table>-->
+<!--    <tr>-->
+<!--      <td>Name:</td>-->
+<!--      <td><input type="text" formControlName="houseName"></td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <td>Address:</td>-->
+<!--      <td><input type="text" formControlName="houseAddress"></td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <td><label for="bedrooms">bedrooms:</label></td>-->
+<!--      <td>-->
+<!--        <select id="bedrooms" formControlName="bedrooms">-->
+<!--          <option value="1">1</option>-->
+<!--          <option value="2">2</option>-->
+<!--          <option value="3">3</option>-->
+<!--          <option value="4">4</option>-->
+<!--          <option value="5">5</option>-->
+<!--          <option value="6">6</option>-->
+<!--          <option value="7">7</option>-->
+<!--          <option value="8">8</option>-->
+<!--          <option value="9">9</option>-->
+<!--          <option value="10">10</option>-->
+<!--        </select></td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <td><label for="bathrooms">bathrooms:</label></td>-->
+<!--      <td>-->
+<!--        <select id="bathrooms" formControlName="bathrooms">-->
+<!--          <option value="1">1</option>-->
+<!--          <option value="2">2</option>-->
+<!--          <option value="3">3</option>-->
+<!--        </select></td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <td>description:</td>-->
+<!--      <td><input type="text" formControlName="description"></td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <td>rent:</td>-->
+<!--      <td><input type="number" formControlName="rent"></td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <td><label for="statusId">status:</label></td>-->
+<!--      <td>-->
+<!--        <select id="statusId" formControlName="statusId">-->
+<!--          <option *ngFor="let status of houseStatusList; index as i " value="{{i+1}}">{{status.statusName}}</option>-->
+<!--        </select></td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <td></td>-->
+<!--      <td>-->
+<!--        <button class="btn btn-success">Tao moi</button>-->
+<!--      </td>-->
+<!--    </tr>-->
+<!--  </table>-->
+<!--</form>-->
+<!--<div class="form-group col-12">-->
+<!--  <input type="file"-->
+<!--         id="file1"-->
+<!--         #userPhoto-->
+<!--         (change)="onFileSelected($event)"-->
+<!--         name="image"-->
+<!--         autocomplete="off"-->
+<!--  />-->
+<!--</div>-->
+<!--<div class="form-group col-12">-->
+<!--  <input type="file"-->
+<!--         id="file2"-->
+<!--         #userPhoto-->
+<!--         (change)="onFileSelected($event)"-->
+<!--         name="image"-->
+<!--         autocomplete="off"-->
+<!--  />-->
+<!--</div>-->
+<!--<div class="form-group col-12">-->
+<!--  <input type="file"-->
+<!--         id="file3"-->
+<!--         #userPhoto-->
+<!--         (change)="onFileSelected($event)"-->
+<!--         name="image"-->
+<!--         autocomplete="off"-->
+<!--  />-->
+<!--</div>-->
+<app-nav-bar></app-nav-bar>
+<section class="intro-single">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-lg-8">
+        <div class="title-single-box">
+          <h1 class="title-single">Tạo phòng trọ</h1>
+        </div>
+      </div>
+      <div class="col-md-12 col-lg-4">
+        <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a routerLink="/home">Trang chủ</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+              Tạo phòng
+            </li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+<div class="container-fluid py-5">
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-9">
+        <div class="contact-form bg-light rounded p-5">
+          <div id="success"></div>
+          <form name="sentMessage" id="contactForm" novalidate="novalidate" [formGroup]="houseForm" (submit)="submit()">
+            <div class="form-row">
+              <div class="col-sm-6 control-group">
+                <p>Tên nhà: </p>
+                <input type="text" class="form-control p-4" id="houseName" name="houseName" formControlName="houseName"
+                       placeholder="house Name" required="required"
+                       data-validation-required-message="Xin hãy nhập tên nhà"/>
+                <div *ngIf="!houseName?.invalid && (!houseName?.dirty || !houseName?.touched)">
+                  <div [hidden]="!houseName?.errors?.['required']">
+                    <p class="help-block text-danger text-center">Bạn chưa nhập tên nhà</p>
+                  </div>
+                </div>
+                <p class="help-block text-danger"></p>
+              </div>
+              <div class="col-sm-6 control-group">
+                <p>Địa chỉ nhà: </p>
+                <input type="text" class="form-control p-4" id="nationality" formControlName="houseAddress"
+                       placeholder="Địa chỉ căn nhà"
+                       required="required" data-validation-required-message="Hãy nhập địa chỉ căn nhà"/>
+                <div *ngIf="!houseAddress?.invalid && (!houseAddress?.dirty || !houseAddress?.touched)">
+                  <div [hidden]="!houseAddress?.errors?.['required']">
+                    <p class="help-block text-danger text-center">Bạn chưa nhập địa chỉ nhà</p>
+                  </div>
+                </div>
+                <p class="help-block text-danger"></p>
+              </div>
+              <div class="col-sm-6 control-group">
+                <p>Phòng ngủ: </p>
+                <select id="bedrooms" class="form-control p-4" formControlName="bedrooms">
+                            <option value="1">1 phòng</option>
+                            <option value="2">2 phòng</option>
+                            <option value="3">3 phòng</option>
+                            <option value="4">4 phòng</option>
+                            <option value="5">5 phòng</option>
+                            <option value="6">6 phòng</option>
+                            <option value="7">7 phòng</option>
+                            <option value="8">8 phòng</option>
+                            <option value="9">9 phòng</option>
+                            <option value="10">10 phòng</option>
+                </select>
+              </div>
+              <div class="col-sm-6 control-group">
+                <p>Phòng tắm: </p>
+                <select id="bathrooms" formControlName="bathrooms">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                          </select>
+              </div>
+            </div>
+            <div class="col-sm-6 control-group">
+              <p>Giá phòng / ngày</p>
+              <input type="number" class="form-control p-4" id="weight" formControlName="rent"
+                     placeholder="giá nhà/ngày" required="required"
+                     data-validation-required-message="hãy nhập giá nhà / ngày"/>
+              <div *ngIf="!rent?.valid && (!rent?.dirty || !rent?.touched)">
+              <div [hidden]="!rent?.errors?.['pattern']">
+                Bạn nhập sai dữ liệu
+              </div>
+                <div [hidden]="!rent?.errors?.['required']">
+                  Hãy nhập giá phòng
+                </div>
+              <p></p>
+            </div>
+            <div class="control-group">
+              <p>Mô tả: </p>
+              <textarea class="form-control p-4 " rows="6" id="description" formControlName="description"
+                        placeholder="Your description"
+                        required="required" data-validation-required-message="Hãy nhập mô tả về ngôi nhà"></textarea>
+              <div *ngIf="description?.invalid && description.touched">
+                <div *ngIf="description?.errors?.['required']">
+                  <p class="help-block text-danger text-center">Hãy nhập mô tả về ngôi nhà</p>
+                </div>
+              </div>
+              <p class="help-block text-danger"></p>
+            </div>
+
+            <div class="control-group p-5">
+              <div class="row ">
+                <div class="col-12 mt-5 ">
+                  <div id="yourBt" style="color: black">Tải lên 3 bức ảnh của ngôi nhà</div>
+                  <div class="form-group col-12">
+                    <input type="file"
+                           id="file1"
+                           #userPhoto
+                           (change)="onFileSelected($event)"
+                           name="image"
+                           autocomplete="off"
+                    />
+                  </div>
+                  <div class="form-group col-12">
+                    <input type="file"
+                           id="file2"
+                           #userPhoto
+                           (change)="onFileSelected($event)"
+                           name="image"
+                           autocomplete="off"
+                    />
+                  </div>
+                  <div class="form-group col-12">
+                    <input type="file"
+                           id="file3"
+                           #userPhoto
+                           (change)="onFileSelected($event)"
+                           name="image"
+                           autocomplete="off"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+              <div>
+                <button class="btn btn-primary btn-block py-3 px-5" type="submit" id="sendMessageButton"
+                        [disabled]="(!houseForm.valid)">Tạo Nhà
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-<div class="form-group col-12">
-  <input type="file"
-         id="file2"
-         #userPhoto
-         (change)="onFileSelected($event)"
-         name="image"
-         autocomplete="off"
-  />
-</div>
-<div class="form-group col-12">
-  <input type="file"
-         id="file3"
-         #userPhoto
-         (change)="onFileSelected($event)"
-         name="image"
-         autocomplete="off"
-  />
-</div>
+</section>
+<app-footer></app-footer>
