@@ -3,41 +3,41 @@
     <div class="col-md-6">
       <div class="card">
         <div class="text-center">
-          <h1 style="font-weight: 600;">Sign Up</h1>
-          <h5>Please signup to continue</h5>
+          <h1 style="font-weight: 600;">Đăng ký tài khoản</h1>
+          <h5>Vui lòng đăng ký để tiếp tục</h5>
         </div>
         <form>
           <form [formGroup]="signupForm" (ngSubmit)="signUp()">
             <div class="mb-3">
-              <label class="form-label">User Name</label>
-              <input type="text" formControlName="username" class="form-control" id="formGroupExampleInput" placeholder="First Name">
-              <small *ngIf="signupForm.get('username')?.invalid && signupForm.get('username')?.touched" class="text-danger">&nbsp;User Name is required!</small>
+              <label class="form-label">Tên tài khoản</label>
+              <input type="text" formControlName="userName" class="form-control" id="formGroupExampleInput" placeholder="Tên đăng nhập">
+              <small *ngIf="signupForm.get('userName')?.invalid && signupForm.get('userName')?.touched" class="text-danger">&nbsp;Tên đăng nhập không để trống</small>
             </div>
             <div class="mb-3">
-              <label class="form-label">Password</label>
-              <input formControlName="password" type="password" class="form-control" placeholder="password">
-              <small *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched" class="text-danger">&nbsp;Password is required!</small>
+              <label class="form-label">Mật khẩu</label>
+              <input formControlName="password" type="password" class="form-control" placeholder="Mật khẩu">
+              <small *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched" class="text-danger">&nbsp;Mật khẩu không để trống </small>
             </div>
             <div class="mb-3">
-              <label class="form-label">Confirm Password</label>
-              <input formControlName="confirmpassword" type="password" class="form-control" placeholder="confirm password">
-              <small *ngIf="signupForm.get('confirmpassword')?.invalid && signupForm.get('confirmpassword')?.touched" class="text-danger">&nbsp;Confirm Password is required!</small>
+              <label class="form-label">Nhập lại mật khẩu </label>
+              <input formControlName="confirmpassword" type="password" class="form-control" placeholder="Nhập lại mật khẩu ">
+              <small *ngIf="signupForm.get('confirmpassword')?.invalid && signupForm.get('confirmpassword')?.touched" class="text-danger">&nbsp;Mật khẩu không để trống</small>
             </div>
             <div class="mb-3">
-              <label class="form-label">Email Address</label>
-              <input formControlName="email" type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email">
-              <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-              <small *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched" class="text-danger">&nbsp;Email is required!</small>
+              <label class="form-label"> Địa chỉ Email </label>
+              <input formControlName="email" type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Địa chỉ Email ">
+              <div id="emailHelp" class="form-text"></div>
+              <small *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched" class="text-danger">&nbsp;Email không để trống </small>
             </div>
             <div class="mb-3">
-              <label class="form-label">Phone Number</label>
-              <input formControlName="phone" type="phone" class="form-control" id="phone" placeholder="Phone">
-              <div class="form-text">We'll never share your phone with anyone else.</div>
-              <small *ngIf="signupForm.get('phone')?.invalid && signupForm.get('phone')?.touched" class="text-danger">&nbsp;Phone is required!</small>
+              <label class="form-label"> Số điện thoại </label>
+              <input formControlName="phone" type="phone" class="form-control" id="phone" placeholder="Số điện thoại ">
+              <div class="form-text"></div>
+              <small *ngIf="signupForm.get('phone')?.invalid && signupForm.get('phone')?.touched" class="text-danger">&nbsp;Số điện thoại không để trống </small>
             </div>
 
             <div id="signup">
-              <button type="submit" class="btn btn-primary" style="width: 300px; font-size: 15px;"[disabled]="signupForm.invalid">Sign Up</button>
+              <button type="submit" class="btn btn-primary" style="width: 300px; font-size: 15px;"[disabled]="signupForm.invalid"> Đăng ký </button>
             </div>
           </form>
           <div id="route">
