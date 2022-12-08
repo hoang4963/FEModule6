@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
           // if (data.roles[0].authority == "ROLE_ADMIN") {
           //   this.router.navigate(['/list'])
           // } else
-            if (data.roles[0].authority == "ROLE_USER"){
+          if (data.roles[0].authority == "ROLE_USER"){
             this.router.navigate(['/list']);
           }
 
