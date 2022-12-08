@@ -15,7 +15,18 @@ import {HouseNotImage} from "../../model/houseNotImage";
 })
 export class HouseCreateComponent implements OnInit{
     houseNotImage!: HouseNotImage;
-    house!: HouseDTO;
+    house: HouseDTO = {
+      houseName: "",
+      houseAddress: "",
+      bedrooms: 0,
+      bathrooms: 0,
+      rent: 0,
+      description: "",
+      statusId: 0,
+      image1: "",
+      image2: "",
+      image3: "",
+    }
     houseForm: FormGroup | undefined | any;
     imageList: string[] = [];
     image!: string;
@@ -92,7 +103,7 @@ export class HouseCreateComponent implements OnInit{
     this.house.image1 = image1;
     this.house.image2 = image2;
     this.house.image3 = image3;
-
+    console.log(this.house);
     this.houseService.saveHouse(this.house, id).subscribe(() => {
       this.houseForm.reset();
       alert("done");
