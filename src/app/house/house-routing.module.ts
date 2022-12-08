@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {HouseListComponent} from "./house-list/house-list.component";
 
 import {HouseDetailComponent} from "./house-detail/house-detail.component";
+import {HouseCreateComponent} from "./house-create/house-create.component";
 
 
 const routes: Routes = [{
@@ -12,7 +13,11 @@ const routes: Routes = [{
   {
   path: 'detail/:id',
   component: HouseDetailComponent
-}
+},
+  {
+    path: 'create',
+    component: HouseCreateComponent
+  }
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],
