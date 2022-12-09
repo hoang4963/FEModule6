@@ -41,7 +41,6 @@ export class HouseCreateComponent implements OnInit{
   }
   createForm(){
      this.houseForm = new FormGroup({
-
       houseName: new FormControl('',[Validators.required]),
       houseAddress: new FormControl('',[Validators.required]),
       bedrooms: new FormControl('',),
