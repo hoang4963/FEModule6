@@ -5,7 +5,7 @@ import {finalize} from "rxjs";
 import {HouseStatusService} from "../../service/house-status.service";
 import {Status} from "../../model/status";
 import {HouseDTO} from "../../model/houseDTO";
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {HouseNotImage} from "../../model/houseNotImage";
 
 @Component({
@@ -41,13 +41,30 @@ export class HouseCreateComponent implements OnInit{
   }
   createForm(){
      this.houseForm = new FormGroup({
-      houseName: new FormControl(),
-      houseAddress: new FormControl(),
-      bedrooms: new FormControl(),
-      bathrooms: new FormControl(),
-      rent: new FormControl(),
-      description: new FormControl()
+
+      houseName: new FormControl('',Validators.required),
+      houseAddress: new FormControl('',Validators.required),
+      bedrooms: new FormControl('',Validators.required),
+      bathrooms: new FormControl(''),
+      rent: new FormControl('',Validators.pattern("^[0-9]+$")),
+      description: new FormControl('',Validators.required),
+      statusId: new FormControl(),
     });
+  }
+  get houseName() {
+    return this.houseForm.get('houseName')
+  }
+  get houseAddress() {
+    return this.houseForm.get('houseAddress')
+  }
+  get bedrooms() {
+    return this.houseForm.get('houseAddress')
+  }
+  get description() {
+    return this.houseForm.get('description')
+  }
+  get rent() {
+    return this.houseForm.get('rent')
   }
     // @ts-ignore
     onFileSelected(event) {

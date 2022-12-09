@@ -9,6 +9,7 @@ import { HouseDeleteComponent } from './house-delete/house-delete.component';
 import { HouseDetailComponent } from './house-detail/house-detail.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {ShareModule} from "../share/share.module";
+import { HouseStatusEditComponent } from './house-status-edit/house-status-edit.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import {ShareModule} from "../share/share.module";
     HouseCreateComponent,
     HouseEditComponent,
     HouseDeleteComponent,
-    HouseDetailComponent
+    HouseDetailComponent,
+    HouseStatusEditComponent
   ],
   exports: [
     HouseListComponent,
