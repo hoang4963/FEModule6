@@ -5,6 +5,7 @@ import {HouseService} from "../../service/house.service";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {Status} from "../../model/status";
 import {HouseStatusService} from "../../service/house-status.service";
+import {House} from "../../model/house";
 
 @Component({
   selector: 'app-house-update-status',
@@ -13,6 +14,7 @@ import {HouseStatusService} from "../../service/house-status.service";
 })
 export class HouseUpdateStatusComponent {
   listStatus: Status[] = [];
+  house? : House
   houseForm: FormGroup | undefined | any;
   id: number = 0;
   statusForm = new FormGroup ({
@@ -28,7 +30,9 @@ export class HouseUpdateStatusComponent {
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       // @ts-ignore
       this.id = +paramMap.get('id');
-      this.getSmartphone(this.id);
+      this.houseService.findById(this.id).subscribe(res => {
+        this.house = res
+      })
       this.initializeForm();
       this.getStatus();
     });
@@ -51,18 +55,18 @@ export class HouseUpdateStatusComponent {
       this.listStatus = statusList;
     } )
   }
-  getSmartphone(id: number) {
-    return this.houseService.findById(id).subscribe(house => {
-      this.houseForm = new FormGroup({
-        houseName: new FormControl(house.houseName),
-        houseAddress: new FormControl(house.houseAddress),
-        bedrooms: new FormControl(house.bedrooms),
-        bathrooms: new FormControl(house.bathrooms),
-        rent: new FormControl(house.rent),
-        description: new FormControl(house.description)
-      });
-    });
-  }
+  // getSmartphone(id: number) {
+  //   return this.houseService.findById(id).subscribe(house => {
+  //     this.houseForm = new FormGroup({
+  //       houseName: new FormControl(house.houseName),
+  //       houseAddress: new FormControl(house.houseAddress),
+  //       bedrooms: new FormControl(house.bedrooms),
+  //       bathrooms: new FormControl(house.bathrooms),
+  //       rent: new FormControl(house.rent),
+  //       description: new FormControl(house.description)
+  //     });
+  //   });
+  // }
 
   updateHouseStatus() {
     this.status = this.statusForm.value;
