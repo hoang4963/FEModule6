@@ -10,6 +10,7 @@ import { HouseDetailComponent } from './house-detail/house-detail.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {ShareModule} from "../share/share.module";
 import { OderCreateComponent } from './oder-create/oder-create.component';
+import { HouseStatusEditComponent } from './house-status-edit/house-status-edit.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { OderCreateComponent } from './oder-create/oder-create.component';
     HouseDetailComponent,
     OderCreateComponent,
 
+    HouseStatusEditComponent
   ],
   exports: [
     HouseListComponent,

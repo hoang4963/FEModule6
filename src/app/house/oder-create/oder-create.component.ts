@@ -1,10 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {OrderDTO} from "../../model/order-dto";
-import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../../service/user.service";
 import {HouseService} from "../../service/house.service";
 import {OrderStatus} from "../../model/order-status";
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-oder-create',
@@ -21,14 +20,13 @@ export class OderCreateComponent implements OnInit {
     createTime: ""
 
   }
-
-  // constructor(private activatedRoute: ActivatedRoute, private router: Router,
-  //             private userService: UserService, private houseService: HouseService, private orderStatus: OrderStatus) {
-  // }
-
   orderForm: FormGroup | undefined | any;
 
-  constructor() {
+  constructor(
+    // private houseService: HouseService,
+    // private orderStatus: OrderStatus,
+    // private userService: UserService,
+  ) {
   }
 
   ngOnInit(): void {
@@ -40,10 +38,12 @@ export class OderCreateComponent implements OnInit {
       userId: new FormControl(),
       houseId: new FormControl(),
       orderStatusID: new FormControl(),
-      startTime: new FormControl(),
-      endTime: new FormControl(),
-      createTime: new FormControl()
+      startTime: new FormControl('', [Validators.required]),
+      endTime: new FormControl('',[Validators.required]),
+      createTime: new FormControl('',[Validators.required])
     })
+  }
+  submit() {
 
   }
 }
