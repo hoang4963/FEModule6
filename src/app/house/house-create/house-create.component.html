@@ -5,7 +5,7 @@
     <div class="row">
       <div class="col-md-12 col-lg-8">
         <div class="title-single-box">
-          <h1 class="title-single">Tạo phòng trọ</h1>
+          <h1 class="title-single">Tạo nhà thuê mới</h1>
         </div>
       </div>
       <div class="col-md-12 col-lg-4">
@@ -33,32 +33,33 @@
           <form name="sentMessage" id="contactForm" novalidate="novalidate" [formGroup]="houseForm" (submit)="submit()">
             <div class="form-row">
               <div class="col-sm-6 control-group">
-                <p>Tên nhà: </p>
+                Tên ngôi nhà:
                 <input type="text" class="form-control p-4" id="houseName" name="houseName" formControlName="houseName"
                        placeholder="house Name" required="required"
                        data-validation-required-message="Xin hãy nhập tên nhà"/>
-                <div *ngIf="!houseName?.invalid && (!houseName?.dirty || !houseName?.touched)">
-                  <div [hidden]="!houseName?.errors?.['required']">
-                    <p class="help-block text-danger text-center">Bạn chưa nhập tên nhà</p>
+                <div *ngIf="houseName?.invalid &&  houseName?.touched">
+                  <div *ngIf="houseName?.errors?.['required']">
+                    <p class="help-block text-danger">Bạn chưa nhập tên nhà</p>
                   </div>
                 </div>
                 <p class="help-block text-danger"></p>
               </div>
               <div class="col-sm-6 control-group">
-                <p>Địa chỉ nhà: </p>
+                Địa chỉ nhà:
                 <input type="text" class="form-control p-4" id="nationality" formControlName="houseAddress"
                        placeholder="Địa chỉ căn nhà"
                        required="required" data-validation-required-message="Hãy nhập địa chỉ căn nhà"/>
-                <div *ngIf="!houseAddress?.invalid && (!houseAddress?.dirty || !houseAddress?.touched)">
-                  <div [hidden]="!houseAddress?.errors?.['required']">
-                    <p class="help-block text-danger text-center">Bạn chưa nhập địa chỉ nhà</p>
+                <div *ngIf="houseAddress?.invalid &&  houseAddress?.touched">
+                  <div *ngIf="houseAddress?.errors?.['required']">
+                    <p class="help-block text-danger">Bạn chưa nhập địa chỉ nhà</p>
                   </div>
                 </div>
                 <p class="help-block text-danger"></p>
               </div>
               <div class="col-sm-6 control-group">
-                <p>Phòng ngủ: </p>
-                <select id="bedrooms" class="form-control p-4" formControlName="bedrooms">
+                Phòng ngủ:
+                <div>
+                <select id="bedrooms"  formControlName="bedrooms" class="form-select" style=" height: 50px;">
                             <option value="1">1 phòng</option>
                             <option value="2">2 phòng</option>
                             <option value="3">3 phòng</option>
@@ -70,44 +71,45 @@
                             <option value="9">9 phòng</option>
                             <option value="10">10 phòng</option>
                 </select>
-              </div>
+                </div>
+                <p class="help-block text-danger"></p>
+              </div >
+
               <div class="col-sm-6 control-group">
-                <p>Phòng tắm: </p>
-                <select id="bathrooms" formControlName="bathrooms">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
+                <div>Phòng tắm:</div>
+                <select id="bathrooms" formControlName="bathrooms" class="form-select" style=" height: 50px;">
+                            <option value="1">1 phòng</option>
+                            <option value="2">2 phòng</option>
+                            <option value="3">3 phòng</option>
                           </select>
+
               </div>
             </div>
-            <div class="col-sm-6 control-group">
-              <p>Giá phòng / ngày</p>
+            <div class=" control-group">
+              Giá phòng :
               <input type="number" class="form-control p-4" id="weight" formControlName="rent"
                      placeholder="giá nhà/ngày" required="required"
                      data-validation-required-message="hãy nhập giá nhà / ngày"/>
-              <div *ngIf="!rent?.valid && (!rent?.dirty || !rent?.touched)">
-              <div [hidden]="!rent?.errors?.['pattern']">
-                Bạn nhập sai dữ liệu
-              </div>
-                <div [hidden]="!rent?.errors?.['required']">
-                  Hãy nhập giá phòng
+              <div *ngIf="rent?.valid &&  rent?.touched">
+                <div *ngIf="rent?.errors?.['required']">
+                  <p class="help-block text-danger text-center">Hãy nhập giá phòng</p>
                 </div>
-              <p></p>
+                <p class="help-block text-danger"></p>
+            </div>
             </div>
             <div class="control-group">
-              <p>Mô tả: </p>
+              Mô tả:
               <textarea class="form-control p-4 " rows="6" id="description" formControlName="description"
-                        placeholder="Your description"
+                        placeholder="Mô tả về ngôi nhà"
                         required="required" data-validation-required-message="Hãy nhập mô tả về ngôi nhà"></textarea>
-              <div *ngIf="description?.invalid && description.touched">
+              <div *ngIf="description?.invalid && description?.touched">
                 <div *ngIf="description?.errors?.['required']">
                   <p class="help-block text-danger text-center">Hãy nhập mô tả về ngôi nhà</p>
                 </div>
               </div>
               <p class="help-block text-danger"></p>
             </div>
-
-            <div class="control-group p-5">
+            <div class="control-group">
               <div class="row ">
                 <div class="col-12 mt-5 ">
                   <div id="yourBt" style="color: black">Tải lên 3 bức ảnh của ngôi nhà</div>
@@ -141,12 +143,13 @@
                 </div>
               </div>
             </div>
+              <div class="control-group p-5">
+              </div>
               <div>
                 <button class="btn btn-primary btn-block py-3 px-5" type="submit" id="sendMessageButton"
-                        [disabled]="(!houseForm.valid)">Tạo Nhà
+                        [disabled]="!houseForm.valid">Tạo Nhà
                 </button>
               </div>
-            </div>
           </form>
         </div>
       </div>
