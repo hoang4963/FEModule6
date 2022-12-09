@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {LoginComponent} from "./jwt/login/login.component";
 import {UserProfileComponent} from "./user/user-profile/user-profile.component";
+import {UserService} from "./service/user.service";
 
 const routes: Routes = [
   {
@@ -13,8 +14,11 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: "user",
-    component: UserProfileComponent
+    path : 'user',
+    loadChildren: () => import('./user/user.module').then(module => module.UserModule)
+  },
+  {
+    path : ""
   }
 ];
 

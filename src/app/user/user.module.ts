@@ -11,10 +11,13 @@ import {HouseModule} from "../house/house.module";
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ShareModule} from "../share/share.module";
+import { UserUpdteComponent } from './user-updte/user-updte.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    UserUpdteComponent
+  ],
   imports: [
     CommonModule,
     UserRoutingModule,

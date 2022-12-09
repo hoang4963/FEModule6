@@ -16,7 +16,8 @@ export class UserService {
   getAll(): Observable<User[]> {
     return this.http.get<User[]>(API_URL + '/findAllUsers');
   }
-  getUserProfile(id: string | null): Observable<User> {
+
+    getUserProfile(id: number): Observable<User> {
     return this.http.get<User>(API_URL + `/users/${id}`);
   }
   updateUserProfile(id: number, user: User): Observable<User> {

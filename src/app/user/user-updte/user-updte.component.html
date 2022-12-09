@@ -1,0 +1,25 @@
+<h1>Cập nhật </h1>
+<form [formGroup]="userForm" (ngSubmit)="updateUser(id)">
+  <table>
+    <tr>
+      <td>fullName:</td>
+      <td><input type="text" formControlName="fullName"></td>
+    </tr>
+    <tr>
+      <td>userAddress:</td>
+      <td><input type="text" formControlName="userAddress"></td>
+    </tr>
+    <tr>
+      <td>email:</td>
+      <td><input type="text" formControlName="email"></td>
+    </tr>
+    <tr>
+      <td>phoneNumber:</td>
+      <td><input type="text" formControlName="phoneNumber"></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><button class="btn btn-info">Cập nhật</button></td>
+    </tr>
+  </table>
+</form>
