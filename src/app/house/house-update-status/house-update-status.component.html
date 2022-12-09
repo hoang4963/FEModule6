@@ -1,0 +1,37 @@
+<h1>Thong tin</h1>
+<form [formGroup]="houseForm">
+  <table>
+    <tr>
+      <td>Ten:</td>
+      <td><input type="text" formControlName="houseName" readonly></td>
+    </tr>
+    <tr>
+      <td>Dia chi:</td>
+      <td><input type="text" formControlName="houseAddress" readonly></td>
+    </tr>
+    <tr>
+      <td>bedrooms:</td>
+      <td><input type="text" formControlName="bedrooms" readonly></td>
+    </tr>
+    <tr>
+      <td>bathrooms:</td>
+      <td><input type="text" formControlName="bathrooms" readonly></td>
+    </tr>
+    <tr>
+      <td>rent:</td>
+      <td><input type="text" formControlName="rent" readonly></td>
+    </tr>
+    <tr>
+      <td>Description:</td>
+      <td><input type="text" formControlName="description" readonly></td>
+    </tr>
+  </table>
+</form><br>
+<form [formGroup]="statusForm" (ngSubmit)="updateHouseStatus()">
+<label for="status">Cap nhat trang thai:</label>
+<select name="status" id="status">
+  <option *ngFor="let status of listStatus; index as i" value="{{i + 1}}">{{status.statusName}}</option>
+</select>
+</form>>
+
+
