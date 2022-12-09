@@ -6,5 +6,4 @@ export interface HouseNotImage {
   bathrooms?: number;
   rent?: number;
   description?: string;
-  statusId?: number;
 }

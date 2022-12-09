@@ -16,13 +16,15 @@ import { HomeComponent } from './home/home.component';
 import { UserProfileComponent } from './user/user-profile/user-profile.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    UserProfileComponent
+    UserProfileComponent,
+
 
 
   ],
