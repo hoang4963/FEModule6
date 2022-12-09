@@ -49,10 +49,10 @@ export class LoginComponent implements OnInit {
           // if (data.roles[0].authority == "ROLE_ADMIN") {
           //   this.router.navigate(['/list'])
           // } else
-          if (data.roles[0].authority == "ROLE_USER"){
-            this.router.navigate(['/list']);
-          }
 
+            if (data.roles[0].authority == "ROLE_USER") {
+              this.router.navigate(['/house/list']);
+            }
         },
         error => {
           alert("Tài khoản của bạn đã bị khoá hoặc sai mật khẩu!");
