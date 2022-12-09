@@ -90,7 +90,7 @@
               <input type="number" class="form-control p-4" id="weight" formControlName="rent"
                      placeholder="giá nhà/ngày" required="required"
                      data-validation-required-message="hãy nhập giá nhà / ngày"/>
-              <div *ngIf="rent?.valid &&  rent?.touched">
+              <div *ngIf="rent?.invalid &&  rent?.touched">
                 <div *ngIf="rent?.errors?.['required']">
                   <p class="help-block text-danger text-center">Hãy nhập giá phòng</p>
                 </div>
