@@ -1,13 +1,10 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {HouseListComponent} from "./house-list/house-list.component";
+// import {OrderCreateComponent} from "./order-create1/order-create.component";
 import {HouseDetailComponent} from "./house-detail/house-detail.component";
-import {OrderCreateComponent} from "./order-create/order-create.component";
-
-
-
-
-
+import {HouseCreateComponent} from "./house-create/house-create.component";
+import {OderCreateComponent} from "./oder-create/oder-create.component";
 
 
 const routes: Routes = [{
@@ -15,16 +12,21 @@ const routes: Routes = [{
   component: HouseListComponent
 },
   {
-  path: 'detail/:id',
-  component: HouseDetailComponent
-},
+    path: 'detail/:id',
+    component: HouseDetailComponent
+  },
   {
-    path: 'order/:id',
-    component: OrderCreateComponent
+    path: 'orders/:id',
+    component: OderCreateComponent
+  }, {
+    path: 'create',
+    component: HouseCreateComponent
   }
 ];
+
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class HouseRoutingModule { }
+export class HouseRoutingModule {
+}
