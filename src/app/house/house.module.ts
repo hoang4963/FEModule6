@@ -10,6 +10,8 @@ import { HouseDetailComponent } from './house-detail/house-detail.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {ShareModule} from "../share/share.module";
 import { HouseStatusEditComponent } from './house-status-edit/house-status-edit.component';
+import { HouseUpdateStatusComponent } from './house-update-status/house-update-status.component';
+
 
 
 @NgModule({
@@ -19,7 +21,8 @@ import { HouseStatusEditComponent } from './house-status-edit/house-status-edit.
     HouseEditComponent,
     HouseDeleteComponent,
     HouseDetailComponent,
-    HouseStatusEditComponent
+    HouseStatusEditComponent,
+    HouseUpdateStatusComponent
   ],
   exports: [
     HouseListComponent,
