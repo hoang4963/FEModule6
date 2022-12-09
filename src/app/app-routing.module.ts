@@ -2,8 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {RegisterComponent} from "./register/register.component";
 import {LoginComponent} from "./jwt/login/login.component";
-// import {ResetPasswordComponent} from "./house/reset-password/reset-password.component";
 
+import {HomeComponent} from "./home/home.component";
+import {UserProfileComponent} from "./user/user-profile/user-profile.component";
 const routes: Routes = [
   {
     path: 'house',
@@ -15,12 +16,23 @@ const routes: Routes = [
   {
     path: '',
     component: LoginComponent
+  },
+  {
+    path: "user",
+    component: UserProfileComponent
+
+  },{
+    path: 'home',
+    component: HomeComponent
+
   }
 
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
+
 export class AppRoutingModule { }
