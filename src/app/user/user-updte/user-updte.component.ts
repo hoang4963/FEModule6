@@ -1,34 +1,41 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {UserService} from "../../service/user.service";
-import {ActivatedRoute, ParamMap} from "@angular/router";
+import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 
 @Component({
   selector: 'app-user-updte',
   templateUrl: './user-updte.component.html',
   styleUrls: ['./user-updte.component.css']
 })
-export class UserUpdteComponent implements OnInit{
-  userForm: FormGroup | undefined | any;
-  id: number =0;
+export class UserUpdteComponent implements OnInit {
+  userForm = new FormGroup({
+    fullName: new FormControl(),
+    userAddress: new FormControl(),
+    email: new FormControl(),
+    phoneNumber: new FormControl(),
+  })
+  id: number = 0;
 
   constructor(private userService: UserService,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,
+              private router: Router) {
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       // @ts-ignore
       this.id = +paramMap.get('id');
       this.getUser(this.id);
-      this.initializeForm();
+      // this.initializeForm();
     });
   }
-  initializeForm(){
-    this.userForm = new FormGroup({
-      fullName: new FormControl(),
-      userAddress: new FormControl(),
-      email: new FormControl(),
-      phoneNumber: new FormControl(),
-    });
-  }
+
+  // initializeForm(){
+  //   this.userForm = new FormGroup({
+  //     fullName: new FormControl(),
+  //     userAddress: new FormControl(),
+  //     email: new FormControl(),
+  //     phoneNumber: new FormControl(),
+  //   });
+  // }
 
   ngOnInit() {
     this.id = Number(localStorage.getItem('ID'));
