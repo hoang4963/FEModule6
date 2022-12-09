@@ -23,6 +23,11 @@ export class HouseUpdateStatusComponent {
   status: Status = {
     id: 0
   }
+  // @ts-ignore
+  listImage: Image[];
+  image1: any;
+  image2: any;
+  image3: any;
 
   constructor(private houseService: HouseService,
               private activatedRoute: ActivatedRoute,
@@ -35,6 +40,7 @@ export class HouseUpdateStatusComponent {
       })
       this.initializeForm();
       this.getStatus();
+      this.getImage(this.id)
     });
   }
   initializeForm(){
@@ -70,11 +76,24 @@ export class HouseUpdateStatusComponent {
 
   updateHouseStatus() {
     this.status = this.statusForm.value;
+    console.log(this.statusForm.get('status'));
     let idStatus = Number(this.status.id);
+    console.log(idStatus);
     this.houseService.updateStatus(this.id, idStatus).subscribe(() => {
       alert("Cap nhat thanh cong");
+      location.reload();
     }, error => {
       console.log(error);
+    })
+  }
+  getImage(id: number){
+    return this.houseService.findImageByHouseId(id).subscribe( listImage => {
+      // @ts-ignore
+      this.listImage = listImage;
+      console.log(listImage[0].imageName);
+      this.image1 = listImage[0].imageName;
+      this.image2 = listImage[1].imageName;
+      this.image3 = listImage[2].imageName;
     })
   }
 }

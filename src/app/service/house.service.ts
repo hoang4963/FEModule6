@@ -28,7 +28,7 @@ export class HouseService {
       return  this.httpClient.get<Image[]>(`${API_URL}/image/house/${id}`);
     }
     updateStatus(id: number, idStatus: number): Observable<House> {
-      return  this.httpClient.get<House>(`${API_URL}/house/updateStatus/${id}/${idStatus}`);;
+      return this.httpClient.put<House>(`${API_URL}/house/updateStatus/${id}/${idStatus}`, id );
     }
     // deleteSmartphone(id: number): Observable<Smartphone> {
     //   return this.httpClient.delete<Smartphone>(`${API_URL}/products/${id}`);
