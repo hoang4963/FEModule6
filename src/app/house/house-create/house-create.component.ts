@@ -22,7 +22,6 @@ export class HouseCreateComponent implements OnInit{
       bathrooms: 0,
       rent: 0,
       description: "",
-      statusId: 0,
       image1: "",
       image2: "",
       image3: "",
@@ -30,7 +29,6 @@ export class HouseCreateComponent implements OnInit{
     houseForm: FormGroup | undefined | any;
     imageList: string[] = [];
     image!: string;
-    houseStatusList: Status[] | undefined;
     downloadURL: any;
     fb: any;
   constructor(private houseService: HouseService,
@@ -40,12 +38,6 @@ export class HouseCreateComponent implements OnInit{
   }
   ngOnInit(): void {
     this.createForm();
-    this.houseStatus.getAll().subscribe(result => {
-      this.houseStatusList = result;
-      console.log(this.houseStatusList)},
-      error =>{
-      console.log(error);
-    })
   }
   createForm(){
      this.houseForm = new FormGroup({
@@ -54,8 +46,7 @@ export class HouseCreateComponent implements OnInit{
       bedrooms: new FormControl(),
       bathrooms: new FormControl(),
       rent: new FormControl(),
-      description: new FormControl(),
-      statusId: new FormControl(),
+      description: new FormControl()
     });
   }
     // @ts-ignore
@@ -99,7 +90,6 @@ export class HouseCreateComponent implements OnInit{
     this.house.bedrooms = Number(this.houseNotImage.bedrooms);
     this.house.rent = this.houseNotImage.rent;
     this.house.description = String(this.houseNotImage.description);
-    this.house.statusId = Number(this.houseNotImage.statusId);
     this.house.image1 = image1;
     this.house.image2 = image2;
     this.house.image3 = image3;
