@@ -5,6 +5,7 @@ import {HouseListComponent} from "./house-list/house-list.component";
 
 import {HouseDetailComponent} from "./house-detail/house-detail.component";
 import {HouseCreateComponent} from "./house-create/house-create.component";
+import {HouseUpdateStatusComponent} from "./house-update-status/house-update-status.component";
 
 
 
@@ -20,6 +21,9 @@ const routes: Routes = [{
   {
     path: 'create',
     component: HouseCreateComponent
+  },{
+    path: 'updatestatus/:id',
+    component: HouseUpdateStatusComponent
   }
 ];
 @NgModule({

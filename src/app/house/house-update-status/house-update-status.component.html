@@ -1,37 +1,96 @@
-<h1>Thong tin</h1>
-<form [formGroup]="houseForm">
-  <table>
+<!--<h1>Thong tin</h1>-->
+<!--<form [formGroup]="houseForm">-->
+<!--  <table>-->
+<!--    <tr>-->
+<!--      <td>Ten:</td>-->
+<!--      <td><input type="text" formControlName="houseName" readonly></td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <td>Dia chi:</td>-->
+<!--      <td><input type="text" formControlName="houseAddress" readonly></td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <td>bedrooms:</td>-->
+<!--      <td><input type="text" formControlName="bedrooms" readonly></td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <td>bathrooms:</td>-->
+<!--      <td><input type="text" formControlName="bathrooms" readonly></td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <td>rent:</td>-->
+<!--      <td><input type="text" formControlName="rent" readonly></td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <td>Description:</td>-->
+<!--      <td><input type="text" formControlName="description" readonly></td>-->
+<!--    </tr>-->
+<!--  </table>-->
+<!--</form><br>-->
+<!--<form [formGroup]="statusForm" (ngSubmit)="updateHouseStatus()">-->
+<!--<label for="status">Cap nhat trang thai:</label>-->
+<!--<select name="status" id="status">-->
+<!--  <option *ngFor="let status of listStatus; index as i" value="{{i + 1}}">{{status.statusName}}</option>-->
+<!--</select>-->
+<!--</form>>-->
+<app-nav-bar></app-nav-bar>
+<div class="col-6">
+  <table cellpadding="10">
     <tr>
-      <td>Ten:</td>
-      <td><input type="text" formControlName="houseName" readonly></td>
+      <td class="infor"><span><strong>Tên nhà</strong></span></td>
+      <td class="infor" colspan="2">{{house?.houseName}}</td>
     </tr>
     <tr>
-      <td>Dia chi:</td>
-      <td><input type="text" formControlName="houseAddress" readonly></td>
+      <td class="infor"><span><strong>Địa chỉ nhà :</strong></span></td>
+      <td class="infor" colspan="2">{{house?.houseAddress}}</td>
     </tr>
     <tr>
-      <td>bedrooms:</td>
-      <td><input type="text" formControlName="bedrooms" readonly></td>
+      <td class="infor"><span><strong>phòng ngủ :</strong></span></td>
+      <td class="infor" colspan="2">{{house?.bedrooms}}</td>
     </tr>
     <tr>
-      <td>bathrooms:</td>
-      <td><input type="text" formControlName="bathrooms" readonly></td>
+      <td class="infor"><span><strong>phòng tắm:</strong></span></td>
+      <td class="infor" colspan="2">{{house?.bathrooms}}</td>
     </tr>
     <tr>
-      <td>rent:</td>
-      <td><input type="text" formControlName="rent" readonly></td>
+      <td class="infor"><span><strong>Giá nhà:</strong></span></td>
+      <td class="infor" colspan="2">{{house?.rent}}</td>
     </tr>
     <tr>
-      <td>Description:</td>
-      <td><input type="text" formControlName="description" readonly></td>
+      <td class="infor"><span><strong>Mô tả:</strong></span></td>
+      <td class="infor" colspan="2">{{house?.description}}</td>
+    </tr>
+    <tr>
+      <td class="infor"><span><strong>Trạng thái:</strong></span></td>
+      <td class="infor" colspan="2">{{house?.status}}
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        <i class="fas fa-cog"></i></button>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title infor" id="exampleModalLabel">Update price</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form [formGroup]="statusForm" (ngSubmit)="updateHouseStatus()">
+                  <label for="status">Cap nhat trang thai:</label>
+                  <select name="status" id="status">
+                    <option *ngFor="let status of listStatus; index as i" value="{{i + 1}}">{{status.statusName}}</option>
+                  </select>
+                  </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" (click)="updateHouseStatus()">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </td>
     </tr>
   </table>
-</form><br>
-<form [formGroup]="statusForm" (ngSubmit)="updateHouseStatus()">
-<label for="status">Cap nhat trang thai:</label>
-<select name="status" id="status">
-  <option *ngFor="let status of listStatus; index as i" value="{{i + 1}}">{{status.statusName}}</option>
-</select>
-</form>>
-
-
+</div>
