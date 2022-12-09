@@ -58,6 +58,7 @@ export class UserUpdteComponent implements OnInit {
     const userr = this.userForm.value;
     this.userService.updateUserProfile(id, userr).subscribe(() => {
       alert('Cập nhật thành công');
+      this.router.navigate(['/user',id]);
     }, e => {
       console.log(e);
     });
