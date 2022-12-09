@@ -46,12 +46,13 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('ROLE', data.roles[0].authority);
           localStorage.setItem('USERNAME', data.username);
           localStorage.setItem('ID', data.id);
-          // if (data.roles[0].authority == "ROLE_ADMIN") {
-          //   this.router.navigate(['/list'])
-          // } else
+          if (data.roles[0].authority == "ROLE_ADMIN") {
+            this.router.navigate(['/house/list'])
+          } else
 
             if (data.roles[0].authority == "ROLE_USER") {
               this.router.navigate(['/house/list']);
+              alert("đăng nhập thành công")
             }
         },
         error => {

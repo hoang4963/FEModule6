@@ -25,6 +25,8 @@
         <li class="nav-item" >
           <a class="nav-link" (click)="logout()" routerLink="/user">Đăng Xuất</a>
         </li>
+        <li class="nav-item" >
+          <a class="nav-link" [routerLink]="['/user',userID]">profile</a>
         <li class="nav-item">
           <a class="nav-link" routerLink="/register">Đăng ký</a>
         </li>

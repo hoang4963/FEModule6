@@ -14,6 +14,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { HomeComponent } from './home/home.component';
 
 import { UserProfileComponent } from './user/user-profile/user-profile.component';
+import {UserUpdteComponent} from "./user/user-updte/user-updte.component";
 
 
 
@@ -24,7 +25,7 @@ import { UserProfileComponent } from './user/user-profile/user-profile.component
     RegisterComponent,
     HomeComponent,
     UserProfileComponent,
-
+    UserUpdteComponent
 
 
   ],
