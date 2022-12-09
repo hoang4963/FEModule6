@@ -4,19 +4,17 @@
 <form [formGroup]="userForm">
 
 
-  <p>username:</p>
-  <input type="text" formControlName="username" readonly>
   <p>fullName:</p>
-  <input type="text" formControlName="fullName" readonly>
+  <h1 class="title-single">{{fullName}}</h1>
 
   <p>userAddress:</p>
-  <input type="text" formControlName="userAddress" readonly>
+  <h1 class="title-single">{{userAddress}}</h1>
   <p>email:</p>
-  <input type="text" formControlName="email" readonly>
+  <h1 class="title-single">{{email}}</h1>
   <p>phoneNumber:</p>
-  <input type="text" formControlName="phoneNumber" readonly>
+  <h1 class="title-single">{{phoneNumber}}</h1>
   <br>
-  <a [routerLink]="['/update',]" class="btn btn-info">update</a>
+  <a [routerLink]="['/update',userId]" class="btn btn-info">update</a>
   <a [routerLink]="['/list']" class="btn btn-info">Back</a>
 
 

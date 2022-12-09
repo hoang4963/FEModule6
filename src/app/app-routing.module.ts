@@ -5,6 +5,7 @@ import {LoginComponent} from "./jwt/login/login.component";
 import {HomeComponent} from "./home/home.component";
 import {UserProfileComponent} from "./user/user-profile/user-profile.component";
 import {UserService} from "./service/user.service";
+import {UserUpdteComponent} from "./user/user-updte/user-updte.component";
 
 const routes: Routes = [
   {
@@ -18,21 +19,21 @@ const routes: Routes = [
   {
     path: '',
     component: LoginComponent
-  },
-  {
-    path: "user",
-    component: UserProfileComponent
-
   }, {
     path: 'home',
     component: HomeComponent
   },{
-    path : 'user',
-    loadChildren: () => import('./user/user.module').then(module => module.UserModule)
+    path : 'update/:id',
+    component: UserUpdteComponent
   },
   {
-    path : ""
+    path : 'user/:id',
+    component : UserProfileComponent
   }
+  // ,
+  // {
+  //   path : ""
+  // }
 
 ];
 

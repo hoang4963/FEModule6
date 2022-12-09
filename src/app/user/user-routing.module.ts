@@ -5,14 +5,6 @@ import * as path from "path";
 import {UserProfileComponent} from "./user-profile/user-profile.component";
 
 const routes: Routes = [
-  {
-    path:'update/{id}',
-    component: UserUpdteComponent
-  },
-  {
-    path: '',
-    component: UserProfileComponent
-  }
 
 ];
 
