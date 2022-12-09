@@ -3,7 +3,7 @@ import {HouseService} from "../../service/house.service";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
 import {finalize} from "rxjs";
 import {HouseStatusService} from "../../service/house-status.service";
-import {Status} from "../../model/status";
+
 import {HouseDTO} from "../../model/houseDTO";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {HouseNotImage} from "../../model/houseNotImage";
@@ -42,12 +42,12 @@ export class HouseCreateComponent implements OnInit{
   createForm(){
      this.houseForm = new FormGroup({
 
-      houseName: new FormControl('',Validators.required),
-      houseAddress: new FormControl('',Validators.required),
-      bedrooms: new FormControl('',Validators.required),
+      houseName: new FormControl('',[Validators.required]),
+      houseAddress: new FormControl('',[Validators.required]),
+      bedrooms: new FormControl('',),
       bathrooms: new FormControl(''),
-      rent: new FormControl('',Validators.pattern("^[0-9]+$")),
-      description: new FormControl('',Validators.required),
+      rent: new FormControl('',[Validators.required]),
+      description: new FormControl('',[Validators.required]),
       statusId: new FormControl(),
     });
   }
