@@ -14,12 +14,9 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { HomeComponent } from './home/home.component';
 
 import { UserProfileComponent } from './user/user-profile/user-profile.component';
-<<<<<<< HEAD
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatNativeDateModule} from "@angular/material/core";
-=======
 import {UserUpdteComponent} from "./user/user-updte/user-updte.component";
->>>>>>> 5f248ed856ff833dbefd7a0f0d0632955f6379ca
 
 
 

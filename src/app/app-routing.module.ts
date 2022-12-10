@@ -6,11 +6,8 @@ import {LoginComponent} from "./jwt/login/login.component";
 
 import {HomeComponent} from "./home/home.component";
 import {UserProfileComponent} from "./user/user-profile/user-profile.component";
-<<<<<<< HEAD
-=======
 import {UserService} from "./service/user.service";
 import {UserUpdteComponent} from "./user/user-updte/user-updte.component";
->>>>>>> 5f248ed856ff833dbefd7a0f0d0632955f6379ca
 
 const routes: Routes = [
   {
@@ -23,7 +20,6 @@ const routes: Routes = [
   {
     path: '',
     component: LoginComponent
-<<<<<<< HEAD
   },
   {
     path: 'orders',
@@ -32,8 +28,6 @@ const routes: Routes = [
     path: "user",
     component: UserProfileComponent
 
-=======
->>>>>>> 5f248ed856ff833dbefd7a0f0d0632955f6379ca
   }, {
     path: 'home',
     component: HomeComponent
