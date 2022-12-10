@@ -14,6 +14,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { HomeComponent } from './home/home.component';
 
 import { UserProfileComponent } from './user/user-profile/user-profile.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatNativeDateModule} from "@angular/material/core";
 
 
 
@@ -37,7 +39,9 @@ import { UserProfileComponent } from './user/user-profile/user-profile.component
     ReactiveFormsModule,
 
     ShareModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MatNativeDateModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -7,10 +7,13 @@ import { HouseCreateComponent } from './house-create/house-create.component';
 import { HouseEditComponent } from './house-edit/house-edit.component';
 import { HouseDeleteComponent } from './house-delete/house-delete.component';
 import { HouseDetailComponent } from './house-detail/house-detail.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ShareModule} from "../share/share.module";
 import { OderCreateComponent } from './oder-create/oder-create.component';
 import { HouseStatusEditComponent } from './house-status-edit/house-status-edit.component';
+import {MatInputModule} from "@angular/material/input";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatButtonModule} from "@angular/material/button";
 
 
 @NgModule({
@@ -28,11 +31,15 @@ import { HouseStatusEditComponent } from './house-status-edit/house-status-edit.
     HouseListComponent,
     HouseEditComponent
   ],
-    imports: [
-        CommonModule,
-        HouseRoutingModule,
-        ReactiveFormsModule,
-        ShareModule
-    ]
+  imports: [
+    CommonModule,
+    HouseRoutingModule,
+    ReactiveFormsModule,
+    ShareModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatButtonModule,
+    FormsModule
+  ]
 })
 export class HouseModule { }

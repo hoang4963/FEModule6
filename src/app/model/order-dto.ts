@@ -1,6 +1,6 @@
 export interface OrderDTO {
   id?: number;
-  userId: number;
+  usersId: number;
   houseId: number;
   orderStatusID: number;
   startTime: any;
