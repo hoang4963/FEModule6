@@ -15,6 +15,7 @@ import { HomeComponent } from './home/home.component';
 
 import { UserProfileComponent } from './user/user-profile/user-profile.component';
 import {UserUpdteComponent} from "./user/user-updte/user-updte.component";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -39,7 +40,8 @@ import {UserUpdteComponent} from "./user/user-updte/user-updte.component";
     ReactiveFormsModule,
 
     ShareModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
