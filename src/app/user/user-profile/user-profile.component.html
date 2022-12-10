@@ -1,28 +1,22 @@
-<div class="container">
-  <div class="row mt-5">
-    <div class="col-3">
-      <img src="{{user?.avatar}}" style="width: 100%;">
-    </div>
-    <div class="col-7">
-      <table cellpadding="10">
-        <tr>
-          <td class="infor"><span><strong>Full name    :</strong></span></td>
-          <td class="infor">{{user?.fullName}}</td>
-        </tr>
-        <tr>
-          <td class="infor"><span><strong>PhoneNumber:</strong></span></td>
-          <td class="infor">{{user?.userAddress}}</td>
-        </tr>
-        <tr>
-          <td class="infor"><span><strong>Weight:</strong></span></td>
-          <td class="infor">{{user?.email}}</td>
-        </tr>
-        <tr>
-          <td class="infor"><span><strong>Height:</strong></span></td>
-          <td class="infor">{{user?.phoneNumber}}</td>
-        </tr>
-      </table>
-    </div>
-    <div class="col-2"></div>
-  </div>
-</div>
+<h1>Detail</h1>
+<p>avatar:</p>
+<img src="{{avatar}}" alt="avatar" width="300" height="300">
+<form [formGroup]="userForm">
+
+
+  <p>fullName:</p>
+  <h1 class="title-single">{{fullName}}</h1>
+
+  <p>userAddress:</p>
+  <h1 class="title-single">{{userAddress}}</h1>
+  <p>email:</p>
+  <h1 class="title-single">{{email}}</h1>
+  <p>phoneNumber:</p>
+  <h1 class="title-single">{{phoneNumber}}</h1>
+  <br>
+  <a [routerLink]="['/update',userId]" class="btn btn-info">update</a>
+  <a [routerLink]="['/list']" class="btn btn-info">Back</a>
+
+
+</form>
+

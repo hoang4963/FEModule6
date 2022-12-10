@@ -41,7 +41,6 @@ export class HouseCreateComponent implements OnInit{
   }
   createForm(){
      this.houseForm = new FormGroup({
-
       houseName: new FormControl('',[Validators.required]),
       houseAddress: new FormControl('',[Validators.required]),
       bedrooms: new FormControl('',),
@@ -114,8 +113,12 @@ export class HouseCreateComponent implements OnInit{
     this.houseService.saveHouse(this.house, id).subscribe(() => {
       this.houseForm.reset();
       alert("done");
+
     }, error => {
       console.log(error);
     })
   }
+
+
 }
+
