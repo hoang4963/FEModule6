@@ -58,12 +58,13 @@ export class OderCreateComponent implements OnInit {
 
   //cái này dùng để check điều kiện của order
   myFilter = (d: Date | null): boolean => {
-    const date = (d || new Date()).getDate();
+    const today = new Date().getDate() + '-' + new Date().getMonth();
+    const date = (d || new Date()).getDate()+'-'+ (d || new Date()).getMonth() ;
     // const datecheck : Date
-    console.log(date)
+    console.log(new Date().getDate())
 
       // Prevent Saturday and Sunday from being selected.
-      return date !== 0 && date !== 6;
+      return date !== today;
   };
 
   submit() {
