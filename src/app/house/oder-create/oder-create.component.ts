@@ -5,10 +5,7 @@ import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {OrderService} from "../../service/order.service";
 import {Order} from "../../model/order";
 import {HttpClient} from "@angular/common/http";
-<<<<<<< HEAD
-=======
 import {House} from "../../model/house";
->>>>>>> b5741f7037d3a92ecdf4eb152e5a53352b6e3041
 import {HouseService} from "../../service/house.service";
 
 @Component({
@@ -19,13 +16,10 @@ import {HouseService} from "../../service/house.service";
 export class OderCreateComponent implements OnInit {
 
   id: number = 0;
-<<<<<<< HEAD
   totalPrice: number = 0;
   rent!: any;
-=======
   house!: House;
 
->>>>>>> b5741f7037d3a92ecdf4eb152e5a53352b6e3041
   order: OrderDTO = {
     usersId: Number(localStorage.getItem('ID')),
     houseId: 0,
@@ -48,17 +42,13 @@ export class OderCreateComponent implements OnInit {
     this.activateRoute.paramMap.subscribe((paraMap: ParamMap) => {
       // @ts-ignore
       this.id = +paraMap.get('id');
-<<<<<<< HEAD
       // this.getRentHouse(this.id);
       // this.getTotalRent();
     }
     )
-=======
       this.houseService.findById(this.id).subscribe(res => {
         this.house = res
-    })
     });
->>>>>>> b5741f7037d3a92ecdf4eb152e5a53352b6e3041
   }
 
   ngOnInit(): void {
