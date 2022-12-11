@@ -24,11 +24,12 @@
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" routerLink="/house/create">Tạo nhà cho thuê mới</a></li>
 <!--            <li><a class="dropdown-item" ></a></li>-->
-            <li><a class="dropdown-item" [routerLink]="['/change-password',userID]">Thay đổi mật khẩu </a></li>
+<!--            <li><a class="dropdown-item" [routerLink]="['/change-password',userID]">Thay đổi mật khẩu </a></li>-->
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/register">Thay đổi mật khẩu</a>
+
+          <a class="nav-link" [routerLink]="['update',userID]">Thay đổi mật khẩu</a>
         </li>
         <li class="nav-item">
           <a class="navbar-brand" [routerLink]="['/user',userID]">
