@@ -7,7 +7,7 @@ import {HomeComponent} from "./home/home.component";
 import {UserProfileComponent} from "./user/user-profile/user-profile.component";
 import {UserService} from "./service/user.service";
 import {UserUpdteComponent} from "./user/user-updte/user-updte.component";
-import {ChangePasswordComponent} from "./jwt/change-password/change-password.component";
+// import {ChangePasswordComponent} from "./jwt/change-password/change-password.component";
 
 const routes: Routes = [
   {
@@ -39,10 +39,10 @@ const routes: Routes = [
     path : 'user/:id',
     component : UserProfileComponent
   },
-  {
-    path:'change-password/:id',
-    component : ChangePasswordComponent
-  }
+  // {
+  //   path:'change-password/:id',
+  //   component : ChangePasswordComponent
+  // }
   // ,
   // {
   //   path : ""

@@ -104,7 +104,7 @@ export class HouseCreateComponent implements OnInit{
     this.house.houseName = String(this.houseNotImage.houseName);
     this.house.bathrooms = Number(this.houseNotImage.bathrooms);
     this.house.bedrooms = Number(this.houseNotImage.bedrooms);
-    this.house.rent = this.houseNotImage.rent;
+    this.house.rent = Number(this.houseNotImage.rent);
     this.house.description = String(this.houseNotImage.description);
     this.house.image1 = image1;
     this.house.image2 = image2;
