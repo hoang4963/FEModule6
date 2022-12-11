@@ -16,7 +16,7 @@ import { UserUpdteComponent } from './user-updte/user-updte.component';
 
 @NgModule({
   declarations: [
-    UserUpdteComponent
+
   ],
   imports: [
     CommonModule,

@@ -10,6 +10,7 @@ import { LoginComponent } from './jwt/login/login.component';
 import {HouseModule} from "./house/house.module";
 import {HttpClientModule} from "@angular/common/http";
 import {RegisterComponent} from "./register/register.component";
+
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { HomeComponent } from './home/home.component';
 
