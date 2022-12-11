@@ -14,9 +14,9 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { HomeComponent } from './home/home.component';
 
 import { UserProfileComponent } from './user/user-profile/user-profile.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatNativeDateModule} from "@angular/material/core";
 import {UserUpdteComponent} from "./user/user-updte/user-updte.component";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -38,14 +38,13 @@ import {UserUpdteComponent} from "./user/user-updte/user-updte.component";
     HouseModule,
     HttpClientModule,
     ReactiveFormsModule,
-
     ShareModule,
     FormsModule,
     BrowserAnimationsModule,
     MatNativeDateModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-// @ts-ignore
 export class AppModule {}
