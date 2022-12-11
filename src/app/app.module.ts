@@ -28,7 +28,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     RegisterComponent,
     HomeComponent,
     UserProfileComponent,
-    UserUpdteComponent
+    UserUpdteComponent,
 
   ],
   imports: [
