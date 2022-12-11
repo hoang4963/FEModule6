@@ -69,10 +69,11 @@ export class UserUpdteComponent implements OnInit {
   }
 
   updateUser(id: number) {
-   this.userUpdate.fullName = String(this.userForm.get("fullName"));
-   this.userUpdate.userAddress = String(this.userForm.get("userAddress"));
-   this.userUpdate.email = String(this.userForm.get("email"));
-   this.userUpdate.phoneNumber = String(this.userForm.get("phoneNumber"));
+    this.userUpdate = this.userForm.value;
+   // this.userUpdate.fullName = String(this.userForm.get("fullName"));
+   // this.userUpdate.userAddress = String(this.userForm.get("userAddress"));
+   // this.userUpdate.email = String(this.userForm.get("email"));
+   // this.userUpdate.phoneNumber = String(this.userForm.get("phoneNumber"));
    this.userUpdate.avatar = this.image;
     this.userService.updateUserProfile(id, this.userUpdate).subscribe(() => {
       alert('Cập nhật thành công');
