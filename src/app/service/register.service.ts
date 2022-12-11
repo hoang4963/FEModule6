@@ -3,6 +3,7 @@ import {environment} from "../../enviroments/environment";
 import {HttpClient} from "@angular/common/http";
 import {User} from "../model/user";
 import {Observable} from "rxjs";
+import {Register} from "../model/register";
 
 const API_URL = `${environment.apiUrl}`
 
@@ -14,16 +15,16 @@ export class RegisterService {
   constructor(private http:HttpClient) {
   }
 
-  getAll(): Observable<User[]> {
-    return this.http.get<User[]>(API_URL + '/register');
-  }
+  // getAll(): Observable<User[]> {
+  //   return this.http.get<User[]>(API_URL + '/register');
+  // }
 
   findById(id: number) {
     return this.http.get<User>(`${API_URL}/users/${id}`);
   }
 
-  save(user: User): Observable<User> {
-    return this.http.post<User>(API_URL + `/users`, user);
+  save(register: Register): Observable<Register> {
+    return this.http.post<Register>(API_URL + `/register`, register);
   }
 
   delete(id: number | undefined): Observable<User> {
