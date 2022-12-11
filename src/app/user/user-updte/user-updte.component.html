@@ -1,36 +1,149 @@
-<h1>Cập nhật </h1>
-<form [formGroup]="userForm" (submit)="updateUser(id)">
-  <table>
-    <tr>
-      <td>fullName:</td>
-      <td><input type="text" formControlName="fullName"></td>
-    </tr>
-    <tr>
-      <td>userAddress:</td>
-      <td><input type="text" formControlName="userAddress"></td>
-    </tr>
-    <tr>
-      <td>email:</td>
-      <td><input type="text" formControlName="email"></td>
-    </tr>
-    <tr>
-      <td>phoneNumber:</td>
-      <td><input type="text" formControlName="phoneNumber"></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td><button class="btn btn-info" >Cập nhật</button></td>
-      <td><button class="btn btn-info"[routerLink]="['/user',id]" >quay lại</button></td>
-    </tr>
-  </table>
-</form>
-<div class="form-group col-12">
-  <input type="file"
-         id="file"
-         #userPhoto
-         (change)="onFileSelected($event)"
-         name="image"
-         autocomplete="off"
-  />
-</div>
+<!--<h1>Cập nhật </h1>-->
+<!--<form [formGroup]="userForm" (submit)="updateUser(id)">-->
+<!--  <table>-->
+<!--    <tr>-->
+<!--      <td>fullName:</td>-->
+<!--      <td><input type="text" formControlName="fullName"></td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <td>userAddress:</td>-->
+<!--      <td><input type="text" formControlName="userAddress"></td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <td>email:</td>-->
+<!--      <td><input type="text" formControlName="email"></td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <td>phoneNumber:</td>-->
+<!--      <td><input type="text" formControlName="phoneNumber"></td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <td></td>-->
+<!--      <td><button class="btn btn-info" >Cập nhật</button></td>-->
+<!--      <td><button class="btn btn-info"[routerLink]="['/user',id]" >quay lại</button></td>-->
+<!--    </tr>-->
+<!--  </table>-->
+<!--</form>-->
+<!--<div class="form-group col-12">-->
+<!--  <input type="file"-->
+<!--         id="file"-->
+<!--         #userPhoto-->
+<!--         (change)="onFileSelected($event)"-->
+<!--         name="image"-->
+<!--         autocomplete="off"-->
+<!--  />-->
+<!--</div>-->
+
+<section class="intro-single">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-lg-8">
+        <div class="title-single-box">
+          <h1 class="title-single">{{user.username}}</h1>
+        </div>
+      </div>
+      <div class="col-md-12 col-lg-4">
+        <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="#">Trang chủ</a>
+            </li>
+            <li class="breadcrumb-item">
+              <a href="#">chủ nhà</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+              {{user.username}}
+            </li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="agent-single">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="agent-avatar-box">
+              <img src="{{user.avatar}}" alt="" class="agent-avatar img-fluid">
+            </div>
+            <div class="form-group col-12">
+              <input type="file"
+                     id="file"
+                     #userPhoto
+                     (change)="onFileSelected($event)"
+                     name="image"
+                     autocomplete="off"
+              />
+            </div>
+          </div>
+          <div class="col-md-5 section-md-t3">
+            <form [formGroup]="userForm" (submit)="updateUser(id)">
+            <div class="agent-info-box">
+              <div class="agent-title">
+                <div class="title-box-d">
+                  <h3 class="title-d">{{user.username}} </h3>
+                </div>
+              </div>
+              <div class="agent-content mb-3">
+                <p class="content-d color-text-a">
+                </p>
+                <div class="info-agents color-a">
+                    <strong>Tên chủ nhà: </strong>
+                  <input type="text" formControlName="fullName">
+                  <br>
+                    <strong>Địa chỉ: </strong>
+                  <input type="text" formControlName="userAddress">
+                  <br>
+
+                    <strong>số điện thoại: </strong>
+                  <input type="text" formControlName="phoneNumber">
+                  <br>
+
+                    <strong>Email: </strong>
+                    <input type="text" formControlName="email">
+
+                </div>
+              </div>
+              <div class="socials-footer">
+                <ul class="list-inline">
+                  <li class="list-inline-item">
+                    <a href="#" class="link-one">
+                      <i class="fa fa-facebook" aria-hidden="true"></i>
+                    </a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a href="#" class="link-one">
+                      <i class="fa fa-twitter" aria-hidden="true"></i>
+                    </a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a href="#" class="link-one">
+                      <i class="fa fa-instagram" aria-hidden="true"></i>
+                    </a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a href="#" class="link-one">
+                      <i class="fa fa-pinterest-p" aria-hidden="true"></i>
+                    </a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a href="#" class="link-one">
+                      <i class="fa fa-dribbble" aria-hidden="true"></i>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <button class="btn btn-success" >Cập nhật</button>
+            </div>
+          </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>
 
