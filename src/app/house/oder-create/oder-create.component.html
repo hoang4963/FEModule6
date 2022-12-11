@@ -13,7 +13,7 @@
                 <a routerLink="/home">Trang chủ</a>
               </li>
               <li class="breadcrumb-item active" aria-current="page">
-                Tạo Đơn hàng
+                Thuê Nhà
               </li>
             </ol>
           </nav>
@@ -22,40 +22,81 @@
     </div>
   </div>
 </section>
-<section>
-  <div class="container-fluid py-5">
-    <div class="container py-5">
-      <div class="row justify-content-center">
-        <div class="col-lg-9">
-          <div class="contact-form bg-light rounded p-5">
-            <div id="success"></div>
-
-            <mat-form-field appearance="fill" class="example-form-field">
-              <mat-label>Enter a date range</mat-label>
-              <mat-date-range-input [rangePicker]="rangePicker" [dateFilter]="myFilter">
-                <input matStartDate [(ngModel)]="order.startTime">
-                <input matEndDate [(ngModel)]="order.endTime">
-              </mat-date-range-input>
-              <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
-              <mat-datepicker-toggle matIconSuffix [for]="rangePicker"></mat-datepicker-toggle>
-              <mat-date-range-picker #rangePicker>
-                <mat-date-range-picker-actions>
-                  <button mat-button matDateRangePickerCancel>Hủy</button>
-                  <button mat-raised-button color="primary" matDateRangePickerApply>Tạo</button>
-                </mat-date-range-picker-actions>
-              </mat-date-range-picker>
-            </mat-form-field>
-
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="contact-map box">
+        <div id="map" class="contact-map">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.9244163006656!2d105.76602881479451!3d21.035710085994676!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313454b9444c676b%3A0xe713200541b7456d!2sCodeGym!5e0!3m2!1sen!2s!4v1670485553472!5m2!1sen!2s"
+                  width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 section-t8">
+      <div class="row">
+        <div class="col-md-7">
+          <div class="summary-list">
+            <ul class="list">
+              <li class="d-flex justify-content-between">
+                <strong>Tên nhà:</strong>
+                <span>{{house.houseName}}</span>
+              </li>
+              <li class="d-flex justify-content-between">
+                <strong>Địa chỉ:</strong>
+                <span>{{house.houseAddress}}</span>
+              </li>
+              <li class="d-flex justify-content-between">
+                <strong>Loại Nhà:</strong>
+                <span>Homestay</span>
+              </li>
+              <li class="d-flex justify-content-between">
+                <strong>Trạng Thái:</strong>
+                <span>Sale</span>
+              </li>
+              <li class="d-flex justify-content-between">
+                <strong>Diện Tích:</strong>
+                <span>160m
+                        <sup>2</sup>
+                      </span>
+              </li>
+            </ul>
           </div>
         </div>
-        <div>
-          <button (click)="submit()">submit</button>
-
+      </div>
+    </div>
+    <div class="col-md-5 section-md-t3">
+      <div class="icon-box section-b2">
+        <div class="icon-box-icon">
+          <span class="ion-ios-paper-plane"></span>
+        </div>
+        <mat-form-field appearance="fill" class="example-form-field">
+          <mat-label><h4 class="icon-title">Thời gian thuê nhà</h4></mat-label>
+          <mat-date-range-input [rangePicker]="rangePicker" [dateFilter]="myFilter">
+            <input matStartDate [(ngModel)]="order.startTime" placeholder="MM/DD/YYYY">
+            <input matEndDate [(ngModel)]="order.endTime" placeholder="MM/DD/YYYY">
+          </mat-date-range-input>
+          <mat-datepicker-toggle matIconSuffix [for]="rangePicker"></mat-datepicker-toggle>
+          <mat-date-range-picker #rangePicker>
+            <mat-date-range-picker-actions>
+              <button mat-button matDateRangePickerCancel>Trở lại</button>
+              <button mat-raised-button color="primary" matDateRangePickerApply>Xác nhận</button>
+            </mat-date-range-picker-actions>
+          </mat-date-range-picker>
+        </mat-form-field>
+        </div>
+      </div>
+    <div class="icon-box section-b2">
+      <div class="icon-box-icon">
+        <span class="ion-ios-pin"></span>
+      </div>
+      <div class="icon-box-content table-cell">
+        <div class="icon-box-title">
+          <button (click)="submit()" class="btn btn-success">Thuê Nhà</button>
         </div>
       </div>
     </div>
   </div>
-</section>
+</div>
 <app-footer></app-footer>
 
 <!--<mat-form-field appearance="fill" class="example-form-field">-->
@@ -73,8 +114,12 @@
 <!--    </mat-date-range-picker-actions>-->
 <!--  </mat-date-range-picker>-->
 <!--</mat-form-field>-->
-<div>
-  <button (click)="submit()">submit</button>
+<!--<div>-->
+<!--  <button (click)="submit()">submit</button>-->
 
+<<<<<<< HEAD
 </div>
 <p>{{totalPrice}}</p>
+=======
+<!--</div>-->
+>>>>>>> b5741f7037d3a92ecdf4eb152e5a53352b6e3041

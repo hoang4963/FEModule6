@@ -1,12 +1,15 @@
 import {EventEmitter, Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {UserToken} from "../model/user-token";
 import {environment} from "../../enviroments/environment";
+import {User} from "../model/user";
 
 const API_URL = environment.apiUrl;
-
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 @Injectable({
   providedIn: 'root'
 })
@@ -38,5 +41,8 @@ export class AuthenticationService {
     localStorage.removeItem('currentUser');
     // @ts-ignore
     this.currentUserSubject.next(null);
+  }
+  signup(users: User): Observable<any> {
+    return this.http.post(API_URL + '/register', users, httpOptions);
   }
 }
