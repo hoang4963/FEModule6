@@ -5,6 +5,8 @@ import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {OrderService} from "../../service/order.service";
 import {Order} from "../../model/order";
 import {HttpClient} from "@angular/common/http";
+import {House} from "../../model/house";
+import {HouseService} from "../../service/house.service";
 
 @Component({
   selector: 'app-oder-create',
@@ -14,6 +16,7 @@ import {HttpClient} from "@angular/common/http";
 export class OderCreateComponent implements OnInit {
 
   id: number = 0;
+  house!: House;
 
   order: OrderDTO = {
     usersId: Number(localStorage.getItem('ID')),
@@ -30,14 +33,17 @@ export class OderCreateComponent implements OnInit {
     private activateRoute: ActivatedRoute,
     // private http : HttpClient,
     // private router : Router,
-    // private houseService: HouseService,
+    private houseService: HouseService,
     private orderService: OrderService,
     // private userService: UserService,
   ) {
     this.activateRoute.paramMap.subscribe((paraMap: ParamMap) => {
       // @ts-ignore
       this.id = +paraMap.get('id');
+      this.houseService.findById(this.id).subscribe(res => {
+        this.house = res
     })
+    });
   }
 
   ngOnInit(): void {
