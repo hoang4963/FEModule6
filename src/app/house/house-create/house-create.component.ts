@@ -22,9 +22,9 @@ export class HouseCreateComponent implements OnInit{
       bathrooms: 0,
       rent: 0,
       description: "",
-      image1: "",
-      image2: "",
-      image3: "",
+      image1: "https://sieupet.com/sites/default/files/hinh_anh_meo_dep.jpg",
+      image2: "https://sieupet.com/sites/default/files/hinh_anh_meo_dep.jpg",
+      image3: "https://sieupet.com/sites/default/files/hinh_anh_meo_dep.jpg",
     }
     houseForm: FormGroup | undefined | any;
     imageList: string[] = [];
