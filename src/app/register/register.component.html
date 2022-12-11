@@ -20,19 +20,17 @@
             </div>
             <div class="mb-3">
               <label class="form-label">Nhập lại mật khẩu </label>
-              <input formControlName="confirmpassword" type="password" class="form-control" placeholder="Nhập lại mật khẩu ">
-              <small *ngIf="signupForm.get('confirmpassword')?.invalid && signupForm.get('confirmpassword')?.touched" class="text-danger">&nbsp;Mật khẩu không để trống</small>
+              <input formControlName="confirmPassword" type="password" class="form-control" placeholder="Nhập lại mật khẩu ">
+              <small *ngIf="signupForm.get('confirmPassword')?.invalid && signupForm.get('confirmPassword')?.touched" class="text-danger">&nbsp;Mật khẩu không để trống</small>
             </div>
             <div class="mb-3">
               <label class="form-label"> Số điện thoại </label>
               <input formControlName="phone" type="phone" class="form-control" id="phone" placeholder="Số điện thoại ">
               <div class="form-text"></div>
               <small *ngIf="signupForm.get('phone')?.invalid && signupForm.get('phone')?.touched " class="text-danger">&nbsp;Số điện thoại không để trống </small>
-
             </div>
-
             <div id="signup">
-              <button type="submit" class="btn btn-primary" style="width: 300px; font-size: 15px;"[disabled]="signupForm.valid"> Đăng ký </button>
+              <button type="submit" class="btn btn-primary" style="width: 300px; font-size: 15px;"[disabled]="signupForm.invalid"> Đăng ký </button>
             </div>
           </form>
           <div id="route">
