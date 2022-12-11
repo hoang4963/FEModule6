@@ -7,9 +7,13 @@ import {AuthenticationService} from "../../service/authentication.service.servic
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit{
+  userID: number = 0;
   constructor(private authenticationService: AuthenticationService) {
   }
   ngOnInit(): void {
+    let id = Number(localStorage.getItem('ID'));
+    this.userID = id
+    console.log(this.userID);
   }
   logout() {
     this.authenticationService.logout()
