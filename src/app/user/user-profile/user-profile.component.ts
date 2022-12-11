@@ -43,6 +43,7 @@ export class UserProfileComponent implements OnInit{
 
   userForm:FormGroup | any;
       userId! : any;
+      userName: any;
       id: number | any;
       fullName: any;
       avatar: any;
@@ -74,6 +75,7 @@ export class UserProfileComponent implements OnInit{
 
   getUser(id: number) {
     return this.userService.getUserProfile(id).subscribe(userr => {
+      this.userName = userr.username
       this.userId = userr.id
       this.fullName = userr.fullName
       this.avatar = userr.avatar

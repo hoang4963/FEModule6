@@ -16,6 +16,7 @@ export class UserUpdteComponent implements OnInit {
   image: string = "";
   downloadURL: any;
   fb: any;
+  user? : User;
   userUpdate: User = {
     fullName: "",
     avatar:  "",
@@ -38,7 +39,11 @@ export class UserUpdteComponent implements OnInit {
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       // @ts-ignore
       this.id = +paramMap.get('id');
+      this.userService.getUserProfile(this.id).subscribe(res =>{
+        this.user = res
+      })
       this.getUser(this.id);
+
       // this.initializeForm();
     });
   }
