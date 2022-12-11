@@ -42,6 +42,10 @@ const routes: Routes = [
   {
     path : 'user/:id',
     component : UserProfileComponent
+  },
+  {
+    path:'change-password/:id',
+    component : ChangePasswordComponent
   }
   // ,
   // {
