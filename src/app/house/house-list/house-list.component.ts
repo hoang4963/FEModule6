@@ -25,11 +25,12 @@ export class HouseListComponent implements OnInit{
   getAllHouse(){
     this.houseService.getAll().subscribe(result => {
         this.houses = result;
+      console.log(this.houses)
+
       for (let i = 0; i < this.houses.length; i++) {
         // @ts-ignore
         this.listFirstImage.push(String(this.houses[i].image[0].imageName))
       }
-        console.log(this.houses)
       }, error => {
         console.log(error);
       }

@@ -8,6 +8,7 @@ import {HttpClient} from "@angular/common/http";
 import {House} from "../../model/house";
 import {HouseService} from "../../service/house.service";
 import * as moment from "moment";
+import {object} from "@angular/fire/database";
 
 @Component({
   selector: 'app-oder-create',
@@ -15,13 +16,13 @@ import * as moment from "moment";
   styleUrls: ['./oder-create.component.css']
 })
 export class OderCreateComponent implements OnInit {
+  object: any;
 
   id: number = 0;
   totalPrice: number = 0;
   rent!: any;
   house!: House;
-
-
+  listOrders: Order[] = [];
   order: OrderDTO = {
     usersId: Number(localStorage.getItem('ID')),
     houseId: 0,
@@ -57,9 +58,11 @@ export class OderCreateComponent implements OnInit {
     this.createOrder();
     // this.getAllOrder();
   }
+
   getAllOrder() {
     this.orderService.getAll().subscribe(result => {
-        // this.order = result;
+        this.listOrders = result;
+
       }, error => {
         console.log(error);
       }
@@ -89,39 +92,41 @@ export class OderCreateComponent implements OnInit {
   }
 
   //cái này dùng để check điều kiện của order
+  // myFilter = (d: Date | null): boolean => {
+  //   //chưa lấy được dữ liệu từ database
+  //   // if (this.object.house.id == this.id) {
+  //   for (let i = 0; i < this.listOrders.length; i++) {
+  //     this.object = this.listOrders[i];
+  //
+  //   }
+  //   console.log(this.object)
+  //   // console.log(this.listOrders)
+  //   // console.log(typeof (this.listOrders[0]));
+  //   // console.log(moment(d).isBefore(this.object.starTime, 'day'));
+  //   // console.log(moment(d).isAfter(this.object.endTime, 'day'));
+  //   const b = moment(d).isBefore(this.object.starTime, 'day') || moment(d).isAfter(this.object.endTime, 'day')
+  //   console.log(b)
+  //
+  //   // Prevent Saturday and Sunday from being selected.
+  //   return b;
+  // };
+
   myFilter = (d: Date | null): boolean => {
     //chưa lấy được dữ liệu từ database
-    console.log(this.order)
-    console.log(this.order.startTime);
-    console.log(moment(d).isBefore(this.order.startTime, 'day'));
-    console.log(moment(d).isAfter(this.order.endTime, 'day'));
-    // lich
-    const b = moment(d).isBefore(this.order.startTime, 'day') && moment(d).isAfter(this.order.endTime, 'day')
-    // const date = (d || new Date()).getDate() + '-' + (d || new Date()).getMonth() + '-' + (d || new Date()).getFullYear();
-    // const datecheck : Date
-    console.log(d)
-    // if (moment(d).i)
+    // if (this.object.house.id == this.id) {
+    for (let i = 0; i < this.listOrders.length; i++) {
 
-    // Prevent Saturday and Sunday from being selected.
-    return !b;
+      this.object = this.listOrders[i];
+      let isNotCollapseTime = moment(d).isBefore(this.object.starTime, 'day') || moment(d).isAfter(this.object.endTime, 'day')
+      if (!isNotCollapseTime) {
+        return false
+      }
+    }
+    return true;
   };
-
   submit() {
-    console.log(this.order);
-    // this.order.usersId =
     this.order.houseId = this.id;
 
-    // this.order.orderStatusID = 1;
-    // this.order.startTime = this.orderForm.value.startTime
-    // this.order.endTime = this.orderForm.value.endTime
-    // this.order.createTime = Date.now()
-    // this.orderService.createOrder(this.order, this.id).subscribe(() => {
-    //     this.orderForm.reset();
-    //     alert("Tạo order thành công")
-    //   }, error => {
-    //     console.log(error);
-    //   }
-    // )
     this.orderService.createOrder(this.order, this.id).subscribe(() => {
         alert("Tạo order thành công")
 
