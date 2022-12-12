@@ -33,7 +33,7 @@
 <!--         autocomplete="off"-->
 <!--  />-->
 <!--</div>-->
-
+<app-nav-bar></app-nav-bar>
 <section class="intro-single">
   <div class="container">
     <div class="row">
@@ -46,13 +46,19 @@
         <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <a href="#">Trang chủ</a>
+              <a routerLink="/home">Trang chủ</a>
             </li>
             <li class="breadcrumb-item">
-              <a href="#">chủ nhà</a>
+              <a >chủ nhà</a>
+            </li><li class="breadcrumb-item">
+              <a [routerLink]="['/user',id]">{{user?.username}}</a>
             </li>
             <li class="breadcrumb-item active" aria-current="page">
+<<<<<<< HEAD
               {{user?.username}}
+=======
+              sửa thông tin
+>>>>>>> 32547df87375cfa40481937b8fb127198d24b1bb
             </li>
           </ol>
         </nav>
