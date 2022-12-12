@@ -29,13 +29,12 @@
     <div class="row justify-content-center">
       <div class="col-lg-9">
         <div class="contact-form bg-light rounded p-5">
-          <div id="success"></div>
           <form name="sentMessage" id="contactForm" novalidate="novalidate" [formGroup]="houseForm" (submit)="submit()">
             <div class="form-row">
               <div class="col-sm-6 control-group">
                 Tên ngôi nhà:
                 <input type="text" class="form-control p-4" id="houseName" name="houseName" formControlName="houseName"
-                       placeholder="house Name" required="required"
+                       placeholder="Tên ngôi nhà" required="required"
                        data-validation-required-message="Xin hãy nhập tên nhà"/>
                 <div *ngIf="houseName?.invalid &&  houseName?.touched">
                   <div *ngIf="houseName?.errors?.['required']">
@@ -88,7 +87,7 @@
             <div class=" control-group">
               Giá phòng :
               <input type="number" class="form-control p-4" id="weight" formControlName="rent"
-                     placeholder="giá nhà/ngày" required="required"
+                     placeholder="VNĐ/ngày" required="required"
                      data-validation-required-message="hãy nhập giá nhà / ngày"/>
               <div *ngIf="rent?.invalid &&  rent?.touched">
                 <div *ngIf="rent?.errors?.['required']">
