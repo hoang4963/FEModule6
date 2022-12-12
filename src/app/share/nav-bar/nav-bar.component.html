@@ -17,21 +17,15 @@
           <a class="nav-link active" routerLink="/home">Trang chủ</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" routerLink="/house/create">Tạo phòng</a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link" routerLink="/house/list">Tìm phòng</a>
         </li>
-        <li class="nav-item" >
+        <li class="nav-item dropdown" >
           <a class="nav-link" [routerLink]="['/user',userID]">profile</a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" routerLink="/house/create">Tạo nhà cho thuê mới</a></li>
 <!--            <li><a class="dropdown-item" ></a></li>-->
             <li><a class="dropdown-item" [routerLink]="['/change-password',userID]">Thay đổi mật khẩu </a></li>
           </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/change-password">Thay đổi mật khẩu</a>
         </li>
         <li class="nav-item">
           <a class="navbar-brand" [routerLink]="['/user',userID]">

@@ -33,7 +33,7 @@
 <!--         autocomplete="off"-->
 <!--  />-->
 <!--</div>-->
-
+<app-nav-bar></app-nav-bar>
 <section class="intro-single">
   <div class="container">
     <div class="row">
@@ -46,10 +46,10 @@
         <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <a href="#">Trang chủ</a>
+              <a routerLink="/home">Trang chủ</a>
             </li>
             <li class="breadcrumb-item">
-              <a href="#">chủ nhà</a>
+              <a >chủ nhà</a>
             </li>
             <li class="breadcrumb-item active" aria-current="page">
               {{user?.username}}
