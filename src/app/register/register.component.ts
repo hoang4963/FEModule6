@@ -22,7 +22,7 @@ export class RegisterComponent implements OnInit {
     password: new FormControl('',[Validators.required, Validators.minLength(6)]),
     confirmPassword: new FormControl('',[Validators.required, Validators.minLength(6)]),
     phone: new FormControl('', [Validators.required, Validators.pattern("(84|0[3|5|7|8|9])+([0-9]{8})\\b")])
-  });
+  },{validators:this.validateAreEqual});
   constructor(private formBuilder: FormBuilder, private http : HttpClient,
               private router : Router) { }
 
@@ -33,7 +33,7 @@ export class RegisterComponent implements OnInit {
     //   confirmPassword:['',Validators.required, Validators.minLength(6)],
     //   phone:['',Validators.required, Validators.pattern("(84|0[3|5|7|8|9])+([0-9]{8})\\b")],
     //
-    // },{validators:this.validateAreEqual})
+    // })
   }
   signUp(){
     console.log(this.signupForm.value);
