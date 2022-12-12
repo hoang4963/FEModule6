@@ -7,6 +7,7 @@ import {Order} from "../../model/order";
 import {HttpClient} from "@angular/common/http";
 import {House} from "../../model/house";
 import {HouseService} from "../../service/house.service";
+import * as moment from "moment";
 
 @Component({
   selector: 'app-oder-create',
@@ -19,6 +20,7 @@ export class OderCreateComponent implements OnInit {
   totalPrice: number = 0;
   rent!: any;
   house!: House;
+
 
   order: OrderDTO = {
     usersId: Number(localStorage.getItem('ID')),
@@ -40,28 +42,38 @@ export class OderCreateComponent implements OnInit {
     // private userService: UserService,
   ) {
     this.activateRoute.paramMap.subscribe((paraMap: ParamMap) => {
-      // @ts-ignore
-      this.id = +paraMap.get('id');
-      // this.getRentHouse(this.id);
-      // this.getTotalRent();
-    }
+        // @ts-ignore
+        this.id = +paraMap.get('id');
+        // this.getRentHouse(this.id);
+        // this.getTotalRent();
+      }
     )
-      this.houseService.findById(this.id).subscribe(res => {
-        this.house = res
+    this.houseService.findById(this.id).subscribe(res => {
+      this.house = res
     });
   }
 
   ngOnInit(): void {
     this.createOrder();
-
+    // this.getAllOrder();
   }
-  getRentHouse(id: number){
-     return this.houseService.findById(id).subscribe(house => {
-       this.rent = house.rent
-     })
-}
+  getAllOrder() {
+    this.orderService.getAll().subscribe(result => {
+        // this.order = result;
+      }, error => {
+        console.log(error);
+      }
+    )
+  }
+
+  getRentHouse(id: number) {
+    return this.houseService.findById(id).subscribe(house => {
+      this.rent = house.rent
+    })
+  }
+
   getTotalRent() {
-    this.totalPrice = (this.order.endTime - this.order.startTime)*this.rent;
+    this.totalPrice = (this.order.endTime - this.order.startTime) * this.rent;
     console.log(this.totalPrice)
   }
 
@@ -78,15 +90,20 @@ export class OderCreateComponent implements OnInit {
 
   //cái này dùng để check điều kiện của order
   myFilter = (d: Date | null): boolean => {
-    //to day laf lay tu db
-    const today = new Date().getDate() + '-' + new Date().getMonth() + '-' + new Date().getFullYear();
+    //chưa lấy được dữ liệu từ database
+    console.log(this.order)
+    console.log(this.order.startTime);
+    console.log(moment(d).isBefore(this.order.startTime, 'day'));
+    console.log(moment(d).isAfter(this.order.endTime, 'day'));
     // lich
-    const date = (d || new Date()).getDate() + '-' + (d || new Date()).getMonth() + '-' + (d || new Date()).getFullYear();
+    const b = moment(d).isBefore(this.order.startTime, 'day') && moment(d).isAfter(this.order.endTime, 'day')
+    // const date = (d || new Date()).getDate() + '-' + (d || new Date()).getMonth() + '-' + (d || new Date()).getFullYear();
     // const datecheck : Date
-    console.log(today)
+    console.log(d)
+    // if (moment(d).i)
 
     // Prevent Saturday and Sunday from being selected.
-    return date !== today;
+    return !b;
   };
 
   submit() {
