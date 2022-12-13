@@ -14,24 +14,20 @@
     <div class="navbar-collapse collapse justify-content-center" id="navbarDefault">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" routerLink="/home">Trang chủ</a>
+          <a class="nav-link" routerLink="/home">Trang chủ</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/house/list">Tìm phòng</a>
         </li>
         <li class="nav-item dropdown" >
-          <a class="nav-link" [routerLink]="['/user',userID]">Cá nhân</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" routerLink="/house/create">Tạo nhà cho thuê mới</a></li>
-            <li><a class="dropdown-item" routerLink="/change-password">Thay đổi mật khẩu </a></li>
-
-            <li><a class="dropdown-item" routerLink="/orderPast">Xem lịch sử thuê nhà</a></li>
-            <li>
-              <a class="dropdown-item" (click)="logout()" routerLink="/user">Đăng Xuất</a>
-            </li>
-
-
-          </ul>
+          <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >Cá nhân</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" [routerLink]="['/user',userID]">Thông tin cá nhân</a>
+            <a class="dropdown-item" routerLink="/house/create">Tạo nhà thuê mới</a>
+            <a class="dropdown-item" routerLink="/booking">Lịch sử phiếu thuê nhà</a>
+            <a class="dropdown-item" href="#">Lịch sử thuê nhà</a>
+            <a class="dropdown-item" routerLink="/change-password">Thay đổi mật khẩu </a>
+            <a class="dropdown-item" (click)="logout()" routerLink="/user">Đăng Xuất</a>
         </li>
         <li class="nav-item">
           <a class="navbar-brand" [routerLink]="['/user',userID]">
