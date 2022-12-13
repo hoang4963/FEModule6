@@ -9,6 +9,7 @@ import {UserService} from "./service/user.service";
 import {UserUpdteComponent} from "./user/user-updte/user-updte.component";
 
 import {ChangePasswordComponent} from "./change-password/change-password.component";
+import {OrderPastComponent} from "./order/order-past/order-past.component";
 
 
 const routes: Routes = [
@@ -45,6 +46,10 @@ const routes: Routes = [
     path : 'user/:id',
     component : UserProfileComponent
   },
+  {
+    path : 'orderPast',
+    component : OrderPastComponent
+  }
   // {
   //   path:'change-password/:id',
   //   component : ChangePasswordComponent
