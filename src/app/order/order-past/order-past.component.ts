@@ -15,7 +15,9 @@ import {Image} from "../../model/Image";
 export class OrderPastComponent implements OnInit{
   id: number = 0;
   orderList: Order[] = [];
-  houseList: House[] = [];
+  house!: House;
+  listFirstImage: string[] = [];
+  listImage: Image[]=[];
   ngOnInit(): void {
     this.id = Number(localStorage.getItem("ID"));
     this.getOrderPast(this.id);
@@ -28,8 +30,12 @@ export class OrderPastComponent implements OnInit{
     this.orderService.getOrderPast(id).subscribe(result => {
       this.orderList = result;
       console.log(this.orderList)
+      for (let i = 0; i < this.orderList.length; i++) {
+        // @ts-ignore
+        this.listFirstImage.push(this.orderList[i].house?.image[0].imageName);
+      }
+    },error => {
+      console.log(error);
     })
-  }
-  getListHouse(){
   }
 }

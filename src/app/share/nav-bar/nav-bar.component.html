@@ -25,9 +25,10 @@
             <a class="dropdown-item" [routerLink]="['/user',userID]">Thông tin cá nhân</a>
             <a class="dropdown-item" routerLink="/house/create">Tạo nhà thuê mới</a>
             <a class="dropdown-item" routerLink="/booking">Lịch sử phiếu thuê nhà</a>
-            <a class="dropdown-item" href="#">Lịch sử thuê nhà</a>
+            <a class="dropdown-item" routerLink="/orderPast">Lịch sử thuê nhà</a>
             <a class="dropdown-item" routerLink="/change-password">Thay đổi mật khẩu </a>
-            <a class="dropdown-item" (click)="logout()" routerLink="/user">Đăng Xuất</a>
+            <a class="dropdown-item" (click)="logout()">Đăng Xuất</a>
+          </div>
         </li>
         <li class="nav-item">
           <a class="navbar-brand" [routerLink]="['/user',userID]">

@@ -26,12 +26,13 @@ export class BookingComponent implements OnInit{
     this.orderService.getBookingByUserID(userid).subscribe(res => {
       // @ts-ignore
       this.bookings = res;
-      console.log(this.bookings)
       // @ts-ignore
       for (let i = 0; i < this.bookings.length; i++) {
         // @ts-ignore
         this.listFirstImage.push(this.bookings[i].house?.image[0].imageName);
       }
+    },error => {
+      console.log(error);
     })
   }
 }
