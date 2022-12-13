@@ -106,9 +106,15 @@ export class HouseCreateComponent implements OnInit{
     this.house.bedrooms = Number(this.houseNotImage.bedrooms);
     this.house.rent = Number(this.houseNotImage.rent);
     this.house.description = String(this.houseNotImage.description);
-    this.house.image1 = image1;
-    this.house.image2 = image2;
-    this.house.image3 = image3;
+    if (image1 != null && image1 != ""){
+      this.house.image1 = image1;
+    }
+    if (image2 != null && image2 != ""){
+      this.house.image2 = image2;
+    }
+    if (image3 != null && image3 != ""){
+      this.house.image3 = image3;
+    }
     console.log(this.house);
     this.houseService.saveHouse(this.house, id).subscribe(() => {
       this.houseForm.reset();

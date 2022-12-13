@@ -79,7 +79,10 @@ export class UserUpdteComponent implements OnInit {
    // this.userUpdate.userAddress = String(this.userForm.get("userAddress"));
    // this.userUpdate.email = String(this.userForm.get("email"));
    // this.userUpdate.phoneNumber = String(this.userForm.get("phoneNumber"));
-   this.userUpdate.avatar = this.image;
+    if (this.image != "" && this.image != null){
+      this.userUpdate.avatar = this.image;
+    }
+   console.log(this.userUpdate);
     this.userService.updateUserProfile(id, this.userUpdate).subscribe(() => {
       alert('Cập nhật thành công');
       this.router.navigate(['/user',id]);

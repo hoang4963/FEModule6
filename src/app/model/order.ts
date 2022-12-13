@@ -7,7 +7,7 @@ export interface Order {
   user?: User;
   house?: House;
   status?: OrderStatus;
-  startTime?: any;
+  starTime?: any;
   endTime?: any;
   createTime?: any;
 }
