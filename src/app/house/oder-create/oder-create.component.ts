@@ -4,11 +4,9 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {OrderService} from "../../service/order.service";
 import {Order} from "../../model/order";
-import {HttpClient} from "@angular/common/http";
 import {House} from "../../model/house";
 import {HouseService} from "../../service/house.service";
 import * as moment from "moment";
-import {object} from "@angular/fire/database";
 
 @Component({
   selector: 'app-oder-create',
@@ -37,17 +35,12 @@ export class OderCreateComponent implements OnInit {
 
   constructor(
     private activateRoute: ActivatedRoute,
-    // private http : HttpClient,
-    // private router : Router,
     private houseService: HouseService,
     private orderService: OrderService,
-    // private userService: UserService,
   ) {
     this.activateRoute.paramMap.subscribe((paraMap: ParamMap) => {
         // @ts-ignore
         this.id = +paraMap.get('id');
-        // this.getRentHouse(this.id);
-        // this.getTotalRent();
       }
     )
     this.houseService.findById(this.id).subscribe(res => {
@@ -101,13 +94,11 @@ export class OderCreateComponent implements OnInit {
 
   myFilter = (d: Date | null): boolean => {
 
-    //chưa lấy được dữ liệu từ database
     for (let i = 0; i < this.listOrders.length; i++) {
 
       this.object = this.listOrders[i];
 
       console.log(this.object)
-      // && moment(d).isAfter(Date.now(),"day")
       let a = moment(d).isAfter(Date.now(), "day")
       let isNotCollapseTime = moment(d).isBefore(this.object.starTime, 'day') || moment(d).isAfter(this.object.endTime, 'day');
       if (!a || !isNotCollapseTime) {
