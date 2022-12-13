@@ -4,11 +4,9 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {OrderService} from "../../service/order.service";
 import {Order} from "../../model/order";
-import {HttpClient} from "@angular/common/http";
 import {House} from "../../model/house";
 import {HouseService} from "../../service/house.service";
 import * as moment from "moment";
-import {object} from "@angular/fire/database";
 
 @Component({
   selector: 'app-oder-create',
@@ -34,40 +32,42 @@ export class OderCreateComponent implements OnInit {
   }
   orderForm: FormGroup | undefined | any;
 
+
   constructor(
     private activateRoute: ActivatedRoute,
-    // private http : HttpClient,
-    // private router : Router,
     private houseService: HouseService,
     private orderService: OrderService,
-    // private userService: UserService,
   ) {
     this.activateRoute.paramMap.subscribe((paraMap: ParamMap) => {
         // @ts-ignore
         this.id = +paraMap.get('id');
-        // this.getRentHouse(this.id);
-        // this.getTotalRent();
       }
     )
     this.houseService.findById(this.id).subscribe(res => {
       this.house = res
     });
+    this.getAllOrderByHouseId(this.id);
+
   }
+
 
   ngOnInit(): void {
     this.createOrder();
     // this.getAllOrder();
   }
 
-  getAllOrder() {
-    this.orderService.getAll().subscribe(result => {
+  getAllOrderByHouseId(id: number) {
+
+    this.orderService.showOrderByHouseId(id).subscribe(result => {
         this.listOrders = result;
 
+        console.log(result)
       }, error => {
         console.log(error);
       }
     )
   }
+
 
   getRentHouse(id: number) {
     return this.houseService.findById(id).subscribe(house => {
@@ -77,7 +77,7 @@ export class OderCreateComponent implements OnInit {
 
   getTotalRent() {
     this.totalPrice = (this.order.endTime - this.order.startTime) * this.rent;
-    console.log(this.totalPrice)
+    // console.log(this.totalPrice)
   }
 
   createOrder() {
@@ -91,42 +91,26 @@ export class OderCreateComponent implements OnInit {
     })
   }
 
-  //cái này dùng để check điều kiện của order
-  // myFilter = (d: Date | null): boolean => {
-  //   //chưa lấy được dữ liệu từ database
-  //   // if (this.object.house.id == this.id) {
-  //   for (let i = 0; i < this.listOrders.length; i++) {
-  //     this.object = this.listOrders[i];
-  //
-  //   }
-  //   console.log(this.object)
-  //   // console.log(this.listOrders)
-  //   // console.log(typeof (this.listOrders[0]));
-  //   // console.log(moment(d).isBefore(this.object.starTime, 'day'));
-  //   // console.log(moment(d).isAfter(this.object.endTime, 'day'));
-  //   const b = moment(d).isBefore(this.object.starTime, 'day') || moment(d).isAfter(this.object.endTime, 'day')
-  //   console.log(b)
-  //
-  //   // Prevent Saturday and Sunday from being selected.
-  //   return b;
-  // };
 
   myFilter = (d: Date | null): boolean => {
-    //chưa lấy được dữ liệu từ database
-    // if (this.object.house.id == this.id) {
+
     for (let i = 0; i < this.listOrders.length; i++) {
 
       this.object = this.listOrders[i];
-      let isNotCollapseTime = moment(d).isBefore(this.object.starTime, 'day') || moment(d).isAfter(this.object.endTime, 'day')
-      if (!isNotCollapseTime) {
+
+      console.log(this.object)
+      let a = moment(d).isAfter(Date.now(), "day")
+      let isNotCollapseTime = moment(d).isBefore(this.object.starTime, 'day') || moment(d).isAfter(this.object.endTime, 'day');
+      if (!a || !isNotCollapseTime) {
         return false
       }
     }
     return true;
   };
+
   submit() {
     this.order.houseId = this.id;
-
+    // console.log(this.house)
     this.orderService.createOrder(this.order, this.id).subscribe(() => {
         alert("Tạo order thành công")
 
