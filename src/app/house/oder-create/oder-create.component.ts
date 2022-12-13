@@ -103,7 +103,7 @@ export class OderCreateComponent implements OnInit {
         this.object = this.listOrders[i];
 
         console.log(this.object)
-        let isNotCollapseTime = moment(d).isBefore(this.object.starTime, 'day') || moment(d).isAfter(this.object.endTime, 'day');
+        let isNotCollapseTime = moment(d).isBefore(this.object.startTime, 'day') || moment(d).isAfter(this.object.endTime, 'day');
         if (!isNotCollapseTime) {
           return false
         }
