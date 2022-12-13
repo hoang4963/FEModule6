@@ -19,7 +19,7 @@
 
 
 <!--</form>-->
-
+<app-nav-bar></app-nav-bar>
 <section class="intro-single">
   <div class="container">
     <div class="row">
@@ -34,10 +34,14 @@
         <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <a href="#">Trang chủ</a>
+<<<<<<< HEAD
+<!--              <a [routerLink]="'/home'">Trang chủ</a>-->
+=======
+              <a routerLink="/home">Trang chủ</a>
+>>>>>>> 254662195736ef0753a718c87d539dd87787565d
             </li>
             <li class="breadcrumb-item">
-              <a href="#">Chủ nhà</a>
+              <a >Chủ nhà</a>
             </li>
             <li class="breadcrumb-item active" aria-current="page">
               {{userName}}
@@ -68,18 +72,18 @@
               <div class="agent-content mb-3">
                 <p class="content-d color-text-a">
                 </p>
-                <div class="info-agents color-a">
-                  <p>
+                <div class="info-agents color-a" >
+                  <p style="font-size: 24px">
                     <strong>Địa chỉ: </strong>
-                    <span class="color-text-a"> {{userAddress}}</span>
+                     {{userAddress}}
                   </p>
-                  <p>
+                  <p style="font-size: 24px">
                     <strong>Số điện thoại: </strong>
-                    <span class="color-text-a"> {{phoneNumber}} </span>
+                     {{phoneNumber}}
                   </p>
-                  <p>
+                  <p style="font-size: 24px">
                     <strong>Email: </strong>
-                    <span class="color-text-a"> {{email}}</span>
+                     {{email}}
                   </p>
                 </div>
               </div>

@@ -7,6 +7,8 @@ import {Order} from "../../model/order";
 import {HttpClient} from "@angular/common/http";
 import {House} from "../../model/house";
 import {HouseService} from "../../service/house.service";
+import * as moment from "moment";
+import {object} from "@angular/fire/database";
 
 @Component({
   selector: 'app-oder-create',
@@ -14,10 +16,13 @@ import {HouseService} from "../../service/house.service";
   styleUrls: ['./oder-create.component.css']
 })
 export class OderCreateComponent implements OnInit {
+  object: any;
 
   id: number = 0;
+  totalPrice: number = 0;
+  rent!: any;
   house!: House;
-
+  listOrders: Order[] = [];
   order: OrderDTO = {
     usersId: Number(localStorage.getItem('ID')),
     houseId: 0,
@@ -38,17 +43,41 @@ export class OderCreateComponent implements OnInit {
     // private userService: UserService,
   ) {
     this.activateRoute.paramMap.subscribe((paraMap: ParamMap) => {
-      // @ts-ignore
-      this.id = +paraMap.get('id');
-      this.houseService.findById(this.id).subscribe(res => {
-        this.house = res
-    })
+        // @ts-ignore
+        this.id = +paraMap.get('id');
+        // this.getRentHouse(this.id);
+        // this.getTotalRent();
+      }
+    )
+    this.houseService.findById(this.id).subscribe(res => {
+      this.house = res
     });
   }
 
   ngOnInit(): void {
     this.createOrder();
+    // this.getAllOrder();
+  }
 
+  getAllOrder() {
+    this.orderService.getAll().subscribe(result => {
+        this.listOrders = result;
+
+      }, error => {
+        console.log(error);
+      }
+    )
+  }
+
+  getRentHouse(id: number) {
+    return this.houseService.findById(id).subscribe(house => {
+      this.rent = house.rent
+    })
+  }
+
+  getTotalRent() {
+    this.totalPrice = (this.order.endTime - this.order.startTime) * this.rent;
+    console.log(this.totalPrice)
   }
 
   createOrder() {
@@ -63,33 +92,41 @@ export class OderCreateComponent implements OnInit {
   }
 
   //cái này dùng để check điều kiện của order
+  // myFilter = (d: Date | null): boolean => {
+  //   //chưa lấy được dữ liệu từ database
+  //   // if (this.object.house.id == this.id) {
+  //   for (let i = 0; i < this.listOrders.length; i++) {
+  //     this.object = this.listOrders[i];
+  //
+  //   }
+  //   console.log(this.object)
+  //   // console.log(this.listOrders)
+  //   // console.log(typeof (this.listOrders[0]));
+  //   // console.log(moment(d).isBefore(this.object.starTime, 'day'));
+  //   // console.log(moment(d).isAfter(this.object.endTime, 'day'));
+  //   const b = moment(d).isBefore(this.object.starTime, 'day') || moment(d).isAfter(this.object.endTime, 'day')
+  //   console.log(b)
+  //
+  //   // Prevent Saturday and Sunday from being selected.
+  //   return b;
+  // };
+
   myFilter = (d: Date | null): boolean => {
-    //to day laf lay tu db
-    const today = new Date().getDate() + '-' + new Date().getMonth() + '-' + new Date().getFullYear();
-    // lich
-    const date = (d || new Date()).getDate() + '-' + (d || new Date()).getMonth() + '-' + (d || new Date()).getFullYear();
-    // const datecheck : Date
-    console.log(today)
+    //chưa lấy được dữ liệu từ database
+    // if (this.object.house.id == this.id) {
+    for (let i = 0; i < this.listOrders.length; i++) {
 
-    // Prevent Saturday and Sunday from being selected.
-    return date !== today;
+      this.object = this.listOrders[i];
+      let isNotCollapseTime = moment(d).isBefore(this.object.starTime, 'day') || moment(d).isAfter(this.object.endTime, 'day')
+      if (!isNotCollapseTime) {
+        return false
+      }
+    }
+    return true;
   };
-
   submit() {
-    console.log(this.order);
-    // this.order.usersId =
     this.order.houseId = this.id;
-    // this.order.orderStatusID = 1;
-    // this.order.startTime = this.orderForm.value.startTime
-    // this.order.endTime = this.orderForm.value.endTime
-    // this.order.createTime = Date.now()
-    // this.orderService.createOrder(this.order, this.id).subscribe(() => {
-    //     this.orderForm.reset();
-    //     alert("Tạo order thành công")
-    //   }, error => {
-    //     console.log(error);
-    //   }
-    // )
+
     this.orderService.createOrder(this.order, this.id).subscribe(() => {
         alert("Tạo order thành công")
 
