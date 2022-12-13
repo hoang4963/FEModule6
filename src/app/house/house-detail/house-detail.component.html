@@ -1,4 +1,6 @@
 <app-nav-bar></app-nav-bar>
+<link rel='stylesheet prefetch' href='https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css'>
+
 
 <!--</form>-->
 <!--&lt;!&ndash;<img src="https://sieupet.com/sites/default/files/hinh_anh_meo_dep.jpg" height="10px" width="10px" >&ndash;&gt;-->
@@ -124,12 +126,24 @@
                     <strong>Bãi gửi xe:</strong>
                     <span>Có</span>
                   </li>
+
                   <li class="d-flex justify-content-between">
-                    <strong>Đánh giá:</strong>
+                    <strong>Nhận xét:</strong>
                     <span>
                       <table *ngFor="let comment of listComment">
                         <tr>
                           <p style="color: green"><td>{{comment.comment}}</td>
+                        </tr>
+                      </table>
+                    </span>
+                  </li>
+
+                  <li class="d-flex justify-content-between">
+                    <strong>Đánh giá:</strong>
+                    <span>
+                      <table *ngFor="let rating of listRating">
+                        <tr>
+                          <p style="color: green"><td>{{rating.rating}}</td>
                         </tr>
                       </table>
                     </span>
