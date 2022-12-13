@@ -3,6 +3,8 @@ import {FormControl, FormGroup} from "@angular/forms";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {HouseService} from "../../service/house.service";
 import {Image} from "../../model/Image";
+import {HouseCommentService} from "../../service/house-comment.service";
+import {Comments} from "../../model/comment";
 
 @Component({
   selector: 'app-house-detail',
@@ -24,16 +26,19 @@ export class HouseDetailComponent {
   description! : any;
   bedrooms! : any;
   bathrooms! : any;
+  listComment: Comments[]=[];
 
   constructor(private houseService: HouseService,
               private router: Router,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,
+              private houseCommentService: HouseCommentService) {
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       // @ts-ignore
       this.id = +paramMap.get('id');
       this.getHouse(this.id);
       this.initializeForm();
       this.getImage(this.id);
+      this.getComment(this.id)
     });
   }
 
@@ -48,6 +53,7 @@ export class HouseDetailComponent {
       bedrooms: new FormControl(),
       bathrooms: new FormControl(),
       HouseStatus: new FormControl()
+
     });
   }
 
@@ -81,5 +87,11 @@ export class HouseDetailComponent {
       this.image2 = listImage[1].imageName;
       this.image3 = listImage[2].imageName;
     })
+  }
+  getComment(id: number){
+    return this.houseCommentService.getAll().subscribe(commentList => {
+      this.listComment = commentList;
+      console.log(this.listComment)
+    } )
   }
 }

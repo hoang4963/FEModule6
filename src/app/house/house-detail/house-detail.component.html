@@ -124,6 +124,16 @@
                     <strong>Bãi gửi xe:</strong>
                     <span>Có</span>
                   </li>
+                  <li class="d-flex justify-content-between">
+                    <strong>Đánh giá:</strong>
+                    <span>
+                      <table *ngFor="let comment of listComment">
+                        <tr>
+                          <p style="color: green"><td>{{comment.comment}}</td>
+                        </tr>
+                      </table>
+                    </span>
+                  </li>
                 </ul>
               </div>
             </div>

@@ -28,7 +28,7 @@ import { HouseUpdateStatusComponent } from './house-update-status/house-update-s
     OderCreateComponent,
 
     HouseStatusEditComponent,
-    HouseUpdateStatusComponent
+    HouseUpdateStatusComponent,
   ],
   exports: [
     HouseListComponent,
