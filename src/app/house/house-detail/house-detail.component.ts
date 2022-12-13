@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {HouseService} from "../../service/house.service";
@@ -11,7 +11,7 @@ import {Image} from "../../model/Image";
 })
 export class HouseDetailComponent {
   houseForm: FormGroup | any;
-  houseId! : any;
+  houseId!: any;
   id: number | any;
   // @ts-ignore
   listImage: Image[];
@@ -21,9 +21,9 @@ export class HouseDetailComponent {
   houseName: any;
   Address: any;
   Rent!: any;
-  description! : any;
-  bedrooms! : any;
-  bathrooms! : any;
+  description!: any;
+  bedrooms!: any;
+  bathrooms!: any;
 
   constructor(private houseService: HouseService,
               private router: Router,
@@ -39,7 +39,8 @@ export class HouseDetailComponent {
 
   ngOnInit() {
   }
-  initializeForm(){
+
+  initializeForm() {
     this.houseForm = new FormGroup({
       Name: new FormControl(),
       Address: new FormControl(),
@@ -72,9 +73,10 @@ export class HouseDetailComponent {
       // });
     });
   }
-  getImage(id: number){
-    return this.houseService.findImageByHouseId(id).subscribe( listImage => {
-        // @ts-ignore
+
+  getImage(id: number) {
+    return this.houseService.findImageByHouseId(id).subscribe(listImage => {
+      // @ts-ignore
       this.listImage = listImage;
       console.log(listImage[0].imageName);
       this.image1 = listImage[0].imageName;
@@ -82,4 +84,6 @@ export class HouseDetailComponent {
       this.image3 = listImage[2].imageName;
     })
   }
+
+
 }

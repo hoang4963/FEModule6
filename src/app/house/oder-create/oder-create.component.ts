@@ -93,19 +93,23 @@ export class OderCreateComponent implements OnInit {
 
 
   myFilter = (d: Date | null): boolean => {
+    let a = moment(d).isAfter(Date.now(), "day")
+    // !a ||
+    if (!a) {
+      return false
+    } else {
+      for (let i = 0; i < this.listOrders.length; i++) {
 
-    for (let i = 0; i < this.listOrders.length; i++) {
+        this.object = this.listOrders[i];
 
-      this.object = this.listOrders[i];
-
-      console.log(this.object)
-      let a = moment(d).isAfter(Date.now(), "day")
-      let isNotCollapseTime = moment(d).isBefore(this.object.starTime, 'day') || moment(d).isAfter(this.object.endTime, 'day');
-      if (!a || !isNotCollapseTime) {
-        return false
+        console.log(this.object)
+        let isNotCollapseTime = moment(d).isBefore(this.object.starTime, 'day') || moment(d).isAfter(this.object.endTime, 'day');
+        if (!isNotCollapseTime) {
+          return false
+        }
       }
+      return true;
     }
-    return true;
   };
 
   submit() {
