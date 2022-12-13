@@ -28,7 +28,7 @@ export class NavBarComponent implements OnInit{
   ngOnInit(): void {
     let userid = Number(localStorage.getItem('ID'));
     this.userID = userid
-    console.log(this.userID);
+    // console.log(this.userID);
   }
   logout() {
     this.authenticationService.logout()

@@ -25,7 +25,7 @@ export class HouseListComponent implements OnInit{
   getAllHouse(){
     this.houseService.getAll().subscribe(result => {
         this.houses = result;
-      console.log(this.houses)
+      // console.log(this.houses)
 
       for (let i = 0; i < this.houses.length; i++) {
         // @ts-ignore
