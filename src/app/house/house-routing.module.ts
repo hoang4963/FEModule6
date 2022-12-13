@@ -14,6 +14,10 @@ const routes: Routes = [
     component: HouseDetailComponent
   },
   {
+    path:'list',
+    component: HouseListComponent
+  },
+  {
     path: 'orders/:id',
     component: OderCreateComponent
   }, {
