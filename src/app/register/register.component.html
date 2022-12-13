@@ -103,7 +103,7 @@
               <div [hidden]="!signupForm.get('password')?.errors?.['required']">
                 <p class="text-danger">Mật khẩu không để trống </p>
               </div>
-              <div [hidden]="!signupForm.get('password')?.errors?.['minlength']">-->
+              <div [hidden]="!signupForm.get('password')?.errors?.['minlength']">
                   <p class="text-danger">Mật khẩu từ 6-8 ký tự</p>
               </div>
                 <div [hidden]="!signupForm.get('password')?.errors?.['maxlength']">
@@ -132,8 +132,8 @@
 
           <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
             <label class="form-label"> Số điện thoại
-            <input class="input100" formControlName="phone" type="phone" name="phone" placeholder="số điện thoại"></label>
-            <div *ngIf="!signupForm.get('phone')?.valid && (signupForm.get('phone')?.dirty ||signupForm.get('phone')?.touched)">-->
+            <input class="input100" formControlName="phone" type="phone" name="phone" placeholder="Số điện thoại"></label>
+            <div *ngIf="!signupForm.get('phone')?.valid && (signupForm.get('phone')?.dirty ||signupForm.get('phone')?.touched)">
               <div [hidden]="!signupForm.get('phone')?.errors?.['required']">
                 <p class="text-danger">Số điện thoại không để trống</p>
               </div>

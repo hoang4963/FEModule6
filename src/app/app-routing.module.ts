@@ -10,6 +10,11 @@ import {UserUpdteComponent} from "./user/user-updte/user-updte.component";
 
 import {ChangePasswordComponent} from "./change-password/change-password.component";
 
+import {OrderPastComponent} from "./order/order-past/order-past.component";
+import { BookingComponent } from './order/booking/booking.component';
+
+
+
 
 const routes: Routes = [
   {
@@ -30,11 +35,7 @@ const routes: Routes = [
   {
     path: 'orders',
     loadChildren: () => import('./order/order.module').then(module => module.OrderModule)
-  }, {
-    path: "user",
-    component: UserProfileComponent
-
-  }, {
+  },{
     path: 'home',
     component: HomeComponent
   },{
@@ -45,6 +46,13 @@ const routes: Routes = [
     path : 'user/:id',
     component : UserProfileComponent
   },
+  {
+    path: 'orderPast',
+    component: OrderPastComponent
+  },{
+    path : 'booking',
+    component : BookingComponent
+  }
   // {
   //   path:'change-password/:id',
   //   component : ChangePasswordComponent
