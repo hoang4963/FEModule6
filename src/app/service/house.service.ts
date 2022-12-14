@@ -37,4 +37,8 @@ export class HouseService {
     //   return this.httpClient.put<Smartphone>(`${API_URL}/products/${id}`, smartphone);
     // }
 
+  get5house(): Observable<House[]> {
+    return this.httpClient.get<House[]>(API_URL + `/house/list5house`);
+  }
+
 }

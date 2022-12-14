@@ -15,6 +15,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatButtonModule} from "@angular/material/button";
 import { HouseUpdateStatusComponent } from './house-update-status/house-update-status.component';
+import { List5houseComponent } from './list5house/list5house.component';
 
 
 
@@ -28,7 +29,8 @@ import { HouseUpdateStatusComponent } from './house-update-status/house-update-s
     OderCreateComponent,
 
     HouseStatusEditComponent,
-    HouseUpdateStatusComponent
+    HouseUpdateStatusComponent,
+    List5houseComponent
   ],
   exports: [
     HouseListComponent,
