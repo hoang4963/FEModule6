@@ -1,19 +1,4 @@
-<table>
-  <tr>
-    <td>STT</td>
-    <td>Ngay thue</td>
-    <td>Ngay bat dau thue</td>
-    <td>Ngay ket thuc thue</td>
-    <td>Ten can nha da thue</td>
-  </tr>
-  <tr *ngFor="let order of orderList; index as i">
-    <td>{{i + 1}}</td>
-    <td>{{order.createTime}}</td>
-    <td>{{order.starTime}}</td>
-    <td>{{order.endTime}}</td>
-    <td>{{order.house?.houseName}}</td>
-  </tr>
-</table>
+
 <app-nav-bar></app-nav-bar>
 <section class="intro-single">
   <div class="container">
@@ -72,7 +57,7 @@
                   <div class="properties-location"><i class="icon_pin"></i><p style="font-size: 24px"><strong>Địa chỉ: </strong>{{order.house?.houseAddress}}</p></div>
                   <p style="font-size: 24px">
                     <strong>Ngày bắt đầu: </strong>
-                    {{order.starTime}}
+                    {{order.startTime}}
                   </p>
                   <p style="font-size: 24px">
                     <strong>Ngày kết thúc: </strong>

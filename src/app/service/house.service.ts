@@ -30,11 +30,5 @@ export class HouseService {
     updateStatus(id: number, idStatus: number): Observable<House> {
       return this.httpClient.put<House>(`${API_URL}/house/updateStatus/${id}/${idStatus}`, id );
     }
-    // deleteSmartphone(id: number): Observable<Smartphone> {
-    //   return this.httpClient.delete<Smartphone>(`${API_URL}/products/${id}`);
-    // }
-    // updateSmartphone(id: number, smartphone: Smartphone): Observable<Smartphone> {
-    //   return this.httpClient.put<Smartphone>(`${API_URL}/products/${id}`, smartphone);
-    // }
 
 }
