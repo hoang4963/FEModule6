@@ -36,4 +36,8 @@ export class HouseService {
     }
 
 
+  get5house(): Observable<House[]> {
+    return this.httpClient.get<House[]>(API_URL + `/house/list5house`);
+  }
+
 }
