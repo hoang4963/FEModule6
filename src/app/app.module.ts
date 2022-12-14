@@ -30,7 +30,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
     HomeComponent,
     UserProfileComponent,
     UserUpdteComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
   ],
   imports: [
     BrowserModule,
