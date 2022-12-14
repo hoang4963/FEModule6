@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {House} from "../model/house";
 import {environment} from "../../enviroments/environment";
 import {Image} from "../model/Image";
+import {EmailDetails} from "../model/emailDetails";
 const API_URL = `${environment.apiUrl}`
 @Injectable({
   providedIn: 'root'
@@ -29,6 +30,9 @@ export class HouseService {
     }
     updateStatus(id: number, idStatus: number): Observable<House> {
       return this.httpClient.put<House>(`${API_URL}/house/updateStatus/${id}/${idStatus}`, id );
+    }
+    sendMail(emailDetails: EmailDetails): Observable<EmailDetails> {
+      return this.httpClient.post<EmailDetails>(`${API_URL}/sendMail`, emailDetails);
     }
     // deleteSmartphone(id: number): Observable<Smartphone> {
     //   return this.httpClient.delete<Smartphone>(`${API_URL}/products/${id}`);

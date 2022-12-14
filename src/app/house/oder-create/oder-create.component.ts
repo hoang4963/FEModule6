@@ -7,6 +7,11 @@ import {Order} from "../../model/order";
 import {House} from "../../model/house";
 import {HouseService} from "../../service/house.service";
 import * as moment from "moment";
+import {UserService} from "../../service/user.service";
+import {EmailDetails} from "../../model/emailDetails";
+import {EmailService} from "../../service/email.service";
+
+
 
 @Component({
   selector: 'app-oder-create',
@@ -14,8 +19,14 @@ import * as moment from "moment";
   styleUrls: ['./oder-create.component.css']
 })
 export class OderCreateComponent implements OnInit {
-  object: any;
-
+  hostName: string = "";
+  object!: Order;
+  emailDetails: EmailDetails = {
+    recipient: "",
+    msgBody: "",
+    subject: "",
+    attachment: "",
+  }
   id: number = 0;
   totalPrice: number = 0;
   rent!: any;
@@ -34,6 +45,8 @@ export class OderCreateComponent implements OnInit {
 
 
   constructor(
+    private emailService: EmailService,
+    private userService: UserService,
     private activateRoute: ActivatedRoute,
     private houseService: HouseService,
     private orderService: OrderService,
@@ -44,12 +57,13 @@ export class OderCreateComponent implements OnInit {
       }
     )
     this.houseService.findById(this.id).subscribe(res => {
-      this.house = res
+      this.house = res;
+      this.emailDetails.recipient = String(this.house.user?.email);
+      console.log(this.house.user?.email);
+      this.hostName = String(this.house.user?.fullName);
     });
     this.getAllOrderByHouseId(this.id);
-
   }
-
 
   ngOnInit(): void {
     this.createOrder();
@@ -57,17 +71,14 @@ export class OderCreateComponent implements OnInit {
   }
 
   getAllOrderByHouseId(id: number) {
-
     this.orderService.showOrderByHouseId(id).subscribe(result => {
         this.listOrders = result;
-
         console.log(result)
       }, error => {
         console.log(error);
       }
     )
   }
-
 
   getRentHouse(id: number) {
     return this.houseService.findById(id).subscribe(house => {
@@ -91,36 +102,43 @@ export class OderCreateComponent implements OnInit {
     })
   }
 
-
   myFilter = (d: Date | null): boolean => {
-
-    for (let i = 0; i < this.listOrders.length; i++) {
-
-      this.object = this.listOrders[i];
-
-      console.log(this.object)
-      let a = moment(d).isAfter(Date.now(), "day")
-      let isNotCollapseTime = moment(d).isBefore(this.object.starTime, 'day') || moment(d).isAfter(this.object.endTime, 'day');
-      if (!a || !isNotCollapseTime) {
-        return false
+    let a = moment(d).isAfter(Date.now(), "day")
+    // !a ||
+    if (!a) {
+      return false
+    } else {
+      for (let i = 0; i < this.listOrders.length; i++) {
+        this.object = this.listOrders[i];
+        console.log(this.object)
+        let isNotCollapseTime = moment(d).isBefore(this.object.startTime, 'day') || moment(d).isAfter(this.object.endTime, 'day');
+        if (!isNotCollapseTime) {
+          return false
+        }
       }
+      return true;
     }
-    return true;
-  };
-
-  submit() {
-    this.order.houseId = this.id;
-    // console.log(this.house)
-    this.orderService.createOrder(this.order, this.id).subscribe(() => {
-        alert("Tạo order thành công")
-
-      }, error => {
-        alert("Đã trùng ngày ")
-      }
-    );
-
-    this.orderForm.reset();
-
   }
+
+      sendMail()
+      {
+        this.emailDetails.subject = "Bạn có một đơn thuê nhà chờ xác nhận";
+        this.emailDetails.msgBody = "Bạn có 1 order của khách hàng tên: " + this.hostName + " đã tạo vào lúc" + this.order.createTime + " thời gian muốn thuê từ ngày " + this.order.startTime + " đến ngày " + this.order.endTime + " vui lòng vào kiểm tra và xác thực.";
+        this.emailService.sendMail(this.emailDetails).subscribe(res => {
+          console.log(res);
+        })
+      }
+      submit()
+      {
+        this.order.houseId = this.id;
+        this.orderService.createOrder(this.order, this.id).subscribe(() => {
+            this.sendMail();
+            alert("Tạo order thành công")
+          }, error => {
+            alert("Đã trùng ngày ")
+          }
+        );
+        this.orderForm.reset();
+      }
 
 }

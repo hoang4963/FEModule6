@@ -26,4 +26,5 @@ export class UserService {
   changePassword(id:number, password: string): Observable<User> {
     return  this.http.put<User>(API_URL + `/editPassword/${id}`,password)
   }
+
 }

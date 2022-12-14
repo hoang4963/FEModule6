@@ -15,7 +15,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatButtonModule} from "@angular/material/button";
 import { HouseUpdateStatusComponent } from './house-update-status/house-update-status.component';
-import {MatLegacyTooltipModule} from "@angular/material/legacy-tooltip";
+import {MatIconModule} from "@angular/material/icon";
 
 
 
@@ -35,17 +35,17 @@ import {MatLegacyTooltipModule} from "@angular/material/legacy-tooltip";
     HouseListComponent,
     HouseEditComponent
   ],
-    imports: [
-        CommonModule,
-        HouseRoutingModule,
-        ReactiveFormsModule,
-        ShareModule,
-        MatInputModule,
-        MatDatepickerModule,
-        MatButtonModule,
-        FormsModule,
-        MatLegacyTooltipModule
-    ]
+  imports: [
+    CommonModule,
+    HouseRoutingModule,
+    ReactiveFormsModule,
+    ShareModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatButtonModule,
+    FormsModule,
+    MatIconModule
+  ]
 })
 
 export class HouseModule { }

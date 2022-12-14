@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import { Component } from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {HouseService} from "../../service/house.service";
@@ -7,7 +7,6 @@ import {HouseCommentService} from "../../service/house-comment.service";
 import {Comments} from "../../model/comment";
 import {Rating} from "../../model/rating";
 import {HouseRatingService} from "../../service/house-rating.service";
-import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-house-detail',
@@ -15,6 +14,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
   styleUrls: ['./house-detail.component.css']
 })
 export class HouseDetailComponent {
+  stars:number = 0;
   houseForm: FormGroup | any;
   houseId! : any;
   id: number | any;
@@ -30,22 +30,14 @@ export class HouseDetailComponent {
   bedrooms! : any;
   bathrooms! : any;
   listComment: Comments[]=[];
-  // @ts-ignore
-  @Input('rating') private rating: number;
-  // @ts-ignore
-  @Input('starCount') private starCount: number;
-  // @ts-ignore
-  @Input('color') private color: string;
-  @Output() private ratingUpdated = new EventEmitter();
-
-  private snackBarDuration: number = 2000;
-  public ratingArr = [];
+  listRating: Rating[]=[];
+  selectedRating = 0;
+  star:any;
   constructor(private houseService: HouseService,
               private router: Router,
               private activatedRoute: ActivatedRoute,
               private houseCommentService: HouseCommentService,
-              private houseRatingService: HouseRatingService,
-              private snackBar: MatSnackBar) {
+              private houseRatingService: HouseRatingService) {
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       // @ts-ignore
       this.id = +paramMap.get('id');
@@ -53,14 +45,13 @@ export class HouseDetailComponent {
       this.initializeForm();
       this.getImage(this.id);
       this.getComment(this.id);
+      this.getRating(this.id);
+      this.getStar(this.id)
     });
   }
-
   ngOnInit() {
-    for (let index = 0; index < this.starCount; index++) {
-      // @ts-ignore
-      this.ratingArr.push(index);
-    }
+
+
   }
   initializeForm(){
     this.houseForm = new FormGroup({
@@ -112,11 +103,27 @@ export class HouseDetailComponent {
       console.log(this.listComment)
     } )
   }
-  showIcon(index:number) {
-    if (this.rating >= index + 1) {
-      return 'star';
-    } else {
-      return 'star_border';
-    }
+  getRating(id: number){
+    return this.houseRatingService.getAll().subscribe(ratingList => {
+      this.listRating = ratingList;
+      console.log(this.listRating)
+    } )
+  }
+
+  checkStar(){
+    // @ts-ignore
+    document.getElementById("star" + this.stars).checked = true;
+
+    console.log(document.getElementById("star5"))
+  }
+  getStar(id: number){
+     return this.houseRatingService.getStar(id).subscribe(ratingList => {
+      this.listRating = ratingList;
+      for (let i = 0; i < this.listRating.length; i++) {
+        this.stars += Number(this.listRating[i].rating)/this.listRating.length
+      }
+       this.checkStar()
+    } )
+
   }
 }

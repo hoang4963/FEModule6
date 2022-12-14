@@ -22,6 +22,7 @@ export class OrderService {
     return this.httpClient.post<Order>(API_URL + `/orders/${id}`, order);
   }
 
+
   showOrderById(id: number): Observable<Order> {
     return this.httpClient.get<Order>(`${API_URL}/orders/${id}`);
   }
@@ -30,6 +31,14 @@ export class OrderService {
   }
   getOrderPast(id: number): Observable<Order[]>{
     return this.httpClient.get<Order[]>( `${API_URL}/ordersPast/${id}`);
+  }
+
+
+  // showOrderById(id: number): Observable<Order> {
+  //   return this.httpClient.get<Order>(${API_URL}+`/orders/${id}`);
+  // }
+  getBookingByUserID(id: number): Observable<Order>{
+    return this.httpClient.get<Order>(API_URL+`/user/house/orders/${id}`)
   }
 
 }
