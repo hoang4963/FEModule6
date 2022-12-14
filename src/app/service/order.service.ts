@@ -29,8 +29,11 @@ export class OrderService {
   showOrderByHouseId(id: number): Observable<Order[]> {
     return this.httpClient.get<Order[]>(API_URL + `/orders/house/${id}`);
   }
-  getOrderPast(id: number): Observable<Order[]>{
-    return this.httpClient.get<Order[]>( `${API_URL}/ordersPast/${id}`);
+  getOrderPast(id: number, start: number): Observable<Order[]>{
+    return this.httpClient.get<Order[]>( `${API_URL}/ordersPast/${id}/${start}`);
+  }
+  getOrderByUserId(id: number): Observable<Order[]>{
+    return this.httpClient.get<Order[]>( `${API_URL}/ordersByUser/${id}`);
   }
 
 
