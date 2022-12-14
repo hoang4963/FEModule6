@@ -12,7 +12,11 @@ export class EmailService {
 
   constructor(private httpClient: HttpClient) { }
   sendMail(emailDetails: EmailDetails): Observable<EmailDetails> {
-  return this.httpClient.post<EmailDetails>(API_URL + `/sendMail`, emailDetails );
+    debugger
+  return this.httpClient.post<EmailDetails>( `${API_URL}/sendMail`, emailDetails );
 }
+  getAll(): Observable<House[]> {
+    return this.httpClient.get<House[]>(API_URL + `/house/list`);
+  }
 
 }

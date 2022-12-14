@@ -111,11 +111,13 @@ export class OderCreateComponent implements OnInit {
     return true;
   };
   sendMail(){
-
       this.emailDetails.subject = "Bạn có một đơn thuê nhà chờ xác nhận";
       this.emailDetails.msgBody = "Bạn có 1 order của khách hàng tên: " + this.hostName + " đã tạo vào lúc" + this.order.createTime + " thời gian muốn thuê từ ngày " + this.order.startTime + " đến ngày " + this.order.endTime + " vui lòng vào kiểm tra và xác thực.";
-      this.emailService.sendMail(this.emailDetails);
-      console.log(this.emailDetails);
+
+      // this.emailService.sendMail(this.emailDetails);
+      this.emailService.sendMail(this.emailDetails).subscribe( res => {
+        console.log(res);
+      })
   }
   submit() {
     this.order.houseId = this.id;
