@@ -34,11 +34,6 @@ export class HouseService {
     sendMail(emailDetails: EmailDetails): Observable<EmailDetails> {
       return this.httpClient.post<EmailDetails>(`${API_URL}/sendMail`, emailDetails);
     }
-    // deleteSmartphone(id: number): Observable<Smartphone> {
-    //   return this.httpClient.delete<Smartphone>(`${API_URL}/products/${id}`);
-    // }
-    // updateSmartphone(id: number, smartphone: Smartphone): Observable<Smartphone> {
-    //   return this.httpClient.put<Smartphone>(`${API_URL}/products/${id}`, smartphone);
-    // }
+
 
 }

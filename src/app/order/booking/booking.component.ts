@@ -14,6 +14,7 @@ export class BookingComponent implements OnInit{
   bookings: Order[]=[];
   listFirstImage: string[] = [];
   listImage: Image[]=[];
+  orderStatus!: number;
   constructor(private orderService : OrderService) {
 
   }
@@ -33,6 +34,29 @@ export class BookingComponent implements OnInit{
       }
     },error => {
       console.log(error);
+    })
+  }
+  submit(id : any) {
+    this.orderStatus = 2;
+    console.log(id,this.orderStatus)
+    this.orderService.changeOderStatus(id,this.orderStatus).subscribe( () => {
+      alert("Đã xác nhận!!!");
+      location.reload();
+    }, error => {
+      alert("Có lỗi xảy ra!")
+      location.reload();
+    })
+
+  }
+  cancel(id : any){
+    this.orderStatus = 4;
+    this.orderService.changeOderStatus(id,this.orderStatus).subscribe(() => {
+      console.log(id)
+      alert("Đã hủy thành công!!!");
+      location.reload();
+    },eror =>{
+      alert("Có lỗi xảy ra!");
+      location.reload();
     })
   }
 }

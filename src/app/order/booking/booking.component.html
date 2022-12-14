@@ -62,9 +62,12 @@
                     <strong>Ngày kết thúc: </strong>
                     {{booking.endTime}}
                   </p>
+                  <button class="btn btn-info" (click)="submit(booking.id)" style="height: 50px; width: 100px">Xác nhận</button>
+                  &nbsp;
+                  <button class="btn btn-info" (click)="cancel(booking.id)" style="height: 50px; width: 100px">Hủy</button>
                 </div>
               </div>
-            </div>
+              </div>
           </div>
         </div>
       </div>

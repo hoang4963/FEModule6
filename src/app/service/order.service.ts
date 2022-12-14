@@ -43,5 +43,7 @@ export class OrderService {
   getBookingByUserID(id: number): Observable<Order>{
     return this.httpClient.get<Order>(API_URL+`/user/house/orders/${id}`)
   }
-
+  changeOderStatus(id: number, statusId: number) :Observable<Order>{
+    return this.httpClient.put<Order>(API_URL+`/orders/changeStatus/${id}/${statusId}`, id )
+  }
 }
