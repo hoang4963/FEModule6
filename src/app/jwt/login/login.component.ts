@@ -47,11 +47,11 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('USERNAME', data.username);
           localStorage.setItem('ID', data.id);
           if (data.roles[0].authority == "ROLE_ADMIN") {
-            this.router.navigate(['/house/list'])
+            this.router.navigate(['/home'])
           } else
 
             if (data.roles[0].authority == "ROLE_USER") {
-              this.router.navigate(['/house/list']);
+              this.router.navigate(['/home']);
               alert("đăng nhập thành công")
             }
         },

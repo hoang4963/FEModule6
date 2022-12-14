@@ -16,6 +16,7 @@ export class UserUpdteComponent implements OnInit {
   image: string = "";
   downloadURL: any;
   fb: any;
+  user? : User;
   userUpdate: User = {
     fullName: "",
     avatar:  "",
@@ -38,7 +39,11 @@ export class UserUpdteComponent implements OnInit {
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       // @ts-ignore
       this.id = +paramMap.get('id');
+      this.userService.getUserProfile(this.id).subscribe(res =>{
+        this.user = res
+      })
       this.getUser(this.id);
+
       // this.initializeForm();
     });
   }
@@ -69,11 +74,15 @@ export class UserUpdteComponent implements OnInit {
   }
 
   updateUser(id: number) {
-   this.userUpdate.fullName = String(this.userForm.get("fullName"));
-   this.userUpdate.userAddress = String(this.userForm.get("userAddress"));
-   this.userUpdate.email = String(this.userForm.get("email"));
-   this.userUpdate.phoneNumber = String(this.userForm.get("phoneNumber"));
-   this.userUpdate.avatar = this.image;
+    this.userUpdate = this.userForm.value;
+   // this.userUpdate.fullName = String(this.userForm.get("fullName"));
+   // this.userUpdate.userAddress = String(this.userForm.get("userAddress"));
+   // this.userUpdate.email = String(this.userForm.get("email"));
+   // this.userUpdate.phoneNumber = String(this.userForm.get("phoneNumber"));
+    if (this.image != "" && this.image != null){
+      this.userUpdate.avatar = this.image;
+    }
+   console.log(this.userUpdate);
     this.userService.updateUserProfile(id, this.userUpdate).subscribe(() => {
       alert('Cập nhật thành công');
       this.router.navigate(['/user',id]);

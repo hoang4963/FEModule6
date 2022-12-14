@@ -8,13 +8,14 @@ import {HouseCreateComponent} from "./house-create/house-create.component";
 import {OderCreateComponent} from "./oder-create/oder-create.component";
 import {HouseUpdateStatusComponent} from "./house-update-status/house-update-status.component";
 
-const routes: Routes = [{
-  path: 'list',
-  component: HouseListComponent
-},
+const routes: Routes = [
   {
     path: 'detail/:id',
     component: HouseDetailComponent
+  },
+  {
+    path:'list',
+    component: HouseListComponent
   },
   {
     path: 'orders/:id',

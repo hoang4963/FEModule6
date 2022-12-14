@@ -1,22 +1,124 @@
-<h1>Detail</h1>
-<p>avatar:</p>
-<img src="{{avatar}}" alt="avatar" width="300" height="300">
-<form [formGroup]="userForm">
+<!--<h1>Detail</h1>-->
+<!--<p>avatar:</p>-->
+<!--<img src="{{avatar}}" alt="avatar" width="300" height="300">-->
+<!--<form [formGroup]="userForm">-->
 
 
-  <p>fullName:</p>
-  <h1 class="title-single">{{fullName}}</h1>
+<!--  <p>fullName:</p>-->
+<!--  <h1 class="title-single">{{fullName}}</h1>-->
 
-  <p>userAddress:</p>
-  <h1 class="title-single">{{userAddress}}</h1>
-  <p>email:</p>
-  <h1 class="title-single">{{email}}</h1>
-  <p>phoneNumber:</p>
-  <h1 class="title-single">{{phoneNumber}}</h1>
-  <br>
-  <a [routerLink]="['/update',userId]" class="btn btn-info">update</a>
-  <a [routerLink]="['/list']" class="btn btn-info">Back</a>
+<!--  <p>userAddress:</p>-->
+<!--  <h1 class="title-single">{{userAddress}}</h1>-->
+<!--  <p>email:</p>-->
+<!--  <h1 class="title-single">{{email}}</h1>-->
+<!--  <p>phoneNumber:</p>-->
+<!--  <h1 class="title-single">{{phoneNumber}}</h1>-->
+<!--  <br>-->
+<!--  <a [routerLink]="['/update',userId]" class="btn btn-info">update</a>-->
+<!--  <a [routerLink]="['/list']" class="btn btn-info">Back</a>-->
 
 
-</form>
-
+<!--</form>-->
+<app-nav-bar></app-nav-bar>
+<section class="intro-single">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-lg-8">
+        <div class="title-single-box">
+          <h1 class="title-single">{{fullName}}</h1>
+          <br>
+          <a [routerLink]="['/update',userId]" class="btn btn-info">Sửa thông tin cá nhân</a>
+        </div>
+      </div>
+      <div class="col-md-12 col-lg-4">
+        <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a routerLink="/home">Trang chủ</a>
+            </li>
+            <li class="breadcrumb-item">
+              <a>Chủ nhà</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+              {{userName}}
+            </li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="agent-single">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="agent-avatar-box">
+              <img src="{{avatar}}" alt="" class="agent-avatar img-fluid">
+            </div>
+          </div>
+          <div class="col-md-5 section-md-t3">
+            <div class="agent-info-box">
+              <div class="agent-title">
+                <div class="title-box-d">
+                  <h3 class="title-d">{{fullName}} </h3>
+                </div>
+              </div>
+              <div class="agent-content mb-3">
+                <p class="content-d color-text-a">
+                </p>
+                <div class="info-agents color-a">
+                  <div class="info-agents color-a">
+                    <p style="font-size: 24px">
+                      <strong>Địa chỉ: </strong>
+                      {{userAddress}}
+                    </p>
+                    <p style="font-size: 24px">
+                      <strong>Số điện thoại: </strong>
+                      {{phoneNumber}}
+                    </p>
+                    <p style="font-size: 24px">
+                      <strong>Email: </strong>
+                      {{email}}
+                    </p>
+                  </div>
+                </div>
+                <div class="socials-footer">
+                  <ul class="list-inline">
+                    <li class="list-inline-item">
+                      <a href="#" class="link-one">
+                        <i class="fa fa-facebook" aria-hidden="true" style="font-size: 24px"></i>
+                      </a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a href="#" class="link-one">
+                        <i class="fa fa-twitter" aria-hidden="true" style="font-size: 24px"></i>
+                      </a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a href="#" class="link-one">
+                        <i class="fa fa-instagram" aria-hidden="true" style="font-size: 24px"></i>
+                      </a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a href="#" class="link-one">
+                        <i class="fa fa-pinterest-p" aria-hidden="true" style="font-size: 24px"></i>
+                      </a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a href="#" class="link-one">
+                        <i class="fa fa-dribbble" aria-hidden="true" style="font-size: 24px"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>

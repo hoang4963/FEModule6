@@ -14,11 +14,12 @@ import {RegisterComponent} from "./register/register.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { HomeComponent } from './home/home.component';
 
-import { UserProfileComponent } from './user/user-profile/user-profile.component';
+ import { UserProfileComponent } from './user/user-profile/user-profile.component';
 import {MatNativeDateModule} from "@angular/material/core";
 import {UserUpdteComponent} from "./user/user-updte/user-updte.component";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { ChangePasswordComponent } from "../app/change-password/change-password.component";
+import {MatFormFieldModule} from "@angular/material/form-field";
 
 
 @NgModule({
@@ -28,8 +29,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     RegisterComponent,
     HomeComponent,
     UserProfileComponent,
-    UserUpdteComponent
-
+    UserUpdteComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +44,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     BrowserAnimationsModule,
     MatNativeDateModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]

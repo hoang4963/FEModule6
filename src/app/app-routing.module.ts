@@ -8,6 +8,14 @@ import {UserProfileComponent} from "./user/user-profile/user-profile.component";
 import {UserService} from "./service/user.service";
 import {UserUpdteComponent} from "./user/user-updte/user-updte.component";
 
+import {ChangePasswordComponent} from "./change-password/change-password.component";
+
+import {OrderPastComponent} from "./order/order-past/order-past.component";
+import { BookingComponent } from './order/booking/booking.component';
+
+
+
+
 const routes: Routes = [
   {
     path: 'house',
@@ -17,17 +25,17 @@ const routes: Routes = [
     component: RegisterComponent
   },
   {
+    path: 'change-password',
+    component: ChangePasswordComponent
+  },
+  {
     path: '',
     component: LoginComponent
   },
   {
     path: 'orders',
     loadChildren: () => import('./order/order.module').then(module => module.OrderModule)
-  }, {
-    path: "user",
-    component: UserProfileComponent
-
-  }, {
+  },{
     path: 'home',
     component: HomeComponent
   },{
@@ -37,7 +45,18 @@ const routes: Routes = [
   {
     path : 'user/:id',
     component : UserProfileComponent
+  },
+  {
+    path: 'orderPast/:start',
+    component: OrderPastComponent
+  },{
+    path : 'booking',
+    component : BookingComponent
   }
+  // {
+  //   path:'change-password/:id',
+  //   component : ChangePasswordComponent
+  // }
   // ,
   // {
   //   path : ""
