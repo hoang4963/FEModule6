@@ -141,9 +141,9 @@
                   <li class="d-flex justify-content-between">
                     <strong>Đánh giá:</strong>
                     <span>
-                      <table *ngFor="let rating of listRating">
+                      <table *ngFor="let ratingId of ratingArr;index as i" [id]="'star_'+i" matTooltipPosition="above">
                         <tr>
-                          <p style="color: green"><td>{{rating.rating}}</td>
+                          <p style="color: green"><td>{{showIcon(i)}}</td>
                         </tr>
                       </table>
                     </span>
