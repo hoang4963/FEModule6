@@ -12,6 +12,7 @@ import {ChangePasswordComponent} from "./change-password/change-password.compone
 
 import {OrderPastComponent} from "./order/order-past/order-past.component";
 import { BookingComponent } from './order/booking/booking.component';
+import {OrderWaitComponent} from "./order/order-wait/order-wait.component";
 
 
 
@@ -52,6 +53,11 @@ const routes: Routes = [
   },{
     path : 'booking',
     component : BookingComponent
+  }
+  ,
+  {
+    path: 'orderWait/:start',
+    component: OrderWaitComponent
   }
   // {
   //   path:'change-password/:id',
