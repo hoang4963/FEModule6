@@ -20,6 +20,7 @@ import {UserUpdteComponent} from "./user/user-updte/user-updte.component";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChangePasswordComponent } from "../app/change-password/change-password.component";
 import {MatFormFieldModule} from "@angular/material/form-field";
+import {SwiperModule} from "swiper/angular";
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
     MatNativeDateModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
+    SwiperModule
 
   ],
   providers: [],
