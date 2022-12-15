@@ -30,7 +30,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
     HomeComponent,
     UserProfileComponent,
     UserUpdteComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,7 +45,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
     BrowserAnimationsModule,
     MatNativeDateModule,
     BrowserAnimationsModule,
-    MatFormFieldModule
+    MatFormFieldModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
