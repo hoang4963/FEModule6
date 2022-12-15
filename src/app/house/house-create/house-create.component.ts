@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {HouseService} from "../../service/house.service";
 import {AngularFireStorage, AngularFireStorageReference} from "@angular/fire/compat/storage";
 import {finalize} from "rxjs";
@@ -28,14 +28,18 @@ export class HouseCreateComponent implements OnInit {
   }
   houseForm: FormGroup | undefined | any;
   imageList: string[] = [];
+  listImageTest: string[] = [];
   image!: string;
   downloadURL: any;
   fb: any;
   files: File[] = [];
 
+  //multiple File
   selectFile: File[] = [];
   arrFileInFireBase!: AngularFireStorageReference;
-  arrUrlFileFormFireBase = [];
+  arrUrlFormFireBase: any = [];
+  @Output()
+  arrUrl = new EventEmitter<string[]>();
 
   constructor(private houseService: HouseService,
               private storage: AngularFireStorage,
@@ -115,15 +119,27 @@ export class HouseCreateComponent implements OnInit {
   }
 
   upLoad() {
+
     for (let i = 0; i < this.selectFile.length; i++) {
+      console.log(this.selectFile.length)
+
       this.arrFileInFireBase = this.storage.ref(this.selectFile[i].name);
-      this.arrFileInFireBase.put(this.selectFile).then(data => {
+      //put từng phần tử
+      this.arrFileInFireBase.put(this.selectFile[i]).then(data => {
         return data.ref.getDownloadURL();
       }).then(url => {
-        
+        console.log("url", url)
+        this.arrUrlFormFireBase.push(url);
+        this.arrUrl.emit(this.arrUrlFormFireBase)
+      }).catch(error => {
+        console.log(`Upload Fail! ${error}`)
       })
 
     }
+
+    console.log("eeeeee", this.arrUrlFormFireBase)
+
+
   }
 
 

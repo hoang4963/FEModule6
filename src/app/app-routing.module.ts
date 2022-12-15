@@ -47,7 +47,7 @@ const routes: Routes = [
     component : UserProfileComponent
   },
   {
-    path: 'orderPast',
+    path: 'orderPast/:start',
     component: OrderPastComponent
   },{
     path : 'booking',
