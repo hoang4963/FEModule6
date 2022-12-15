@@ -76,4 +76,7 @@ export class OrderWaitComponent {
       alert("không thể huỷ thuê nhà trong vòng 1 ngày trước thời gian thuê ")
     }
   }
+  covert(data: any) {
+    return (new Date(Date.parse(data)).toString().slice(0, 15))
+  }
 }
