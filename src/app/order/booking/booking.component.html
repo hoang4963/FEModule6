@@ -75,16 +75,16 @@
           <nav class="pagination-a">
             <ul class="pagination justify-content-end">
               <li class="page-item">
-                <a class="page-link" [routerLink]="['/orderPast',0]" tabindex="-1">
+                <a class="page-link" [routerLink]="['/booking',0]" tabindex="-1">
                   <span class="ion-ios-arrow-back"></span>
                   <span class="ion-ios-arrow-back"></span>
                 </a>
               </li>
               <li class="page-item active" *ngFor="let page of listPageNumber; index as i">
-                <a class="page-link" [routerLink]="['/orderPast',i]">{{page}}</a>
+                <a class="page-link" [routerLink]="['/booking',i]">{{page}}</a>
               </li>
               <li class="page-item next">
-                <a class="page-link" [routerLink]="['/orderPast',lastpage]">
+                <a class="page-link" [routerLink]="['/booking',lastpage]">
                   <span class="ion-ios-arrow-forward"></span>
                   <span class="ion-ios-arrow-forward"></span>
                 </a>
