@@ -7,6 +7,7 @@ import {User} from "../../model/user";
 import {Status} from "../../model/status";
 import {Image} from "../../model/Image";
 import {ActivatedRoute, ParamMap} from "@angular/router";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-order-past',
