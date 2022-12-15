@@ -7,14 +7,16 @@ import {HouseDetailComponent} from "./house-detail/house-detail.component";
 import {HouseCreateComponent} from "./house-create/house-create.component";
 import {OderCreateComponent} from "./oder-create/oder-create.component";
 import {HouseUpdateStatusComponent} from "./house-update-status/house-update-status.component";
+import {List5houseComponent} from "./list5house/list5house.component";
 
-const routes: Routes = [{
-  path: 'list',
-  component: HouseListComponent
-},
+const routes: Routes = [
   {
     path: 'detail/:id',
     component: HouseDetailComponent
+  },
+  {
+    path:'list',
+    component: HouseListComponent
   },
   {
     path: 'orders/:id',
@@ -22,9 +24,12 @@ const routes: Routes = [{
   }, {
     path: 'create',
     component: HouseCreateComponent
-  },{
+  }, {
     path: 'updatestatus/:id',
     component: HouseUpdateStatusComponent
+  }, {
+    path: 'list5house',
+    component: List5houseComponent
   }
 ];
 

@@ -4,9 +4,14 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {OrderService} from "../../service/order.service";
 import {Order} from "../../model/order";
-import {HttpClient} from "@angular/common/http";
 import {House} from "../../model/house";
 import {HouseService} from "../../service/house.service";
+import * as moment from "moment";
+import {UserService} from "../../service/user.service";
+import {EmailDetails} from "../../model/emailDetails";
+import {EmailService} from "../../service/email.service";
+
+
 
 @Component({
   selector: 'app-oder-create',
@@ -14,10 +19,19 @@ import {HouseService} from "../../service/house.service";
   styleUrls: ['./oder-create.component.css']
 })
 export class OderCreateComponent implements OnInit {
-
+  hostName: string = "";
+  object!: Order;
+  emailDetails: EmailDetails = {
+    recipient: "",
+    msgBody: "",
+    subject: "",
+    attachment: "",
+  }
   id: number = 0;
+  totalPrice: number = 0;
+  rent!: any;
   house!: House;
-
+  listOrders: Order[] = [];
   order: OrderDTO = {
     usersId: Number(localStorage.getItem('ID')),
     houseId: 0,
@@ -28,27 +42,51 @@ export class OderCreateComponent implements OnInit {
 
   }
   orderForm: FormGroup | undefined | any;
-
   constructor(
+    private emailService: EmailService,
+    private userService: UserService,
     private activateRoute: ActivatedRoute,
-    // private http : HttpClient,
-    // private router : Router,
     private houseService: HouseService,
     private orderService: OrderService,
-    // private userService: UserService,
   ) {
     this.activateRoute.paramMap.subscribe((paraMap: ParamMap) => {
-      // @ts-ignore
-      this.id = +paraMap.get('id');
-      this.houseService.findById(this.id).subscribe(res => {
-        this.house = res
-    })
+        // @ts-ignore
+        this.id = +paraMap.get('id');
+      }
+    )
+    this.houseService.findById(this.id).subscribe(res => {
+      this.house = res;
+      this.emailDetails.recipient = String(this.house.user?.email);
+      console.log(this.house.user?.email);
+      this.hostName = String(this.house.user?.fullName);
     });
+    this.getAllOrderByHouseId(this.id);
   }
 
   ngOnInit(): void {
     this.createOrder();
+    // this.getAllOrder();
+  }
 
+  getAllOrderByHouseId(id: number) {
+    this.orderService.showOrderByHouseId(id).subscribe(result => {
+        this.listOrders = result;
+        console.log(result)
+      }, error => {
+        console.log(error);
+      }
+    )
+  }
+
+  getRentHouse(id: number) {
+    return this.houseService.findById(id).subscribe(house => {
+      this.rent = house.rent
+    })
+  }
+
+  getTotalRent() {
+    this.totalPrice = (this.order.endTime - this.order.startTime) * this.rent;
+    // console.log(this.totalPrice)
   }
 
   createOrder() {
@@ -62,44 +100,47 @@ export class OderCreateComponent implements OnInit {
     })
   }
 
-  //cái này dùng để check điều kiện của order
   myFilter = (d: Date | null): boolean => {
-    //to day laf lay tu db
-    const today = new Date().getDate() + '-' + new Date().getMonth() + '-' + new Date().getFullYear();
-    // lich
-    const date = (d || new Date()).getDate() + '-' + (d || new Date()).getMonth() + '-' + (d || new Date()).getFullYear();
-    // const datecheck : Date
-    console.log(today)
+    let a = moment(d).isAfter(Date.now(), "day")
+    // !a ||
+    if (!a) {
+      return false
+    } else {
+      for (let i = 0; i < this.listOrders.length; i++) {
+        this.object = this.listOrders[i];
 
-    // Prevent Saturday and Sunday from being selected.
-    return date !== today;
-  };
+        console.log(this.object)
+        let isNotCollapseTime = moment(d).isBefore(this.object.startTime, 'day') || moment(d).isAfter(this.object.endTime, 'day');
+        if (!isNotCollapseTime) {
+          return false
+        }
 
-  submit() {
-    console.log(this.order);
-    // this.order.usersId =
-    this.order.houseId = this.id;
-    // this.order.orderStatusID = 1;
-    // this.order.startTime = this.orderForm.value.startTime
-    // this.order.endTime = this.orderForm.value.endTime
-    // this.order.createTime = Date.now()
-    // this.orderService.createOrder(this.order, this.id).subscribe(() => {
-    //     this.orderForm.reset();
-    //     alert("Tạo order thành công")
-    //   }, error => {
-    //     console.log(error);
-    //   }
-    // )
-    this.orderService.createOrder(this.order, this.id).subscribe(() => {
-        alert("Tạo order thành công")
+        console.log(this.object)
 
-      }, error => {
-        alert("Đã trùng ngày ")
       }
-    );
-
-    this.orderForm.reset();
-
+      return true;
+    }
   }
+
+      sendMail()
+      {
+        this.emailDetails.subject = "Bạn có một đơn thuê nhà chờ xác nhận";
+        this.emailDetails.msgBody = "Bạn có 1 order của khách hàng tên: " + this.hostName + " đã tạo vào lúc" + this.order.createTime + " thời gian muốn thuê từ ngày " + this.order.startTime + " đến ngày " + this.order.endTime + " vui lòng vào kiểm tra và xác thực.";
+        this.emailService.sendMail(this.emailDetails).subscribe(res => {
+          console.log(res);
+        })
+      }
+      submit()
+      {
+        this.order.houseId = this.id;
+        this.orderService.createOrder(this.order, this.id).subscribe(() => {
+            this.sendMail();
+            alert("Tạo order thành công")
+          }, error => {
+            alert("Đã trùng ngày ")
+          }
+        );
+        this.orderForm.reset();
+      }
 
 }
