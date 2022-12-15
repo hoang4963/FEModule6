@@ -17,21 +17,23 @@ export class BookingComponent implements OnInit {
   listFirstImage: string[] = [];
   listImage: Image[] = [];
   orderStatus!: number;
+
   userId:number = 0;
   page: number = 0;
   lastpage! : number;
   listPageNumber: number[] = [];
-  constructor(private orderService: OrderService,
+  constructor(private orderService : OrderService,
               private activatedRoute: ActivatedRoute) {
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       // @ts-ignore
       this.page = +paramMap.get('start');
+
       this.userId = Number(localStorage.getItem('ID'));
       this.getBooking(this.userId,this.page)
     });
   }
-
   ngOnInit(): void {
+
 
   }
 
@@ -83,7 +85,18 @@ export class BookingComponent implements OnInit {
     })
   }
 
+
+  log(data: any) {
+    new Date(data).toUTCString()
+    console.log(data, typeof data)
+    console.log("new Date", new Date(data), "kiểu dữ liệu", typeof new Date(data))
+    console.log("new Date UTC", new Date(data).toUTCString(), "kiểu dữ liệu UTC", typeof new Date(data).toUTCString())
+    console.log("new Date toISOString", new Date(data).toISOString(), "kiểu dữ liệu UTC", typeof new Date(data).toISOString())
+
+  }
   covert(data: any) {
     return (new Date(Date.parse(data)).toString().slice(0, 15))
+
   }
 }
+

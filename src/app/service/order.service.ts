@@ -48,8 +48,12 @@ export class OrderService {
   // showOrderById(id: number): Observable<Order> {
   //   return this.httpClient.get<Order>(${API_URL}+`/orders/${id}`);
   // }
-  getBookingByHouseOfUserID(id: number, start: number): Observable<Order>{
-    return this.httpClient.get<Order>(API_URL+`/user/house/orders/${id}/${start}`)
+
+  getBookingByHouseOfUserID(id: number, start: number): Observable<Order> {
+    return this.httpClient.get<Order>(API_URL + `/user/house/orders/${id}/${start}`)
+  }
+  getBookingByUserID(id: number, start: number): Observable<Order>{
+    return this.httpClient.get<Order>(API_URL+`/user/house/orders/${id}//${start}`)
   }
   changeOderStatus(id: number, statusId: number) :Observable<Order>{
     return this.httpClient.put<Order>(API_URL+`/orders/changeStatus/${id}/${statusId}`, id )
