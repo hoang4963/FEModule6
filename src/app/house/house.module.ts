@@ -26,19 +26,18 @@ import {SwiperModule} from "swiper/angular";
     HouseListComponent,
     HouseCreateComponent,
     HouseEditComponent,
-    HouseDeleteComponent,
     HouseDetailComponent,
     OderCreateComponent,
-
     HouseStatusEditComponent,
     HouseUpdateStatusComponent,
     HouseUpdateStatusComponent,
     List5houseComponent,
+
   ],
     exports: [
         HouseListComponent,
         HouseEditComponent,
-        HouseDeleteComponent
+
     ],
     imports: [
         CommonModule,
@@ -50,7 +49,8 @@ import {SwiperModule} from "swiper/angular";
         MatButtonModule,
         FormsModule,
         MatIconModule,
-        SwiperModule
+        SwiperModule,
+
     ]
 })
 
