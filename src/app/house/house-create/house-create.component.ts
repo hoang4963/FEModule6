@@ -23,6 +23,7 @@ export class HouseCreateComponent implements OnInit {
     bathrooms: 0,
     rent: 0,
     description: "",
+    listImage:""
     // image1: "https://sieupet.com/sites/default/files/hinh_anh_meo_dep.jpg",
     // image2: "https://sieupet.com/sites/default/files/hinh_anh_meo_dep.jpg",
     // image3: "https://sieupet.com/sites/default/files/hinh_anh_meo_dep.jpg",
@@ -61,6 +62,7 @@ export class HouseCreateComponent implements OnInit {
       rent: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required]),
       statusId: new FormControl(),
+
     });
   }
 
@@ -143,6 +145,8 @@ export class HouseCreateComponent implements OnInit {
 
   submit() {
     this.house.listImage = this.arrUrlFormFireBase;
+    console.log(this.house.listImage)
+
     this.houseNotImage = this.houseForm.value;
     let id = Number(localStorage.getItem('ID'));
     this.house.houseAddress = String(this.houseNotImage.houseAddress);

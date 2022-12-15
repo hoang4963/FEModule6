@@ -112,11 +112,10 @@
               <div class="control-group">
                 <div class="row ">
                   <div class="col-12 mt-5 ">
-                    <div id="yourBt" style="color: black">Tải lên 3 bức ảnh của ngôi nhà</div>
+                    <div id="yourBt" style="color: black">Tải  ảnh của ngôi nhà</div>
                     <div>
-                      <input type="file" (change)="uploadMultipleFile({$event : $event})" multiple>
-                      <button *ngIf="arrUrlFormFireBase.length?!selectFile:selectFile" (click)="upLoad()" class="btn btn-info">Upload File</button>
-                      <!--  <button (arrUrl)="onUpLoadMultiple($event)"></button>-->
+                      <input type="file"  (change)="uploadMultipleFile({$event : $event})" multiple>
+                      <button *ngIf="arrUrlFormFireBase.length?!selectFile:selectFile" (click)="upLoad()" class="btn btn-info" type="button">Đăng ảnh</button>
                     </div>
                   </div>
                 </div>
@@ -127,7 +126,7 @@
                 </div>
               </div>
               <div>
-                <button class="btn btn-info btn-block py-3 px-5" type="submit" id="sendMessageButton"
+                <button class="btn btn-info btn-block py-3 px-5"  type="submit" id="sendMessageButton"
                         [disabled]="!houseForm.valid">Tạo Nhà
                 </button>
               </div>
