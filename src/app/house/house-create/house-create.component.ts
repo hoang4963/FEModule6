@@ -15,6 +15,7 @@ import {HouseNotImage} from "../../model/houseNotImage";
 })
 export class HouseCreateComponent implements OnInit {
   houseNotImage!: HouseNotImage;
+
   house: HouseDTO = {
     houseName: "",
     houseAddress: "",
@@ -22,9 +23,9 @@ export class HouseCreateComponent implements OnInit {
     bathrooms: 0,
     rent: 0,
     description: "",
-    image1: "https://sieupet.com/sites/default/files/hinh_anh_meo_dep.jpg",
-    image2: "https://sieupet.com/sites/default/files/hinh_anh_meo_dep.jpg",
-    image3: "https://sieupet.com/sites/default/files/hinh_anh_meo_dep.jpg",
+    // image1: "https://sieupet.com/sites/default/files/hinh_anh_meo_dep.jpg",
+    // image2: "https://sieupet.com/sites/default/files/hinh_anh_meo_dep.jpg",
+    // image3: "https://sieupet.com/sites/default/files/hinh_anh_meo_dep.jpg",
   }
   houseForm: FormGroup | undefined | any;
   imageList: string[] = [];
@@ -137,18 +138,12 @@ export class HouseCreateComponent implements OnInit {
 
     }
 
-    console.log("eeeeee", this.arrUrlFormFireBase)
-
-
   }
 
 
   submit() {
-    let image1 = this.imageList[0];
-    let image2 = this.imageList[1];
-    let image3 = this.imageList[2];
+    this.house.listImage = this.arrUrlFormFireBase;
     this.houseNotImage = this.houseForm.value;
-    console.log(this.houseNotImage)
     let id = Number(localStorage.getItem('ID'));
     this.house.houseAddress = String(this.houseNotImage.houseAddress);
     this.house.houseName = String(this.houseNotImage.houseName);
@@ -156,16 +151,6 @@ export class HouseCreateComponent implements OnInit {
     this.house.bedrooms = Number(this.houseNotImage.bedrooms);
     this.house.rent = Number(this.houseNotImage.rent);
     this.house.description = String(this.houseNotImage.description);
-    if (image1 != null && image1 != "") {
-      this.house.image1 = image1;
-    }
-    if (image2 != null && image2 != "") {
-      this.house.image2 = image2;
-    }
-    if (image3 != null && image3 != "") {
-      this.house.image3 = image3;
-    }
-    console.log(this.house);
     this.houseService.saveHouse(this.house, id).subscribe(() => {
       this.houseForm.reset();
       alert("done");

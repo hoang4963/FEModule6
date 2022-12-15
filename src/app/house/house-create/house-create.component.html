@@ -162,7 +162,6 @@
 <div>
   <input type="file" (change)="uploadMultipleFile({$event : $event})" multiple>
   <button *ngIf="arrUrlFormFireBase.length?!selectFile:selectFile" (click)="upLoad()">Upload File</button>
-<!--  <button (arrUrl)="onUpLoadMultiple($event)"></button>-->
 </div>
 <div *ngIf="arrUrlFormFireBase.length">
   <div *ngFor="let item of arrUrlFormFireBase">

@@ -56,11 +56,11 @@
                   <div class="properties-location"><i class="icon_pin"></i><p style="font-size: 20px"><strong>Địa chỉ: </strong>{{booking.house?.houseAddress}}</p></div>
                   <p style="font-size: 20px">
                     <strong>Ngày bắt đầu: </strong>
-                    {{booking.startTime}}
+                    {{covert(booking.startTime)}}
                   </p>
                   <p style="font-size: 20px">
                     <strong>Ngày kết thúc: </strong>
-                    {{log(booking.endTime)}}
+                    {{covert(booking.endTime)}}
                   </p>
                   <button class="btn btn-info" (click)="submit(booking.id)" style="height: 50px; width: 100px">Xác nhận</button>
                   &nbsp;

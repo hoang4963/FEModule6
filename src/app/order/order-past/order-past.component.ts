@@ -61,4 +61,7 @@ export class OrderPastComponent implements OnInit {
       }
     })
   }
+  covert(data: any) {
+    return (new Date(Date.parse(data)).toString().slice(0, 15))
+  }
 }
