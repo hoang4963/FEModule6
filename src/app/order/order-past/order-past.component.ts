@@ -22,8 +22,10 @@ export class OrderPastComponent implements OnInit {
   house!: House;
   listFirstImage: string[] = [];
   listImage: Image[] = [];
+
   lastpage!: number;
   check! : any;
+
   ngOnInit(): void {
     this.getPageNumberMax(this.id);
   }
@@ -62,12 +64,17 @@ export class OrderPastComponent implements OnInit {
       }
     })
   }
-  checkHidden(){
+
+  checkHidden() {
     let value = 1;
     let value2 = 0;
     this.check = false;
     if (value2 < value) {
       this.check = true;
     }
+  }
+
+  covert(data: any) {
+    return (new Date(Date.parse(data)).toString().slice(0, 15))
   }
 }

@@ -39,7 +39,6 @@ export class BookingComponent implements OnInit {
     this.orderService.getBookingByUserID(id,start).subscribe(res => {
       // @ts-ignore
       this.bookings = res;
-      console.log(res)
       // @ts-ignore
       for (let i = 0; i < this.bookings.length; i++) {
         // @ts-ignore
@@ -52,7 +51,6 @@ export class BookingComponent implements OnInit {
 
   submit(id: any) {
     this.orderStatus = 2;
-    console.log(id, this.orderStatus)
     this.orderService.changeOderStatus(id, this.orderStatus).subscribe(() => {
       alert("Đã xác nhận!!!");
       location.reload();
@@ -92,6 +90,10 @@ export class BookingComponent implements OnInit {
     console.log("new Date", new Date(data), "kiểu dữ liệu", typeof new Date(data))
     console.log("new Date UTC", new Date(data).toUTCString(), "kiểu dữ liệu UTC", typeof new Date(data).toUTCString())
     console.log("new Date toISOString", new Date(data).toISOString(), "kiểu dữ liệu UTC", typeof new Date(data).toISOString())
+
+  }
+  covert(data: any) {
+    return (new Date(Date.parse(data)).toString().slice(0, 15))
 
   }
 }

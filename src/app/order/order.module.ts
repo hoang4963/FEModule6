@@ -7,13 +7,15 @@ import { OrderPastComponent } from './order-past/order-past.component';
 
 import { BookingComponent } from './booking/booking.component';
 import {ShareModule} from "../share/share.module";
+import { OrderWaitComponent } from './order-wait/order-wait.component';
 
 
 
 @NgModule({
   declarations: [
     OrderPastComponent,
-    BookingComponent
+    BookingComponent,
+    OrderWaitComponent
   ],
   imports: [
     CommonModule,
