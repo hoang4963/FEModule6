@@ -3,6 +3,7 @@ import {OrderService} from "../../service/order.service";
 import {Order} from "../../model/order";
 import {Image} from "../../model/Image";
 import {House} from "../../model/house";
+import {ActivatedRoute, ParamMap} from "@angular/router";
 
 @Component({
   selector: 'app-booking',
@@ -12,23 +13,33 @@ import {House} from "../../model/house";
 export class BookingComponent implements OnInit {
   house!: House;
   bookings: Order[] = [];
+  listOrderByUserId: Order[] = [];
   listFirstImage: string[] = [];
   listImage: Image[] = [];
   orderStatus!: number;
-
-  constructor(private orderService: OrderService) {
-
+  userId:number = 0;
+  page: number = 0;
+  lastpage! : number;
+  listPageNumber: number[] = [];
+  constructor(private orderService: OrderService,
+              private activatedRoute: ActivatedRoute) {
+    this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
+      // @ts-ignore
+      this.page = +paramMap.get('start');
+      this.userId = Number(localStorage.getItem('ID'));
+      this.getBooking(this.userId,this.page)
+    });
   }
 
   ngOnInit(): void {
-    this.getBooking()
+
   }
 
-  getBooking() {
-    let userid = Number(localStorage.getItem('ID'))
-    this.orderService.getBookingByUserID(userid).subscribe(res => {
+  getBooking(userId: number,start: number) {
+    this.orderService.getBookingByHouseOfUserID(userId,start).subscribe(res => {
       // @ts-ignore
       this.bookings = res;
+      console.log(this.bookings)
       // @ts-ignore
       for (let i = 0; i < this.bookings.length; i++) {
         // @ts-ignore
@@ -38,7 +49,16 @@ export class BookingComponent implements OnInit {
       console.log(error);
     })
   }
-
+  getPageNumberMax(id : number) {
+    this.orderService.getBookingByUserId(id).subscribe(res => {
+      this.listOrderByUserId = res;
+      this.lastpage = Math.floor(((this.listOrderByUserId.length)/5));
+      console.log(this.lastpage)
+      for (let i = 0; i <= Math.floor(this.listOrderByUserId.length/5); i++) {
+        this.listPageNumber.push((i+1));
+      }
+    })
+  }
   submit(id: any) {
     this.orderStatus = 2;
     this.orderService.changeOderStatus(id, this.orderStatus).subscribe(() => {

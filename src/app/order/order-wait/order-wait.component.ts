@@ -21,6 +21,7 @@ export class OrderWaitComponent {
   listFirstImage: string[] = [];
   listImage: Image[] = [];
   lastpage! : number
+  check!:boolean
   ngOnInit(): void {
     this.getPageNumberWaitMax(this.id);
   }
@@ -64,6 +65,7 @@ export class OrderWaitComponent {
     let now = Date.now();
     let dateOfOrder  = Date.parse(date);
     if ((dateOfOrder - now) > oneDayToMiliS){
+      this.check =true;
         this.orderService.cancelOrderByUser(idNumber).subscribe( () =>{
           alert("Thành công");
           location.reload();
@@ -73,6 +75,7 @@ export class OrderWaitComponent {
         });
     }
     else {
+      this.check = false;
       alert("không thể huỷ thuê nhà trong vòng 1 ngày trước thời gian thuê ")
     }
   }

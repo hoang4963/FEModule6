@@ -31,7 +31,6 @@
 <section class="intro-single">
   <div class="container">
     <div class="row">
-      <div class="col-lg-3"></div>
       <div class="col-lg-9">
         <div class="property-list">
           <div class="single-property-item">
@@ -64,11 +63,34 @@
                   </p>
                   <button class="btn btn-info" (click)="submit(booking.id)" style="height: 50px; width: 100px">Xác nhận</button>
                   &nbsp;
-                  <button class="btn btn-info" (click)="cancel(booking.id)" style="height: 50px; width: 100px">Hủy</button>
+                  <button class="btn btn-danger" (click)="cancel(booking.id)" style="height: 50px; width: 100px">Hủy</button>
                 </div>
               </div>
-              </div>
+            </div>
           </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <nav class="pagination-a">
+            <ul class="pagination justify-content-end">
+              <li class="page-item">
+                <a class="page-link" [routerLink]="['/orderPast',0]" tabindex="-1">
+                  <span class="ion-ios-arrow-back"></span>
+                  <span class="ion-ios-arrow-back"></span>
+                </a>
+              </li>
+              <li class="page-item active" *ngFor="let page of listPageNumber; index as i">
+                <a class="page-link" [routerLink]="['/orderPast',i]">{{page}}</a>
+              </li>
+              <li class="page-item next">
+                <a class="page-link" [routerLink]="['/orderPast',lastpage]">
+                  <span class="ion-ios-arrow-forward"></span>
+                  <span class="ion-ios-arrow-forward"></span>
+                </a>
+              </li>
+            </ul>
+          </nav>
         </div>
       </div>
     </div>
