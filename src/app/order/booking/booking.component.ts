@@ -9,20 +9,22 @@ import {House} from "../../model/house";
   templateUrl: './booking.component.html',
   styleUrls: ['./booking.component.css']
 })
-export class BookingComponent implements OnInit{
+export class BookingComponent implements OnInit {
   house!: House;
-  bookings: Order[]=[];
+  bookings: Order[] = [];
   listFirstImage: string[] = [];
-  listImage: Image[]=[];
+  listImage: Image[] = [];
   orderStatus!: number;
-  constructor(private orderService : OrderService) {
+
+  constructor(private orderService: OrderService) {
 
   }
 
   ngOnInit(): void {
     this.getBooking()
   }
-  getBooking(){
+
+  getBooking() {
     let userid = Number(localStorage.getItem('ID'))
     this.orderService.getBookingByUserID(userid).subscribe(res => {
       // @ts-ignore
@@ -32,14 +34,14 @@ export class BookingComponent implements OnInit{
         // @ts-ignore
         this.listFirstImage.push(this.bookings[i].house?.image[0].imageName);
       }
-    },error => {
+    }, error => {
       console.log(error);
     })
   }
-  submit(id : any) {
+
+  submit(id: any) {
     this.orderStatus = 2;
-    console.log(id,this.orderStatus)
-    this.orderService.changeOderStatus(id,this.orderStatus).subscribe( () => {
+    this.orderService.changeOderStatus(id, this.orderStatus).subscribe(() => {
       alert("Đã xác nhận!!!");
       location.reload();
     }, error => {
@@ -48,15 +50,20 @@ export class BookingComponent implements OnInit{
     })
 
   }
-  cancel(id : any){
+
+  cancel(id: any) {
     this.orderStatus = 4;
-    this.orderService.changeOderStatus(id,this.orderStatus).subscribe(() => {
+    this.orderService.changeOderStatus(id, this.orderStatus).subscribe(() => {
       console.log(id)
       alert("Đã hủy thành công!!!");
       location.reload();
-    },eror =>{
+    }, eror => {
       alert("Có lỗi xảy ra!");
       location.reload();
     })
+  }
+
+  covert(data: any) {
+    return (new Date(Date.parse(data)).toString().slice(0, 15))
   }
 }

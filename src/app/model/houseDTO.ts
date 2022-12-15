@@ -1,3 +1,5 @@
+import {Image} from "./Image";
+
 export interface HouseDTO {
   id?: number;
   houseName?: string;
@@ -7,7 +9,7 @@ export interface HouseDTO {
   rent?: number;
   description?: string;
   statusId?: number;
-  image1?: string;
-  image2?: string;
-  image3?: string;
+  listImage?: string;
+  // image2?: string;
+  // image3?: string;
 }

@@ -1,4 +1,4 @@
-s
+
 <app-nav-bar></app-nav-bar>
 <section class="intro-single">
   <div class="container">
@@ -51,16 +51,17 @@ s
                   <div class="properties-location"><i class="icon_pin"></i><p style="font-size: 24px"><strong>Địa chỉ: </strong>{{order.house?.houseAddress}}</p></div>
                   <p style="font-size: 24px">
                     <strong>Ngày bắt đầu: </strong>
-                    {{covert(order.startTime)}}
+                    {{order.startTime}}
                   </p>
                   <p style="font-size: 24px">
                     <strong>Ngày kết thúc: </strong>
-                    {{covert(order.endTime)}}
+                    {{order.endTime}}
                   </p>
                   <p style="font-size: 24px">
                     <strong>Trạng thái: </strong>
                     {{order.status?.statusName}}
                   </p>
+                  <button class="btb btn-danger" (click)="cancelOrder(order.id, order.startTime)">Hủy</button>
                 </div>
               </div>
             </div>
@@ -72,16 +73,16 @@ s
           <nav class="pagination-a">
             <ul class="pagination justify-content-end">
               <li class="page-item">
-                <a class="page-link" [routerLink]="['/orderPast',0]" tabindex="-1">
+                <a class="page-link" [routerLink]="['/orderWait',0]" tabindex="-1">
                   <span class="ion-ios-arrow-back"></span>
                   <span class="ion-ios-arrow-back"></span>
                 </a>
               </li>
               <li class="page-item active" *ngFor="let page of listPageNumber; index as i">
-                <a class="page-link" [routerLink]="['/orderPast',i]">{{page}}</a>
+                <a class="page-link" [routerLink]="['/orderWait',i]">{{page}}</a>
               </li>
               <li class="page-item next">
-                <a class="page-link" [routerLink]="['/orderPast',lastpage]">
+                <a class="page-link" [routerLink]="['/orderWait',lastpage]">
                   <span class="ion-ios-arrow-forward"></span>
                   <span class="ion-ios-arrow-forward"></span>
                 </a>
