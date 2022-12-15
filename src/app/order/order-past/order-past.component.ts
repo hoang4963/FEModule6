@@ -23,7 +23,6 @@ export class OrderPastComponent implements OnInit {
   listFirstImage: string[] = [];
   listImage: Image[] = [];
   lastpage! : number
-
   ngOnInit(): void {
     this.getPageNumberMax(this.id);
   }
