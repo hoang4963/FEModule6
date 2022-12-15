@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {HouseService} from "../../service/house.service";
@@ -14,8 +14,9 @@ import {HouseRatingService} from "../../service/house-rating.service";
   styleUrls: ['./house-detail.component.css']
 })
 export class HouseDetailComponent {
+  stars:number = 0;
   houseForm: FormGroup | any;
-  houseId!: any;
+  houseId! : any;
   id: number | any;
   // @ts-ignore
   listImage: Image[];
@@ -25,11 +26,13 @@ export class HouseDetailComponent {
   houseName: any;
   Address: any;
   Rent!: any;
-  description!: any;
-  bedrooms!: any;
-  bathrooms!: any;
+  description! : any;
+  bedrooms! : any;
+  bathrooms! : any;
   listComment: Comments[]=[];
   listRating: Rating[]=[];
+  selectedRating = 0;
+  star:any;
   constructor(private houseService: HouseService,
               private router: Router,
               private activatedRoute: ActivatedRoute,
@@ -42,14 +45,15 @@ export class HouseDetailComponent {
       this.initializeForm();
       this.getImage(this.id);
       this.getComment(this.id);
-      this.getRating(this.id)
+      this.getRating(this.id);
+      this.getStar(this.id)
     });
   }
-
   ngOnInit() {
-  }
 
-  initializeForm() {
+
+  }
+  initializeForm(){
     this.houseForm = new FormGroup({
       Name: new FormControl(),
       Address: new FormControl(),
@@ -83,10 +87,9 @@ export class HouseDetailComponent {
       // });
     });
   }
-
-  getImage(id: number) {
-    return this.houseService.findImageByHouseId(id).subscribe(listImage => {
-      // @ts-ignore
+  getImage(id: number){
+    return this.houseService.findImageByHouseId(id).subscribe( listImage => {
+        // @ts-ignore
       this.listImage = listImage;
       console.log(listImage[0].imageName);
       this.image1 = listImage[0].imageName;
@@ -94,8 +97,6 @@ export class HouseDetailComponent {
       this.image3 = listImage[2].imageName;
     })
   }
-
-
   getComment(id: number){
     return this.houseCommentService.getAll().subscribe(commentList => {
       this.listComment = commentList;
@@ -105,7 +106,24 @@ export class HouseDetailComponent {
   getRating(id: number){
     return this.houseRatingService.getAll().subscribe(ratingList => {
       this.listRating = ratingList;
-      console.log(this.listComment)
+      console.log(this.listRating)
     } )
+  }
+
+  checkStar(){
+    // @ts-ignore
+    document.getElementById("star" + this.stars).checked = true;
+
+    console.log(document.getElementById("star5"))
+  }
+  getStar(id: number){
+     return this.houseRatingService.getStar(id).subscribe(ratingList => {
+      this.listRating = ratingList;
+      for (let i = 0; i < this.listRating.length; i++) {
+        this.stars += Number(this.listRating[i].rating)/this.listRating.length
+      }
+       this.checkStar()
+    } )
+
   }
 }

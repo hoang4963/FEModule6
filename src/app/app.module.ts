@@ -45,7 +45,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
     BrowserAnimationsModule,
     MatNativeDateModule,
     BrowserAnimationsModule,
-    MatFormFieldModule
+    MatFormFieldModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
