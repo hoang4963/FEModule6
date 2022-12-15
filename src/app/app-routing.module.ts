@@ -51,7 +51,7 @@ const routes: Routes = [
     path: 'orderPast/:start',
     component: OrderPastComponent
   },{
-    path : 'booking',
+    path : 'booking/:start',
     component : BookingComponent
   }
   ,

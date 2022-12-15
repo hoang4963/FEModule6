@@ -61,6 +61,9 @@ s
                     <strong>Trạng thái: </strong>
                     {{order.status?.statusName}}
                   </p>
+                  <div *ngIf="check">
+                    <button class="btn btn-info">Hủy</button>
+                  </div>
                 </div>
               </div>
             </div>
