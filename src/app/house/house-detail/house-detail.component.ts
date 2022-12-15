@@ -7,6 +7,7 @@ import {HouseCommentService} from "../../service/house-comment.service";
 import {Comments} from "../../model/comment";
 import {Rating} from "../../model/rating";
 import {HouseRatingService} from "../../service/house-rating.service";
+import {Order} from "../../model/order";
 
 @Component({
   selector: 'app-house-detail',
@@ -33,6 +34,12 @@ export class HouseDetailComponent {
   listRating: Rating[]=[];
   selectedRating = 0;
   star:any;
+  orders: Order[] = [];
+  houseRating: Rating = {
+    userId: 0,
+    houseId:0,
+    houseRating: "",
+  }
   constructor(private houseService: HouseService,
               private router: Router,
               private activatedRoute: ActivatedRoute,
@@ -45,7 +52,6 @@ export class HouseDetailComponent {
       this.initializeForm();
       this.getImage(this.id);
       this.getComment(this.id);
-      this.getRating(this.id);
       this.getStar(this.id)
     });
   }
@@ -103,12 +109,6 @@ export class HouseDetailComponent {
       console.log(this.listComment)
     } )
   }
-  getRating(id: number){
-    return this.houseRatingService.getAll().subscribe(ratingList => {
-      this.listRating = ratingList;
-      console.log(this.listRating)
-    } )
-  }
 
   checkStar(){
     // @ts-ignore
@@ -120,10 +120,28 @@ export class HouseDetailComponent {
      return this.houseRatingService.getStar(id).subscribe(ratingList => {
       this.listRating = ratingList;
       for (let i = 0; i < this.listRating.length; i++) {
-        this.stars += Number(this.listRating[i].rating)/this.listRating.length
+        this.stars += Number(this.listRating[i].houseRating)/this.listRating.length
       }
        this.checkStar()
     } )
-
+  }
+  createRating(id:any, star:any){
+this.houseRatingService.createRating(Number(localStorage.getItem("ID")),Number(id)).subscribe(orders => {
+  this.orders = orders;
+  if (this.orders.length != 0){
+    let userId = Number(localStorage.getItem("ID"))
+    this.houseRating.houseRating = String(star);
+    this.houseRating.userId = userId;
+    this.houseRating.houseId = this.id;
+    this.houseRatingService.saveRating(this.houseRating).subscribe(() =>{
+      alert("Cảm ơn bạn đã đánh giá")
+    },error => {
+      console.log(error)
+    })
+  }
+  else {
+    alert("Bạn cần thuê nhà ít nhất 1 lần")
+  }
+})
   }
 }

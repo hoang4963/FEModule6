@@ -32,7 +32,7 @@ import { List5houseComponent } from './list5house/list5house.component';
     HouseStatusEditComponent,
     HouseUpdateStatusComponent,
     HouseUpdateStatusComponent,
-    List5houseComponent
+    List5houseComponent,
   ],
   exports: [
     HouseListComponent,
