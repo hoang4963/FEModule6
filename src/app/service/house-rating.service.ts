@@ -15,4 +15,7 @@ export class HouseRatingService {
   getAll(): Observable<Rating[]> {
     return this.httpClient.get<Rating[]>(API_URL + `/rating/list`);
   }
+  getStar(id:number): Observable<Rating[]> {
+    return this.httpClient.get<Rating[]>(API_URL + `/rating/getstar/${id}`);
+  }
 }

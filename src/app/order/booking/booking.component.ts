@@ -10,11 +10,11 @@ import {ActivatedRoute, ParamMap} from "@angular/router";
   templateUrl: './booking.component.html',
   styleUrls: ['./booking.component.css']
 })
-export class BookingComponent implements OnInit{
+export class BookingComponent implements OnInit {
   house!: House;
-  bookings: Order[]=[];
+  bookings: Order[] = [];
   listFirstImage: string[] = [];
-  listImage: Image[]=[];
+  listImage: Image[] = [];
   orderStatus!: number;
   id: number = 0;
   page: number = 0;
@@ -30,28 +30,30 @@ export class BookingComponent implements OnInit{
       this.getBooking(this.id, this.page);
     });
   }
-
   ngOnInit(): void {
     this.getPageNumberMax(this.id);
   }
+
   getBooking(id: number, start: number){
 
     this.orderService.getBookingByUserID(id,start).subscribe(res => {
       // @ts-ignore
       this.bookings = res;
+      console.log(res)
       // @ts-ignore
       for (let i = 0; i < this.bookings.length; i++) {
         // @ts-ignore
         this.listFirstImage.push(this.bookings[i].house?.image[0].imageName);
       }
-    },error => {
+    }, error => {
       console.log(error);
     })
   }
-  submit(id : any) {
+
+  submit(id: any) {
     this.orderStatus = 2;
-    console.log(id,this.orderStatus)
-    this.orderService.changeOderStatus(id,this.orderStatus).subscribe( () => {
+    console.log(id, this.orderStatus)
+    this.orderService.changeOderStatus(id, this.orderStatus).subscribe(() => {
       alert("Đã xác nhận!!!");
       location.reload();
     }, error => {
@@ -60,13 +62,14 @@ export class BookingComponent implements OnInit{
     })
 
   }
-  cancel(id : any){
+
+  cancel(id: any) {
     this.orderStatus = 4;
-    this.orderService.changeOderStatus(id,this.orderStatus).subscribe(() => {
+    this.orderService.changeOderStatus(id, this.orderStatus).subscribe(() => {
       console.log(id)
       alert("Đã hủy thành công!!!");
       location.reload();
-    },eror =>{
+    }, eror => {
       alert("Có lỗi xảy ra!");
       location.reload();
     })
@@ -83,13 +86,13 @@ export class BookingComponent implements OnInit{
     })
   }
 
-  checkHidden(){
-    let value = 1;
-    this.check = 2;
-    if (this.check > value) {
-      return true;
-    }
-    return false;
+  log(data: any) {
+    new Date(data).toUTCString()
+    console.log(data, typeof data)
+    console.log("new Date", new Date(data), "kiểu dữ liệu", typeof new Date(data))
+    console.log("new Date UTC", new Date(data).toUTCString(), "kiểu dữ liệu UTC", typeof new Date(data).toUTCString())
+    console.log("new Date toISOString", new Date(data).toISOString(), "kiểu dữ liệu UTC", typeof new Date(data).toISOString())
+
   }
 }
 

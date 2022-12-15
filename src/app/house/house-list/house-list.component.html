@@ -39,7 +39,7 @@
           </form>
         </div>
       </div>
-      <div class="col-md-4" *ngFor="let house of houses; index as i">
+      <div class="" *ngFor="let house of houses; index as i">
         <div class="card-box-a card-shadow">
           <div class="img-box-a">
             <img src="{{listFirstImage[i]}}" alt="anh dai dien" style="height: 300px ;width: 450px" class="img-a img-fluid">
@@ -56,7 +56,7 @@
                 <div class="price-box d-flex">
                   <span class="price-a">rent | VND {{house.rent}}</span>
                 </div>
-                <a [routerLink]="['/detail',house.id]" class="link-a">Click here to view
+                <a [routerLink]="['/detail',house.id]" class="link-a">Xem chi tiết
                   <span class="ion-ios-arrow-forward"></span>
                 </a>
               </div>
