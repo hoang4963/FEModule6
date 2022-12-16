@@ -3,4 +3,5 @@ export interface Register {
   password?: string;
   confirmPassword?: string;
   phone?: string;
+  email?: string;
 }

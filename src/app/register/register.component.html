@@ -129,8 +129,19 @@
                 </div>
               </div>
           </div>
-
-          <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+        <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+          <label class="form-label"> Email:
+            <input class="input100" formControlName="phone" type="phone" name="phone" placeholder="Số điện thoại"></label>
+          <div *ngIf="!signupForm.get('phone')?.valid && (signupForm.get('phone')?.dirty ||signupForm.get('phone')?.touched)">
+            <div [hidden]="!signupForm.get('phone')?.errors?.['required']">
+              <p class="text-danger">Số điện thoại không để trống</p>
+            </div>
+            <div [hidden]="!signupForm.get('phone')?.errors?.['pattern']">
+              <p class="text-danger">Số điện thoại không đúng định dạng</p>
+            </div>
+          </div>
+        </div>
+          <div class="wrap-input100 validate-input" data-validate = "Valid phone is required: 09********">
             <label class="form-label"> Số điện thoại
             <input class="input100" formControlName="phone" type="phone" name="phone" placeholder="Số điện thoại"></label>
             <div *ngIf="!signupForm.get('phone')?.valid && (signupForm.get('phone')?.dirty ||signupForm.get('phone')?.touched)">
