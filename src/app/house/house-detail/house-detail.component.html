@@ -116,18 +116,6 @@
                     <strong>Bãi gửi xe:</strong>
                     <span>Có</span>
                   </li>
-
-                  <li class="d-flex justify-content-between">
-                    <strong>Nhận xét:</strong>
-                    <span>
-                      <table *ngFor="let houseComment of listComment">
-                        <tr>
-                          <p style="color: green"><td>{{houseComment.houseComment}}</td>
-                        </tr>
-                      </table>
-                    </span>
-                  </li>
-
                   <li class="d-flex justify-content-between">
                     <strong>Đánh giá:</strong>
                     <span>
@@ -149,9 +137,6 @@
                   </div>
                     </span>
                   </li>
-<!--                  <input type="radio" id="star3" name="rating" value="3" (change)="showStar3()"/>-->
-<!--                  <label class = "full" for="star3" title="Meh - 3 stars"></label>-->
-
                 </ul>
               </div>
               <button (click)="checkStar()" ></button>
@@ -190,6 +175,16 @@
 <!--            <a [routerLink]="['/updatestatus',houseId]">Change Status</a>-->
           </div>
         </div>
+      </div>
+      <div>
+        <strong>Nhận xét:</strong>
+        <span>
+          <table *ngFor="let houseComment of listComment">
+            <tr>
+              <p style="color: green"><td>{{houseComment.houseComment}}</td>
+            </tr>
+          </table>
+        </span>
       </div>
       <div class="col-md-10 offset-md-1">
         <ul class="nav nav-pills-a nav-pills mb-3 section-t3" id="pills-tab" role="tablist">
