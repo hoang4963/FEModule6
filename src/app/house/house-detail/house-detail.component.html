@@ -120,11 +120,16 @@
                   <li class="d-flex justify-content-between">
                     <strong>Nhận xét:</strong>
                     <span>
-                      <table *ngFor="let houseComment of listComment">
-                        <tr>
-                          <p style="color: green"><td>{{houseComment.houseComment}}</td>
+                      <table *ngFor="let comment of listComment">
+                         <tr>
+                          <p style="color: green"><td>{{comment.comment}}</td>
                         </tr>
-                      </table>
+                        </table>
+                      <form [formGroup]="commentForm" (ngSubmit)="createComment()">
+                        <textarea formControlName="comment" class="form-control p-4 " rows="6" id="description"
+                                  placeholder="Hãy nhập nhận xét của bạn"
+                                  required="required"></textarea>
+                        <button type="submit" class="btn btn-success">Xác nhận</button></form>
                     </span>
                   </li>
 

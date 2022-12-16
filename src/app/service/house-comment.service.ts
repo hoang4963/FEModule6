@@ -4,6 +4,8 @@ import {Observable} from "rxjs";
 import {Status} from "../model/status";
 import {environment} from "../../enviroments/environment";
 import {Comments} from "../model/comment";
+import {Order} from "../model/order";
+import {Rating} from "../model/rating";
 const API_URL = `${environment.apiUrl}`
 @Injectable({
   providedIn: 'root'
@@ -15,4 +17,10 @@ export class HouseCommentService {
   getAll(): Observable<Comments[]> {
     return this.httpClient.get<Comments[]>(API_URL + `/comment/list`);
   }
+createComment(id:number): Observable<Comments[]> {
+  return this.httpClient.get<Comments[]>(API_URL  + `/comment/createcomment/${id}`)
+}
+saveComment(houseCommentDTO: Comments): Observable<Comments> {
+  return this.httpClient.post<Comments>(API_URL + `/comment/housecomment`,houseCommentDTO)
+}
 }

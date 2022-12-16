@@ -16,6 +16,7 @@ import {Order} from "../../model/order";
 })
 export class HouseDetailComponent {
   stars:number = 0;
+  comments:number = 0;
   houseForm: FormGroup | any;
   houseId! : any;
   id: number | any;
@@ -40,6 +41,14 @@ export class HouseDetailComponent {
     houseId:0,
     houseRating: "",
   }
+  houseComment: Comments = {
+    userId: 0,
+    houseId:0,
+    comment: "",
+  }
+  commentForm = new FormGroup({
+    comment: new FormControl()
+  });
   constructor(private houseService: HouseService,
               private router: Router,
               private activatedRoute: ActivatedRoute,
@@ -104,7 +113,7 @@ export class HouseDetailComponent {
     })
   }
   getComment(id: number){
-    return this.houseCommentService.getAll().subscribe(commentList => {
+    return this.houseCommentService.createComment(id).subscribe(commentList => {
       this.listComment = commentList;
       console.log(this.listComment)
     } )
@@ -119,10 +128,13 @@ export class HouseDetailComponent {
   getStar(id: number){
      return this.houseRatingService.getStar(id).subscribe(ratingList => {
       this.listRating = ratingList;
+
       for (let i = 0; i < this.listRating.length; i++) {
-        this.stars += Number(this.listRating[i].houseRating)/this.listRating.length
+          this.stars += Number(ratingList[i].houseRating)/this.listRating.length;
+
       }
-       this.checkStar()
+
+       this.checkStar();
     } )
   }
   createRating(id:any, star:any){
@@ -144,4 +156,16 @@ this.houseRatingService.createRating(Number(localStorage.getItem("ID")),Number(i
   }
 })
   }
+
+  createComment(){
+        let userId = Number(localStorage.getItem("ID"))
+        this.houseComment.comment = String(this.commentForm.get("comment")?.value);
+        this.houseComment.userId = userId;
+        this.houseComment.houseId = this.id;
+        this.houseCommentService.saveComment(this.houseComment).subscribe(() =>{
+          alert("Cảm ơn bạn đã nhận xét")
+        },error => {
+          console.log(error)
+        })
+      }
 }
