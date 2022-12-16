@@ -61,10 +61,7 @@
                     <strong>Trạng thái: </strong>
                     {{order.status?.statusName}}
                   </p>
-
-                  <div *ngIf="check">
                   <button class="btb btn-danger btn-block py-3 px-5" style="border: 1px" type="submit" id="sendMessageButton" (click)="cancelOrder(order.id, order.startTime)">Hủy</button>
-                  </div>
                 </div>
               </div>
             </div>

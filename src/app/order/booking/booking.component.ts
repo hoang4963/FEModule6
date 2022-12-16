@@ -4,6 +4,8 @@ import {Order} from "../../model/order";
 import {Image} from "../../model/Image";
 import {House} from "../../model/house";
 import {ActivatedRoute, ParamMap} from "@angular/router";
+import {EmailService} from "../../service/email.service";
+import {EmailDetails} from "../../model/emailDetails";
 
 @Component({
   selector: 'app-booking',
@@ -17,13 +19,20 @@ export class BookingComponent implements OnInit {
   listFirstImage: string[] = [];
   listImage: Image[] = [];
   orderStatus!: number;
-
+  emailDetails: EmailDetails = {
+    recipient: "",
+    msgBody: "",
+    subject: "",
+    attachment: "",
+  }
   userId:number = 0;
   page: number = 0;
   lastpage! : number;
   listPageNumber: number[] = [];
+  listOrderByHouseId: Order[] = [];
   constructor(private orderService : OrderService,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,
+              private emailService: EmailService ) {
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       // @ts-ignore
       this.page = +paramMap.get('start');
@@ -61,9 +70,46 @@ export class BookingComponent implements OnInit {
       }
     })
   }
+  sendMail(subject: string, msgBody: string)
+  {
+    this.emailDetails.subject = subject;
+    this.emailDetails.msgBody = msgBody;
+    this.emailService.sendMail(this.emailDetails).subscribe(res => {
+      console.log(res);
+    })
+  }
   submit(id: any) {
     this.orderStatus = 2;
     this.orderService.changeOderStatus(id, this.orderStatus).subscribe(() => {
+      let startDate: Date;
+      let endDate: Date;
+      let subject = "Bạn đã đặt thành công một căn nhà trên AirBlade";
+      let msgBody = "";
+      let houseId = 0;
+      this.orderService.showOrderById(id).subscribe( res => {
+        msgBody = "Đơn hàng của bạn đã được xác nhận! /n Đơn hàng bắt đầu từ ngày: " + res.startTime + " tới ngày "+  res.endTime + " /n tên căn nhà bạn thuê là: " + res.house?.houseName;
+        houseId = Number(res.house?.id);
+        startDate = res.startTime;
+        endDate = res.endTime;
+      })
+      this.orderService.showOrderByHouseId(houseId).subscribe(res => {
+        this.listOrderByHouseId = res;
+        for (let i = 0; i < this.listOrderByHouseId.length; i++) {
+          if (endDate >= this.listOrderByHouseId[i].endTime && this.listOrderByHouseId[i].endTime >= startDate && startDate > this.listOrderByHouseId[i].startTime){
+              this.cancel(this.listOrderByHouseId[i].id);
+          }
+          if (this.listOrderByHouseId[i].endTime >= endDate && endDate >= this.listOrderByHouseId[0].startTime && this.listOrderByHouseId[0].startTime > startDate ){
+              this.cancel(this.listOrderByHouseId[i].id);
+          }
+          if (endDate >= this.listOrderByHouseId[i].endTime && startDate <= this.listOrderByHouseId[0].startTime){
+            this.cancel(this.listOrderByHouseId[i].id);
+          }
+          if (endDate <= this.listOrderByHouseId[i].endTime && startDate >= this.listOrderByHouseId[0].startTime){
+            this.cancel(this.listOrderByHouseId[i].id);
+          }
+        }
+      })
+      this.sendMail(subject, msgBody);
       alert("Đã xác nhận!!!");
       location.reload();
     }, error => {
@@ -77,6 +123,12 @@ export class BookingComponent implements OnInit {
     this.orderStatus = 4;
     this.orderService.changeOderStatus(id, this.orderStatus).subscribe(() => {
       console.log(id)
+      let subject = "Rất tiếc phải hủy một đơn hàng của bạn trên AirBlade";
+      let msgBody = "";
+      this.orderService.showOrderById(id).subscribe( res => {
+        msgBody = "Chúng tôi rất tiếc khi phải hủy đợn hàng tạo ngày: "  + res.createTime + " tên căn hộ: " + res.house?.houseName;
+      })
+      this.sendMail(subject,msgBody);
       alert("Đã hủy thành công!!!");
       location.reload();
     }, eror => {
