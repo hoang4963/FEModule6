@@ -13,6 +13,7 @@ export class ChangePasswordComponent implements OnInit {
   oldPw?:string;
   userId?: any;
   formchange : FormGroup | undefined | any;
+  avatar!:any;
   //
   // })
 
@@ -27,6 +28,7 @@ export class ChangePasswordComponent implements OnInit {
       this.oldPw = String(res.password);
       this.username = res.username;
       this.userId = res.id;
+      this.avatar = res.avatar
     })
     console.log(this.oldPw)
   }
