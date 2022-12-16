@@ -56,18 +56,18 @@
               <li class="d-flex justify-content-between">
                 <strong>Diện Tích:</strong>
                 <span>160m
-                        <sup>2</sup>
-                      </span>
+                  <sup>2</sup>
+                </span>
               </li>
             </ul>
           </div>
         </div>
         <div class="col-md-5 section-md-t3">
           <div class="icon-box section-b2">
-
             <div class="icon-box-icon">
             </div>
-
+            <div class="icon-box-icon">
+            </div>
             <mat-form-field appearance="fill" class="example-form-field">
               <mat-label><h4 class="icon-title">Thời gian thuê nhà</h4></mat-label>
               <mat-date-range-input [rangePicker]="rangePicker" [dateFilter]="myFilter">
@@ -95,8 +95,17 @@
           </div>
       </div>
     </div>
+      <div class="icon-box section-b2">
+        <div class="icon-box-icon">
+        </div>
+        <div class="icon-box-content table-cell">
+          <div class="icon-box-title">
+            <button (click)="submit()" class="btn btn-info">Thuê Nhà</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
 <app-footer></app-footer>
 
 <!--<mat-form-field appearance="fill" class="example-form-field">-->
@@ -117,5 +126,5 @@
 <!--<div>-->
 <!--  <button (click)="submit()">submit</button>-->
 
-<p>{{totalPrice}}</p>
+<!--<p>{{totalPrice}}</p>-->
 <!--</div>-->

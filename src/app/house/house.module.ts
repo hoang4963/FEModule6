@@ -17,6 +17,7 @@ import {MatButtonModule} from "@angular/material/button";
 import { HouseUpdateStatusComponent } from './house-update-status/house-update-status.component';
 import {MatIconModule} from "@angular/material/icon";
 import { List5houseComponent } from './list5house/list5house.component';
+import {SwiperModule} from "swiper/angular";
 
 
 
@@ -25,15 +26,15 @@ import { List5houseComponent } from './list5house/list5house.component';
     HouseListComponent,
     HouseCreateComponent,
     HouseEditComponent,
-    HouseDeleteComponent,
     HouseDetailComponent,
     OderCreateComponent,
-
     HouseStatusEditComponent,
     HouseUpdateStatusComponent,
     HouseUpdateStatusComponent,
     List5houseComponent,
+
   ],
+
   exports: [
     HouseListComponent,
     HouseEditComponent,

@@ -10,8 +10,9 @@ import {UserService} from "../service/user.service";
 })
 export class ChangePasswordComponent implements OnInit {
   username?: any;
-  oldPw?:string;
-  userId?: any;
+  oldPw!:string;
+  userId!: any;
+  avatar!:any;
   formchange : FormGroup | undefined | any;
   avatar!:any;
   //

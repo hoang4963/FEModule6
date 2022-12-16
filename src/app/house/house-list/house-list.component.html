@@ -54,7 +54,7 @@
               </div>
               <div class="card-body-a">
                 <div class="price-box d-flex">
-                  <span class="price-a">Giá | VND {{house.rent}}</span>
+                  <span class="price-a">Giá | {{house.rent}} VND</span>
                 </div>
                 <a [routerLink]="['/detail',house.id]" class="link-a">Xem chi tiết
                   <span class="ion-ios-arrow-forward"></span>
@@ -74,6 +74,12 @@
                   </li>
                   <li>
                     <h4 class="card-info-title"><i class="fa fa-bath" aria-hidden="true"></h4>
+
+                    <h4 class="card-info-title"><i class="fa fa-bed" aria-hidden="true"></i></h4>
+                    <span>{{house.bedrooms}}</span>
+                  </li>
+                  <li>
+                    <h4 class="card-info-title"><i class="fa fa-bath" aria-hidden="true"></i></h4>
                     <span>{{house.bathrooms}}</span>
                   </li>
                 </ul>

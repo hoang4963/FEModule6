@@ -20,6 +20,9 @@ import {UserUpdteComponent} from "./user/user-updte/user-updte.component";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChangePasswordComponent } from "../app/change-password/change-password.component";
 import {MatFormFieldModule} from "@angular/material/form-field";
+import {SwiperModule} from "swiper/angular";
+import {HouseDeleteComponent} from "./house/house-delete/house-delete.component";
+import {NgbCarousel, NgbSlide} from "@ng-bootstrap/ng-bootstrap";
 
 
 @NgModule({
@@ -31,6 +34,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
     UserProfileComponent,
     UserUpdteComponent,
     ChangePasswordComponent,
+    HouseDeleteComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +50,10 @@ import {MatFormFieldModule} from "@angular/material/form-field";
     MatNativeDateModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
+    SwiperModule,
+    NgbCarousel,
+    NgbSlide,
+
 
   ],
   providers: [],

@@ -104,7 +104,7 @@
                           required="required" data-validation-required-message="Hãy nhập mô tả về ngôi nhà"></textarea>
                 <div *ngIf="description?.invalid && description?.touched">
                   <div *ngIf="description?.errors?.['required']">
-                    <p class="help-block text-danger text-center">Hãy nhập mô tả về ngôi nhà</p>
+                    <p class="help-block text-danger text-center" >Hãy nhập mô tả về ngôi nhà</p>
                   </div>
                 </div>
                 <p class="help-block text-danger"></p>
@@ -112,7 +112,7 @@
               <div class="control-group">
                 <div class="row ">
                   <div class="col-12 mt-5 ">
-                    <div id="yourBt" style="color: black">Tải  ảnh của ngôi nhà</div>
+                    <div id="yourBt" style="color: black; font-size: 18px">Tải  ảnh của ngôi nhà:</div>
                     <div>
                       <input type="file"  (change)="uploadMultipleFile({$event : $event})" multiple>
                       <button *ngIf="arrUrlFormFireBase.length?!selectFile:selectFile" (click)="upLoad()" class="btn btn-info" type="button">Đăng ảnh</button>
@@ -126,6 +126,7 @@
                 </div>
               </div>
               <div>
+                <br>
                 <button class="btn btn-info btn-block py-3 px-5"  type="submit" id="sendMessageButton"
                         [disabled]="!houseForm.valid">Tạo Nhà
                 </button>
