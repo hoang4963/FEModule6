@@ -61,4 +61,7 @@ export class OrderService {
   getBookingByUserId(id: number): Observable<Order[]>{
     return this.httpClient.get<Order[]>( API_URL+`/user/house/orders/${id}`);
   }
+  showOrderByHouseIdStatus1(id :number): Observable<Order[]>{
+    return this.httpClient.get<Order[]>(API_URL+`/showOrderByHouseIdStatus1/${id}`)
+  }
 }
