@@ -14,14 +14,16 @@ export class RegisterComponent implements OnInit {
     userName: "",
     password: "",
     confirmPassword: "",
-    phone: ""
+    phone: "",
+    email:""
   }
 
   signupForm = new FormGroup({
     userName : new FormControl('',[Validators.required, Validators.minLength(6)]),
     password: new FormControl('',[Validators.required, Validators.minLength(6)]),
     confirmPassword: new FormControl('',[Validators.required, Validators.minLength(6)]),
-    phone: new FormControl('', [Validators.required, Validators.pattern("(84|0[3|5|7|8|9])+([0-9]{8})\\b")])
+    phone: new FormControl('', [Validators.required, Validators.pattern("(84|0[3|5|7|8|9])+([0-9]{8})\\b")]),
+    email: new FormControl('', [Validators.required,Validators.email])
   },{validators:this.validateAreEqual});
   constructor(private formBuilder: FormBuilder, private http : HttpClient,
               private router : Router) { }

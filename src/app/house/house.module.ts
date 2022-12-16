@@ -36,7 +36,8 @@ import { List5houseComponent } from './list5house/list5house.component';
   ],
   exports: [
     HouseListComponent,
-    HouseEditComponent
+    HouseEditComponent,
+    List5houseComponent
   ],
   imports: [
     CommonModule,
