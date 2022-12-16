@@ -26,19 +26,19 @@
 <section class="property-grid grid">
   <div class="container">
     <div class="row">
-      <div class="col-sm-12">
-        <div class="grid-option">
-          <form>
-            <select class="custom-select">
-              <option selected>Tất cả</option>
-              <option value="1">Mới nhất</option>
-              <option value="1">Cũ nhất</option>
-              <option value="2">Giá thấp nhất</option>
-              <option value="3">Giá cao nhất</option>
-            </select>
-          </form>
-        </div>
-      </div>
+<!--      <div class="col-sm-12">-->
+<!--        <div class="grid-option">-->
+<!--          <form>-->
+<!--            <select class="custom-select">-->
+<!--              <option selected>Tất cả</option>-->
+<!--              <option value="1">Mới nhất</option>-->
+<!--              <option value="1">Cũ nhất</option>-->
+<!--              <option value="2">Giá thấp nhất</option>-->
+<!--              <option value="3">Giá cao nhất</option>-->
+<!--            </select>-->
+<!--          </form>-->
+<!--        </div>-->
+<!--      </div>-->
       <div class="col-md-4" *ngFor="let house of houses; index as i">
         <div class="card-box-a card-shadow">
           <div class="img-box-a">
@@ -54,7 +54,7 @@
               </div>
               <div class="card-body-a">
                 <div class="price-box d-flex">
-                  <span class="price-a">Giá | VND {{house.rent}}</span>
+                  <span class="price-a">Giá | {{house.rent}} VND</span>
                 </div>
                 <a [routerLink]="['/detail',house.id]" class="link-a">Xem chi tiết
                   <span class="ion-ios-arrow-forward"></span>
@@ -69,11 +69,17 @@
                       </span>
                   </li>
                   <li>
-                    <h4 class="card-info-title">Phòng ngủ</h4>
+                    <h4 class="card-info-title"><i class="fa fa-bed" aria-hidden="true"></h4>
                     <span>{{house.bedrooms}}</span>
                   </li>
                   <li>
-                    <h4 class="card-info-title">Phòng tắm</h4>
+                    <h4 class="card-info-title"><i class="fa fa-bath" aria-hidden="true"></h4>
+
+                    <h4 class="card-info-title"><i class="fa fa-bed" aria-hidden="true"></i></h4>
+                    <span>{{house.bedrooms}}</span>
+                  </li>
+                  <li>
+                    <h4 class="card-info-title"><i class="fa fa-bath" aria-hidden="true"></i></h4>
                     <span>{{house.bathrooms}}</span>
                   </li>
                 </ul>
