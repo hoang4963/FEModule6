@@ -1,0 +1,11 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <select formControlName="houseId" >
+    <option *ngFor="let house of listHouse" value="{{house.id}}">{{house.houseName}}</option>
+  </select>
+  <input type="month" formControlName="month">
+  <input type="submit" value="Submit">
+</form>
+<div *ngIf="check">
+  <img src="{{image}}" alt="image house">
+</div>
+<h2>{{result}}</h2>

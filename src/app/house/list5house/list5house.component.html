@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-md-12 col-lg-8">
         <div class="title-single-box">
-          <h1 class="title-single">Tất cả phòng trọ</h1>
+          <h1 class="title-single">Danh sách nhà nhiều lượt thuê nhất</h1>
           <span class="color-text-a" style="color:grey">Tìm phòng</span>
         </div>
       </div>
@@ -13,9 +13,6 @@
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
               <a routerLink="/home">Trang chủ</a>
-            </li>
-            <li class="breadcrumb-item active" aria-current="page">
-              Tìm phòng
             </li>
           </ol>
         </nav>
@@ -42,17 +39,17 @@
               </div>
               <div class="card-body-a">
                 <div class="price-box d-flex">
-                  <span class="price-a">rent | VND {{house.rent}}</span>
+                  <span class="price-a">Giá | {{house.rent}} VND </span>
                 </div>
-                <a [routerLink]="['/detail',house.id]" class="link-a">Click here to view
+                <a [routerLink]="['/detail',house.id]" class="link-a">Xem chi tiết
                   <span class="ion-ios-arrow-forward"></span>
                 </a>
               </div>
               <div class="card-footer-a">
                 <ul class="card-info d-flex justify-content-around">
                   <li>
-                    <h4 class="card-info-title">Area</h4>
-                    <span>340m
+                    <h4 class="card-info-title">Diện tích</h4>
+                    <span>160m
                         <sup>2</sup>
                       </span>
                   </li>
@@ -63,10 +60,6 @@
                   <li>
                     <h4 class="card-info-title"><i class="fa fa-bath" aria-hidden="true"></i></h4>
                     <span>{{house.bathrooms}}</span>
-                  </li>
-                  <li>
-                    <h4 class="card-info-title">Garages</h4>
-                    <span>0</span>
                   </li>
                 </ul>
               </div>

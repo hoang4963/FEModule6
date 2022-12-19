@@ -133,11 +133,11 @@
           <label class="form-label"> Email:
             <input class="input100" formControlName="phone" type="phone" name="phone" placeholder="Số điện thoại"></label>
           <div *ngIf="!signupForm.get('phone')?.valid && (signupForm.get('phone')?.dirty ||signupForm.get('phone')?.touched)">
-            <div [hidden]="!signupForm.get('phone')?.errors?.['required']">
-              <p class="text-danger">Số điện thoại không để trống</p>
+            <div [hidden]="!signupForm.get('email')?.errors?.['required']">
+              <p class="text-danger">Email không để trống</p>
             </div>
-            <div [hidden]="!signupForm.get('phone')?.errors?.['pattern']">
-              <p class="text-danger">Số điện thoại không đúng định dạng</p>
+            <div [hidden]="!signupForm.get('email')?.errors?.['pattern']">
+              <p class="text-danger">Email không đúng định dạng</p>
             </div>
           </div>
         </div>
@@ -161,8 +161,8 @@
           <div class="text-center">
             <span class="txt1">
                 Hoặc đăng ký bằng
-                <i class="fab fa-facebook-f" style="color: blue; font-size: 25px; margin-left: 15px;"></i>
-                <i class="fab fa-google" style="color: red; font-size: 25px; margin-left: 15px;"></i>
+                <i class="fa fa-facebook-f" style="color: blue; font-size: 25px; margin-left: 15px;"></i>
+                <i class="fa fa-google" style="color: red; font-size: 25px; margin-left: 15px;"></i>
             </span>
           </div>
         </form>

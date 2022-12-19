@@ -1,8 +1,8 @@
 
 export interface Comments {
   id?:number;
-  houseComment?: String;
+  comment?: String;
   houseId?:number;
-  userId?:number;
+  userId?:any;
   userName?:String;
 }
