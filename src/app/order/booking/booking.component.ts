@@ -6,6 +6,7 @@ import {House} from "../../model/house";
 import {ActivatedRoute, ParamMap} from "@angular/router";
 import {EmailDetails} from "../../model/emailDetails";
 import {EmailService} from "../../service/email.service";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-booking',
@@ -50,7 +51,6 @@ export class BookingComponent implements OnInit {
     this.orderService.getBookingByHouseOfUserID(userId,start).subscribe(res => {
       // @ts-ignore
       this.bookings = res;
-      console.log(this.bookings)
       // @ts-ignore
       for (let i = 0; i < this.bookings.length; i++) {
         // @ts-ignore
@@ -64,7 +64,6 @@ export class BookingComponent implements OnInit {
     this.orderService.getBookingByUserId(id).subscribe(res => {
       this.listOrderByUserId = res;
       this.lastpage = Math.floor(((this.listOrderByUserId.length)/5));
-      console.log(this.lastpage)
       for (let i = 0; i <= Math.floor(this.listOrderByUserId.length/5); i++) {
         this.listPageNumber.push((i+1));
       }
@@ -75,7 +74,6 @@ export class BookingComponent implements OnInit {
     this.emailDetails.msgBody = msgBody;
     this.emailDetails.recipient = recipient;
     this.emailService.sendMail(this.emailDetails).subscribe(res => {
-      console.log(res);
     })
   }
 
@@ -93,10 +91,7 @@ export class BookingComponent implements OnInit {
         houseId = Number(res.house?.id);
         this.orderService.showOrderByHouseIdStatus1(houseId).subscribe(res => {
           this.listOrderByHouseId = res;
-          console.log(this.listOrderByHouseId);
           for (let i = 0; i < this.listOrderByHouseId.length; i++) {
-            console.log(this.listOrderByHouseId[i].endTime)
-            console.log(endDate);
             if (endDate >= this.listOrderByHouseId[i].endTime && this.listOrderByHouseId[i].endTime >= startDate && startDate > this.listOrderByHouseId[i].startTime) {
               this.cancelByConfirm(this.listOrderByHouseId[i].id);
             }
@@ -116,12 +111,18 @@ export class BookingComponent implements OnInit {
         recipient = String(res.user?.email);
         this.sendMail(subject, msgBody, recipient);
       })
-
-      alert("Đã xác nhận!!!");
+      Swal.fire(
+        ' ',
+        '<h2 style="color: green; font-size: 32px">Đã xác nhận!!!</h2>',
+        'success'
+      )
       // location.reload();
     }, error => {
-      alert("Có lỗi xảy ra!")
-      location.reload();
+      Swal.fire(
+        ' ',
+        '<h2 style="color: red; font-size: 32px">Có lỗi xảy ra!!!</h2>',
+        'error'
+      )
     })
   }
   cancelByConfirm(id: any) {
@@ -150,10 +151,18 @@ export class BookingComponent implements OnInit {
         recipient = String(res.user?.email);
       })
       this.sendMail(subject, msgBody, recipient);
-      alert("Đã hủy thành công!!!");
+      Swal.fire(
+        ' ',
+        '<h2 style="color: green; font-size: 32px">Đã hủy thành công!!!</h2>',
+        'success'
+      )
       location.reload();
     }, eror => {
-      alert("Có lỗi xảy ra!");
+      Swal.fire(
+        ' ',
+        '<h2 style="color: red; font-size: 32px">Có lỗi xảy ra!!!</h2>',
+        'error'
+      )
       location.reload();
     })
   }
@@ -161,10 +170,6 @@ export class BookingComponent implements OnInit {
 
   log(data: any) {
     new Date(data).toUTCString()
-    console.log(data, typeof data)
-    console.log("new Date", new Date(data), "kiểu dữ liệu", typeof new Date(data))
-    console.log("new Date UTC", new Date(data).toUTCString(), "kiểu dữ liệu UTC", typeof new Date(data).toUTCString())
-    console.log("new Date toISOString", new Date(data).toISOString(), "kiểu dữ liệu UTC", typeof new Date(data).toISOString())
 
   }
 

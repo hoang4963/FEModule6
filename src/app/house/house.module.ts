@@ -34,11 +34,12 @@ import { List5houseComponent } from './list5house/list5house.component';
     HouseUpdateStatusComponent,
     List5houseComponent,
   ],
-  exports: [
-    HouseListComponent,
-    HouseEditComponent,
-    List5houseComponent
-  ],
+    exports: [
+        HouseListComponent,
+        HouseEditComponent,
+        List5houseComponent,
+        HouseDeleteComponent
+    ],
   imports: [
     CommonModule,
     HouseRoutingModule,

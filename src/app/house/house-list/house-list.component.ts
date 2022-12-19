@@ -20,7 +20,6 @@ export class HouseListComponent implements OnInit{
 
   ngOnInit() {
     this.getAllHouse();
-    console.log(this.listFirstImage);
   }
   getAllHouse(){
     this.houseService.getAll().subscribe(result => {

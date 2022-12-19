@@ -45,7 +45,6 @@ export class OrderPastComponent implements OnInit {
   getOrderPast(id: number, start: number) {
     this.orderService.getOrderPast(id, start).subscribe(result => {
       this.orderList = result;
-      console.log(this.orderList)
       for (let i = 0; i < this.orderList.length; i++) {
         // @ts-ignore
         this.listFirstImage.push(this.orderList[i].house?.image[0].imageName);
@@ -59,7 +58,6 @@ export class OrderPastComponent implements OnInit {
     this.orderService.getOrderByUserId(id).subscribe(res => {
       this.listOrderByUserId = res;
       this.lastpage = Math.floor(((this.listOrderByUserId.length) / 5));
-      console.log(this.lastpage)
       for (let i = 0; i <= Math.floor(this.listOrderByUserId.length / 5); i++) {
         this.listPageNumber.push((i + 1));
       }

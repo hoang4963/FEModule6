@@ -8,6 +8,7 @@ import {ActivatedRoute, ParamMap} from "@angular/router";
 import {EmailService} from "../../service/email.service";
 import {EmailDetails} from "../../model/emailDetails";
 import {User} from "../../model/user";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-order-wait',
@@ -50,7 +51,6 @@ export class OrderWaitComponent {
   getOrderWait(id: number, start: number) {
     this.orderService.getOrderWaitConfirm(id, start).subscribe(result => {
       this.orderList = result;
-      console.log(Date.parse(this.orderList[0].startTime) - Date.now());
       for (let i = 0; i < this.orderList.length; i++) {
         // @ts-ignore
         this.listFirstImage.push(this.orderList[i].house?.image[0].imageName);
@@ -63,7 +63,6 @@ export class OrderWaitComponent {
     this.orderService.getOrderWaitByUserId(id).subscribe(res => {
       this.listOrderByUserId = res;
       this.lastpage = Math.floor(((this.listOrderByUserId.length)/5));
-      console.log(this.lastpage)
       for (let i = 0; i <= Math.floor(this.listOrderByUserId.length/5); i++) {
         this.listPageNumber.push((i+1));
       }
@@ -75,7 +74,6 @@ export class OrderWaitComponent {
     this.emailDetails.msgBody = msgBody;
     this.emailDetails.recipient = recipient;
     this.emailService.sendMail(this.emailDetails).subscribe(res => {
-      console.log(res);
     })
   }
   cancelOrder(id: any, date: string){
@@ -93,16 +91,29 @@ export class OrderWaitComponent {
             recipient = String(res.user?.email);
             this.sendMail("Khách hàng đã hủy đơn", msgBody,recipient);
           })
-          alert("Thành công");
+          Swal.fire(
+            ' ',
+            '<h2 style="color: green; font-size: 32px">Thành công!!!</h2>',
+            'success'
+          )
           location.reload();
         }, error => {
           console.log(error);
-          alert("Đơn hàng không tồn tại");
+          Swal.fire(
+            ' ',
+            '<h2 style="color: red; font-size: 32px">Đơn thuê không tồn tại!!!</h2>',
+            'error'
+          )
+
         });
     }
     else {
       this.check = false;
-      alert("không thể huỷ thuê nhà trong vòng 1 ngày trước thời gian thuê ")
+      Swal.fire(
+        ' ',
+        '<h2 style="color: red; font-size: 32px">Không thể hủy trước 1 ngày!!!</h2>',
+        'error'
+      )
     }
   }
   covert(data: any) {
