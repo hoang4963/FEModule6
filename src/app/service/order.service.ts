@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Order} from "../model/order";
 import {environment} from "../../enviroments/environment";
+import {Income} from "../model/income";
 
 const API_URL = `${environment.apiUrl}`
 
@@ -63,5 +64,9 @@ export class OrderService {
   }
   showOrderByHouseIdStatus1(id :number): Observable<Order[]>{
     return this.httpClient.get<Order[]>(API_URL+`/showOrderByHouseIdStatus1/${id}`)
+  }
+
+  getIncome(income: Income): Observable<Order[]>{
+    return this.httpClient.post<Order[]>(API_URL+`/getIncome`, income);
   }
 }

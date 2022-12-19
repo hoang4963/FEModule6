@@ -40,4 +40,8 @@ export class HouseService {
     return this.httpClient.get<House[]>(API_URL + `/house/list5house`);
   }
 
+  findByUserId(id: number): Observable<House[]>{
+    return this.httpClient.get<House[]>(`${API_URL}/house/findByUser/${id}`)
+  }
+
 }
