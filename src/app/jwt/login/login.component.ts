@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
 
             if (data.roles[0].authority == "ROLE_USER") {
               this.router.navigate(['/home']);
-              alert("đăng nhập thành công")
+
               Swal.fire(
                 ' ',
                 '<h2 style="color: green; font-size: 32px">Đăng nhập thành công!!!</h2>',
