@@ -8,6 +8,7 @@ import {Comments} from "../../model/comment";
 import {Rating} from "../../model/rating";
 import {HouseRatingService} from "../../service/house-rating.service";
 import {Order} from "../../model/order";
+import {RatingDTO} from "../../model/ratingDTO";
 
 @Component({
   selector: 'app-house-detail',
@@ -32,14 +33,14 @@ export class HouseDetailComponent {
   bedrooms! : any;
   bathrooms! : any;
   listComment: Comments[]=[];
-  listRating: Rating[]=[];
+  listRating: RatingDTO[]=[];
   selectedRating = 0;
   star:any;
   orders: Order[] = [];
-  houseRating: Rating = {
+  houseRating: RatingDTO = {
     userId: 0,
     houseId:0,
-    houseRating: "",
+    rating: "",
   }
   houseComment: Comments = {
     userId: 0,
@@ -142,7 +143,7 @@ this.houseRatingService.createRating(Number(localStorage.getItem("ID")),Number(i
   this.orders = orders;
   if (this.orders.length != 0){
     let userId = Number(localStorage.getItem("ID"))
-    this.houseRating.houseRating = String(star);
+    this.houseRating.rating = String(star);
     this.houseRating.userId = userId;
     this.houseRating.houseId = this.id;
     this.houseRatingService.saveRating(this.houseRating).subscribe(() =>{

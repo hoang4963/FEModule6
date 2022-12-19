@@ -154,13 +154,19 @@
                   </div>
                     </span>
                   </li>
-<!--                  <input type="radio" id="star3" name="rating" value="3" (change)="showStar3()"/>-->
-<!--                  <label class = "full" for="star3" title="Meh - 3 stars"></label>-->
-
                 </ul>
               </div>
               <button (click)="checkStar()" ></button>
             </div>
+          </div>
+          <div>
+            <span>
+          <table *ngFor="let houseRating of listRating">
+            <tr>
+              <p style="color: green"><td>{{houseRating.rating}}</td>
+            </tr>
+          </table>
+        </span>
           </div>
           <div class="col-md-7 col-lg-7 section-md-t3">
             <div class="row">

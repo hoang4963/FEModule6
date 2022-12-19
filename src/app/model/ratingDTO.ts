@@ -1,4 +1,4 @@
-export interface Rating{
+export interface RatingDTO{
   id?:number;
   rating?: String;
   houseId?:number;
