@@ -33,7 +33,7 @@ export class HouseDetailComponent {
   bedrooms! : any;
   bathrooms! : any;
   listComment: Comments[]=[];
-  listRating: RatingDTO[]=[];
+  listRating: Rating[]=[];
   selectedRating = 0;
   star:any;
   orders: Order[] = [];
@@ -131,7 +131,7 @@ export class HouseDetailComponent {
       this.listRating = ratingList;
 
       for (let i = 0; i < this.listRating.length; i++) {
-          this.stars += Number(ratingList[i].houseRating)/this.listRating.length;
+          this.stars += Number(ratingList[i].rating)/this.listRating.length;
 
       }
 
