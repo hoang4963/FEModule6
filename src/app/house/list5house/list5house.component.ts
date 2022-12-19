@@ -26,7 +26,6 @@ export class List5houseComponent implements OnInit {
   get5House(){
     this.houseService.get5house().subscribe(result => {
         this.houses = result;
-        console.log(this.houses)
 
         for (let i = 0; i < this.houses.length; i++) {
           // @ts-ignore

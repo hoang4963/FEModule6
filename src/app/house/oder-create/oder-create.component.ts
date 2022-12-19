@@ -10,6 +10,7 @@ import * as moment from "moment";
 import {UserService} from "../../service/user.service";
 import {EmailDetails} from "../../model/emailDetails";
 import {EmailService} from "../../service/email.service";
+import Swal from "sweetalert2";
 
 
 @Component({
@@ -57,7 +58,7 @@ export class OderCreateComponent implements OnInit {
     this.houseService.findById(this.id).subscribe(res => {
       this.house = res;
       this.emailDetails.recipient = String(this.house.user?.email);
-      console.log(this.house.user?.email);
+
       this.hostName = String(this.house.user?.fullName);
     });
     this.getAllOrderByHouseId(this.id);
@@ -71,7 +72,6 @@ export class OderCreateComponent implements OnInit {
   getAllOrderByHouseId(id: number) {
     this.orderService.showOrderByHouseId(id).subscribe(result => {
         this.listOrders = result;
-        console.log(result)
       }, error => {
         console.log(error);
       }
@@ -86,7 +86,6 @@ export class OderCreateComponent implements OnInit {
 
   getTotalRent() {
     this.totalPrice = (this.order.endTime - this.order.startTime) * this.rent;
-    // console.log(this.totalPrice)
   }
 
   createOrder() {
@@ -108,15 +107,10 @@ export class OderCreateComponent implements OnInit {
     } else {
       for (let i = 0; i < this.listOrders.length; i++) {
         this.object = this.listOrders[i];
-
-        console.log(this.object)
         let isNotCollapseTime = moment(d).isBefore(this.object.startTime, 'day') || moment(d).isAfter(this.object.endTime, 'day');
         if (!isNotCollapseTime) {
           return false
         }
-
-        console.log(this.object)
-
       }
       return true;
     }
@@ -126,7 +120,6 @@ export class OderCreateComponent implements OnInit {
     this.emailDetails.subject = "Bạn có một đơn thuê nhà chờ xác nhận";
     this.emailDetails.msgBody = "Bạn có 1 order của khách hàng tên: " + this.hostName + " đã tạo vào lúc" + this.order.createTime + " thời gian muốn thuê từ ngày " + this.order.startTime + " đến ngày " + this.order.endTime + " vui lòng vào kiểm tra và xác thực.";
     this.emailService.sendMail(this.emailDetails).subscribe(res => {
-      console.log(res);
     })
   }
 
@@ -134,9 +127,17 @@ export class OderCreateComponent implements OnInit {
     this.order.houseId = this.id;
     this.orderService.createOrder(this.order, this.id).subscribe(() => {
         this.sendMail();
-        alert("Tạo order thành công")
+        Swal.fire(
+          ' ',
+          '<h2 style="color: green; font-size: 32px">Đăng ký thành công</h2>',
+          'success'
+        )
       }, error => {
-        alert("Đã trùng ngày ")
+        Swal.fire(
+          ' ',
+          '<h2 style="color: red; font-size: 32px">Đã trùng ngày!!!</h2>',
+          'error'
+        )
       }
     );
     this.orderForm.reset();

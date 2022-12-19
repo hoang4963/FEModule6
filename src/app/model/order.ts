@@ -10,4 +10,5 @@ export interface Order {
   startTime?: any;
   endTime?: any;
   createTime?: any;
+  income?: number;
 }
