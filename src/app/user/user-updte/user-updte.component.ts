@@ -6,6 +6,7 @@ import {finalize} from "rxjs";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
 import firebase from "firebase/compat";
 import {User} from "../../model/user";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-user-updte',
@@ -84,9 +85,19 @@ export class UserUpdteComponent implements OnInit {
     }
    console.log(this.userUpdate);
     this.userService.updateUserProfile(id, this.userUpdate).subscribe(() => {
-      alert('Cập nhật thành công');
+      Swal.fire(
+        ' ',
+        '<h2 style="color: green; font-size: 32px">Cập nhật thành công!!!</h2>',
+        'success'
+      )
+
       this.router.navigate(['/user',id]);
     }, e => {
+      Swal.fire(
+        ' ',
+        '<h2 style="color: red; font-size: 32px">Có lỗi xảy ra!</h2>',
+        'error'
+      )
       console.log(e);
     });
   }

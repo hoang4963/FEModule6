@@ -3,6 +3,7 @@ import {first} from "rxjs/operators";
 import {ActivatedRoute, Router} from "@angular/router";
 import { AuthenticationService } from 'src/app/service/authentication.service.service';
 import {FormControl, FormGroup} from "@angular/forms";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-login',
@@ -52,11 +53,20 @@ export class LoginComponent implements OnInit {
 
             if (data.roles[0].authority == "ROLE_USER") {
               this.router.navigate(['/home']);
-              alert("đăng nhập thành công")
+
+              Swal.fire(
+                ' ',
+                '<h2 style="color: green; font-size: 32px">Đăng nhập thành công!!!</h2>',
+                'success'
+              )
             }
         },
         error => {
-          alert("Tài khoản của bạn đã bị khoá hoặc sai mật khẩu!");
+          Swal.fire(
+            ' ',
+            '<h2 style="color: red; font-size: 32px">Tài khoản của bạn đã bị khoá hoặc sai mật khẩu!</h2>',
+            'error'
+          )
           this.loading = false;
         });
   }

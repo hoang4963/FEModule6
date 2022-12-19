@@ -8,7 +8,11 @@ import {Comments} from "../../model/comment";
 import {Rating} from "../../model/rating";
 import {HouseRatingService} from "../../service/house-rating.service";
 import {Order} from "../../model/order";
+
+import Swal from "sweetalert2";
+
 import {RatingDTO} from "../../model/ratingDTO";
+
 
 @Component({
   selector: 'app-house-detail',
@@ -158,13 +162,21 @@ this.houseRatingService.createRating(Number(localStorage.getItem("ID")),Number(i
     this.houseRating.userId = userId;
     this.houseRating.houseId = this.id;
     this.houseRatingService.saveRating(this.houseRating).subscribe(() =>{
-      alert("Cảm ơn bạn đã đánh giá")
+      Swal.fire(
+        ' ',
+        '<h2 style="color: green; font-size: 32px">Cảm ơn bạn đã đánh giá!!!</h2>',
+        'success'
+      )
     },error => {
       console.log(error)
     })
   }
   else {
-    alert("Bạn cần thuê nhà ít nhất 1 lần")
+    Swal.fire(
+      ' ',
+      '<h2 style="color: red; font-size: 32px">Bạn cần phải thuê nhà 1 lần!!!</h2>',
+      'error'
+    )
   }
 })
   }

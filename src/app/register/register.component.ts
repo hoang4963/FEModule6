@@ -3,6 +3,7 @@ import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from "
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {Register} from "../model/register";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-register',
@@ -41,12 +42,20 @@ export class RegisterComponent implements OnInit {
     console.log(this.signupForm.value);
     this.http.post<Register>("http://localhost:8080/register",this.signupForm.value)
       .subscribe(res=>{
-        alert("Đăng ký tài khoản thành công");
+        Swal.fire(
+          ' ',
+          '<h2 style="color: green; font-size: 32px">Đăng ký tài khoản thành công!!!</h2>',
+          'success'
+        )
         this.signupForm.reset();
         this.router.navigate(['']);
       },err=>{
+        Swal.fire(
+          ' ',
+          '<h2 style="color: red; font-size: 32px">Tài khoản đã tồn tại. Vui lòng đăng ký lại</h2>',
+          'error'
+        )
         console.log(err);
-        alert("Tài khoản đã tồn tại. Vui lòng đăng ký lại");
       })
 
   }

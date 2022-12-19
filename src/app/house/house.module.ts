@@ -36,11 +36,12 @@ import { HouseIncomeComponent } from './house-income/house-income.component';
     List5houseComponent,
     HouseIncomeComponent,
   ],
-  exports: [
-    HouseListComponent,
-    HouseEditComponent,
-    List5houseComponent
-  ],
+    exports: [
+        HouseListComponent,
+        HouseEditComponent,
+        List5houseComponent,
+        HouseDeleteComponent
+    ],
   imports: [
     CommonModule,
     HouseRoutingModule,

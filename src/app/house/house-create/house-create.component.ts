@@ -7,6 +7,7 @@ import {HouseStatusService} from "../../service/house-status.service";
 import {HouseDTO} from "../../model/houseDTO";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {HouseNotImage} from "../../model/houseNotImage";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-house-create',
@@ -24,9 +25,6 @@ export class HouseCreateComponent implements OnInit {
     rent: 0,
     description: "",
     listImage:""
-    // image1: "https://sieupet.com/sites/default/files/hinh_anh_meo_dep.jpg",
-    // image2: "https://sieupet.com/sites/default/files/hinh_anh_meo_dep.jpg",
-    // image3: "https://sieupet.com/sites/default/files/hinh_anh_meo_dep.jpg",
   }
   houseForm: FormGroup | undefined | any;
   imageList: string[] = [];
@@ -116,7 +114,6 @@ export class HouseCreateComponent implements OnInit {
   }
 
   uploadMultipleFile({$event}: { $event: any }) {
-    console.log(`event`, $event)
     this.selectFile = $event.target.files;
 
   }
@@ -124,14 +121,12 @@ export class HouseCreateComponent implements OnInit {
   upLoad() {
 
     for (let i = 0; i < this.selectFile.length; i++) {
-      console.log(this.selectFile.length)
 
       this.arrFileInFireBase = this.storage.ref(this.selectFile[i].name);
       //put từng phần tử
       this.arrFileInFireBase.put(this.selectFile[i]).then(data => {
         return data.ref.getDownloadURL();
       }).then(url => {
-        console.log("url", url)
         this.arrUrlFormFireBase.push(url);
         this.arrUrl.emit(this.arrUrlFormFireBase)
       }).catch(error => {
@@ -145,7 +140,6 @@ export class HouseCreateComponent implements OnInit {
 
   submit() {
     this.house.listImage = this.arrUrlFormFireBase;
-    console.log(this.house.listImage)
 
     this.houseNotImage = this.houseForm.value;
     let id = Number(localStorage.getItem('ID'));
@@ -157,9 +151,14 @@ export class HouseCreateComponent implements OnInit {
     this.house.description = String(this.houseNotImage.description);
     this.houseService.saveHouse(this.house, id).subscribe(() => {
       this.houseForm.reset();
-      alert("done");
+      Swal.fire(
+        ' ',
+        '<h2 style="color: green; font-size: 32px">Thành công!!!</h2>',
+        'success'
+      )
 
     }, error => {
+
       console.log(error);
     })
   }

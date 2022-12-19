@@ -6,6 +6,7 @@ import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {Status} from "../../model/status";
 import {HouseStatusService} from "../../service/house-status.service";
 import {House} from "../../model/house";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-house-update-status',
@@ -76,13 +77,20 @@ export class HouseUpdateStatusComponent {
 
   updateHouseStatus() {
     this.status = this.statusForm.value;
-    console.log(this.statusForm.get('status'));
     let idStatus = Number(this.status.id);
-    console.log(idStatus);
     this.houseService.updateStatus(this.id, idStatus).subscribe(() => {
-      alert("Cap nhat thanh cong");
+      Swal.fire(
+        ' ',
+        '<h2 style="color: green; font-size: 32px">Cập nhật thành công!!!</h2>',
+        'success'
+      )
       location.reload();
     }, error => {
+      Swal.fire(
+        ' ',
+        '<h2 style="color: red; font-size: 32px">Có lỗi xảy ra!!!</h2>',
+        'error'
+      )
       console.log(error);
     })
   }
@@ -90,7 +98,6 @@ export class HouseUpdateStatusComponent {
     return this.houseService.findImageByHouseId(id).subscribe( listImage => {
       // @ts-ignore
       this.listImage = listImage;
-      console.log(listImage[0].imageName);
       this.image1 = listImage[0].imageName;
       this.image2 = listImage[1].imageName;
       this.image3 = listImage[2].imageName;
