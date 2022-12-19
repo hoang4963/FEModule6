@@ -23,4 +23,14 @@ createComment(id:number): Observable<Comments[]> {
 saveComment(houseCommentDTO: Comments): Observable<Comments> {
   return this.httpClient.post<Comments>(API_URL + `/comment/housecomment`,houseCommentDTO)
 }
+
+  CommentRead(userId: number): Observable<Comments[]> {
+    return this.httpClient.get<Comments[]>(API_URL + `/comment/listCommentRead/${userId}`);
+  }
+  CommentNotRead(userId: number): Observable<Comments[]> {
+    return this.httpClient.get<Comments[]>(API_URL + `/comment/listCommentNotRead/${userId}`);
+  }
+  updateIsRead(id : number, comments: Comments):Observable<Comments>{
+    return this.httpClient.put<Comments>(API_URL + `/comment/updateIsRead/${id}`, comments)
+  }
 }
