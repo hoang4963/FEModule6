@@ -1,4 +1,4 @@
-
+s
 <app-nav-bar></app-nav-bar>
 <section class="intro-single">
   <div class="container">
@@ -51,16 +51,19 @@
                   <div class="properties-location"><i class="icon_pin"></i><p style="font-size: 24px"><strong>Địa chỉ: </strong>{{order.house?.houseAddress}}</p></div>
                   <p style="font-size: 24px">
                     <strong>Ngày bắt đầu: </strong>
-                    {{order.startTime}}
+                    {{covert(order.startTime)}}
                   </p>
                   <p style="font-size: 24px">
                     <strong>Ngày kết thúc: </strong>
-                    {{order.endTime}}
+                    {{covert(order.endTime)}}
                   </p>
                   <p style="font-size: 24px">
                     <strong>Trạng thái: </strong>
                     {{order.status?.statusName}}
                   </p>
+                  <div *ngIf="check">
+                    <button class="btn btn-info py-3 px-5" >Hủy</button>
+                  </div>
                 </div>
               </div>
             </div>

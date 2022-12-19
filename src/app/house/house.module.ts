@@ -15,6 +15,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatButtonModule} from "@angular/material/button";
 import { HouseUpdateStatusComponent } from './house-update-status/house-update-status.component';
+import {MatIconModule} from "@angular/material/icon";
 import { List5houseComponent } from './list5house/list5house.component';
 
 
@@ -31,11 +32,12 @@ import { List5houseComponent } from './list5house/list5house.component';
     HouseStatusEditComponent,
     HouseUpdateStatusComponent,
     HouseUpdateStatusComponent,
-    List5houseComponent
+    List5houseComponent,
   ],
   exports: [
     HouseListComponent,
-    HouseEditComponent
+    HouseEditComponent,
+    List5houseComponent
   ],
   imports: [
     CommonModule,
@@ -45,7 +47,8 @@ import { List5houseComponent } from './list5house/list5house.component';
     MatInputModule,
     MatDatepickerModule,
     MatButtonModule,
-    FormsModule
+    FormsModule,
+    MatIconModule
   ]
 })
 

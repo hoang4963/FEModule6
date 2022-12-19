@@ -1,6 +1,6 @@
 (function ($) {
   "use strict";
-  
+
   // Preloader
   $(window).on('load', function () {
     if ($('#preloader').length) {
@@ -22,7 +22,7 @@
     $('html, body').animate({scrollTop : 0},1500, 'easeInOutExpo');
     return false;
   });
-  
+
 	var nav = $('nav');
 	var navHeight = nav.outerHeight();
 
@@ -103,7 +103,7 @@
 	/*--/ Property owl owl /--*/
 	$('#property-single-carousel').owlCarousel({
 		loop: true,
-		margin: 0,  
+		margin: 0,
 		nav: true,
 		navText: ['<i class="ion-ios-arrow-back" aria-hidden="true"></i>', '<i class="ion-ios-arrow-forward" aria-hidden="true"></i>'],
 		responsive: {
@@ -118,7 +118,7 @@
 		loop: true,
 		margin: 30,
 		responsive: {
-			0: {  
+			0: {
 				items: 1,
 			},
 			769: {
@@ -148,3 +148,19 @@
 	});
 
 })(jQuery);
+
+$('.set-bg').each(function () {
+  var bg = $(this).data('setbg');
+  $(this).css('background-image', 'url(' + bg + ')');
+});
+
+$(".canvas-open").on('click', function () {
+  $(".offcanvas-menu-wrapper").addClass("show-offcanvas-menu-wrapper");
+  $(".offcanvas-menu-overlay").addClass("active");
+});
+
+
+$(".canvas-close, .offcanvas-menu-overlay").on('click', function () {
+  $(".offcanvas-menu-wrapper").removeClass("show-offcanvas-menu-wrapper");
+  $(".offcanvas-menu-overlay").removeClass("active");
+});

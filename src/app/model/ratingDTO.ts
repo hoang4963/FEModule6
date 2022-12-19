@@ -1,6 +1,6 @@
-export interface Rating{
+export interface RatingDTO{
   id?:number;
-  houseRating?: String;
+  rating?: String;
   houseId?:number;
   userId?:number;
   userName?:String;

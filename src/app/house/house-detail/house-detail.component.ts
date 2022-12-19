@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {HouseService} from "../../service/house.service";
@@ -7,6 +7,8 @@ import {HouseCommentService} from "../../service/house-comment.service";
 import {Comments} from "../../model/comment";
 import {Rating} from "../../model/rating";
 import {HouseRatingService} from "../../service/house-rating.service";
+import {Order} from "../../model/order";
+import {RatingDTO} from "../../model/ratingDTO";
 
 @Component({
   selector: 'app-house-detail',
@@ -14,8 +16,10 @@ import {HouseRatingService} from "../../service/house-rating.service";
   styleUrls: ['./house-detail.component.css']
 })
 export class HouseDetailComponent {
+  stars:number = 0;
+  comments:number = 0;
   houseForm: FormGroup | any;
-  houseId!: any;
+  houseId! : any;
   id: number | any;
   // @ts-ignore
   listImage: Image[];
@@ -25,11 +29,27 @@ export class HouseDetailComponent {
   houseName: any;
   Address: any;
   Rent!: any;
-  description!: any;
-  bedrooms!: any;
-  bathrooms!: any;
+  description! : any;
+  bedrooms! : any;
+  bathrooms! : any;
   listComment: Comments[]=[];
   listRating: Rating[]=[];
+  selectedRating = 0;
+  star:any;
+  orders: Order[] = [];
+  houseRating: RatingDTO = {
+    userId: 0,
+    houseId:0,
+    rating: "",
+  }
+  houseComment: Comments = {
+    userId: 0,
+    houseId:0,
+    comment: "",
+  }
+  commentForm = new FormGroup({
+    comment: new FormControl()
+  });
   constructor(private houseService: HouseService,
               private router: Router,
               private activatedRoute: ActivatedRoute,
@@ -42,14 +62,14 @@ export class HouseDetailComponent {
       this.initializeForm();
       this.getImage(this.id);
       this.getComment(this.id);
-      this.getRating(this.id)
+      this.getStar(this.id)
     });
   }
-
   ngOnInit() {
-  }
 
-  initializeForm() {
+
+  }
+  initializeForm(){
     this.houseForm = new FormGroup({
       Name: new FormControl(),
       Address: new FormControl(),
@@ -83,10 +103,9 @@ export class HouseDetailComponent {
       // });
     });
   }
-
-  getImage(id: number) {
-    return this.houseService.findImageByHouseId(id).subscribe(listImage => {
-      // @ts-ignore
+  getImage(id: number){
+    return this.houseService.findImageByHouseId(id).subscribe( listImage => {
+        // @ts-ignore
       this.listImage = listImage;
       console.log(listImage[0].imageName);
       this.image1 = listImage[0].imageName;
@@ -94,18 +113,60 @@ export class HouseDetailComponent {
       this.image3 = listImage[2].imageName;
     })
   }
-
-
   getComment(id: number){
-    return this.houseCommentService.getAll().subscribe(commentList => {
+    return this.houseCommentService.createComment(id).subscribe(commentList => {
       this.listComment = commentList;
       console.log(this.listComment)
     } )
   }
-  getRating(id: number){
-    return this.houseRatingService.getAll().subscribe(ratingList => {
+
+  checkStar(){
+    // @ts-ignore
+    document.getElementById("star" + this.stars).checked = true;
+
+    console.log(document.getElementById("star5"))
+  }
+  getStar(id: number){
+     return this.houseRatingService.getStar(id).subscribe(ratingList => {
       this.listRating = ratingList;
-      console.log(this.listComment)
+
+      for (let i = 0; i < this.listRating.length; i++) {
+          this.stars += Number(ratingList[i].rating)/this.listRating.length;
+
+      }
+
+       this.checkStar();
     } )
   }
+  createRating(id:any, star:any){
+this.houseRatingService.createRating(Number(localStorage.getItem("ID")),Number(id)).subscribe(orders => {
+  this.orders = orders;
+  if (this.orders.length != 0){
+    let userId = Number(localStorage.getItem("ID"))
+    this.houseRating.rating = String(star);
+    this.houseRating.userId = userId;
+    this.houseRating.houseId = this.id;
+    this.houseRatingService.saveRating(this.houseRating).subscribe(() =>{
+      alert("Cảm ơn bạn đã đánh giá")
+    },error => {
+      console.log(error)
+    })
+  }
+  else {
+    alert("Bạn cần thuê nhà ít nhất 1 lần")
+  }
+})
+  }
+
+  createComment(){
+        let userId = Number(localStorage.getItem("ID"))
+        this.houseComment.comment = String(this.commentForm.get("comment")?.value);
+        this.houseComment.userId = userId;
+        this.houseComment.houseId = this.id;
+        this.houseCommentService.saveComment(this.houseComment).subscribe(() =>{
+          alert("Cảm ơn bạn đã nhận xét")
+        },error => {
+          console.log(error)
+        })
+      }
 }
