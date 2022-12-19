@@ -161,10 +161,6 @@ export class BookingComponent implements OnInit {
 
   log(data: any) {
     new Date(data).toUTCString()
-    console.log(data, typeof data)
-    console.log("new Date", new Date(data), "kiểu dữ liệu", typeof new Date(data))
-    console.log("new Date UTC", new Date(data).toUTCString(), "kiểu dữ liệu UTC", typeof new Date(data).toUTCString())
-    console.log("new Date toISOString", new Date(data).toISOString(), "kiểu dữ liệu UTC", typeof new Date(data).toISOString())
 
   }
 

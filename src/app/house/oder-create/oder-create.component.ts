@@ -12,7 +12,6 @@ import {EmailDetails} from "../../model/emailDetails";
 import {EmailService} from "../../service/email.service";
 
 
-
 @Component({
   selector: 'app-oder-create',
   templateUrl: './oder-create.component.html',
@@ -42,6 +41,7 @@ export class OderCreateComponent implements OnInit {
 
   }
   orderForm: FormGroup | undefined | any;
+
   constructor(
     private emailService: EmailService,
     private userService: UserService,
@@ -122,25 +122,24 @@ export class OderCreateComponent implements OnInit {
     }
   }
 
-      sendMail()
-      {
-        this.emailDetails.subject = "Bạn có một đơn thuê nhà chờ xác nhận";
-        this.emailDetails.msgBody = "Bạn có 1 order của khách hàng tên: " + this.hostName + " đã tạo vào lúc" + this.order.createTime + " thời gian muốn thuê từ ngày " + this.order.startTime + " đến ngày " + this.order.endTime + " vui lòng vào kiểm tra và xác thực.";
-        this.emailService.sendMail(this.emailDetails).subscribe(res => {
-          console.log(res);
-        })
+  sendMail() {
+    this.emailDetails.subject = "Bạn có một đơn thuê nhà chờ xác nhận";
+    this.emailDetails.msgBody = "Bạn có 1 order của khách hàng tên: " + this.hostName + " đã tạo vào lúc" + this.order.createTime + " thời gian muốn thuê từ ngày " + this.order.startTime + " đến ngày " + this.order.endTime + " vui lòng vào kiểm tra và xác thực.";
+    this.emailService.sendMail(this.emailDetails).subscribe(res => {
+      console.log(res);
+    })
+  }
+
+  submit() {
+    this.order.houseId = this.id;
+    this.orderService.createOrder(this.order, this.id).subscribe(() => {
+        this.sendMail();
+        alert("Tạo order thành công")
+      }, error => {
+        alert("Đã trùng ngày ")
       }
-      submit()
-      {
-        this.order.houseId = this.id;
-        this.orderService.createOrder(this.order, this.id).subscribe(() => {
-            this.sendMail();
-            alert("Tạo order thành công")
-          }, error => {
-            alert("Đã trùng ngày ")
-          }
-        );
-        this.orderForm.reset();
-      }
+    );
+    this.orderForm.reset();
+  }
 
 }
