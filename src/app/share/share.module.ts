@@ -7,6 +7,7 @@ import { FooterComponent } from './footer/footer.component';
 import { SearchComponent } from './nav-bar/search/search.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatButtonModule} from "@angular/material/button";
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -19,11 +20,12 @@ import {MatButtonModule} from "@angular/material/button";
     NavBarComponent,
     FooterComponent
   ],
-  imports: [
-    CommonModule,
-    ShareRoutingModule,
-    MatDialogModule,
-    MatButtonModule
-  ]
+    imports: [
+        CommonModule,
+        ShareRoutingModule,
+        MatDialogModule,
+        MatButtonModule,
+        ReactiveFormsModule
+    ]
 })
 export class ShareModule { }
