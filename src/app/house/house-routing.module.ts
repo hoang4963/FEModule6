@@ -8,6 +8,7 @@ import {HouseCreateComponent} from "./house-create/house-create.component";
 import {OderCreateComponent} from "./oder-create/oder-create.component";
 import {HouseUpdateStatusComponent} from "./house-update-status/house-update-status.component";
 import {List5houseComponent} from "./list5house/list5house.component";
+import {HouseIncomeComponent} from "./house-income/house-income.component";
 
 const routes: Routes = [
   {
@@ -30,6 +31,10 @@ const routes: Routes = [
   }, {
     path: 'list5house',
     component: List5houseComponent
+  },
+  {
+    path: 'houseIncome',
+    component: HouseIncomeComponent
   }
 ];
 

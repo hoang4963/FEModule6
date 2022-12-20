@@ -45,18 +45,10 @@ export class UserUpdteComponent implements OnInit {
       })
       this.getUser(this.id);
 
-      // this.initializeForm();
     });
   }
 
-  // initializeForm(){
-  //   this.userForm = new FormGroup({
-  //     fullName: new FormControl(),
-  //     userAddress: new FormControl(),
-  //     email: new FormControl(),
-  //     phoneNumber: new FormControl(),
-  //   });
-  // }
+
 
   ngOnInit() {
     this.id = Number(localStorage.getItem('ID'));
@@ -76,10 +68,6 @@ export class UserUpdteComponent implements OnInit {
 
   updateUser(id: number) {
     this.userUpdate = this.userForm.value;
-   // this.userUpdate.fullName = String(this.userForm.get("fullName"));
-   // this.userUpdate.userAddress = String(this.userForm.get("userAddress"));
-   // this.userUpdate.email = String(this.userForm.get("email"));
-   // this.userUpdate.phoneNumber = String(this.userForm.get("phoneNumber"));
     if (this.image != "" && this.image != null){
       this.userUpdate.avatar = this.image;
     }

@@ -5,7 +5,6 @@ import {LoginComponent} from "./jwt/login/login.component";
 
 import {HomeComponent} from "./home/home.component";
 import {UserProfileComponent} from "./user/user-profile/user-profile.component";
-import {UserService} from "./service/user.service";
 import {UserUpdteComponent} from "./user/user-updte/user-updte.component";
 
 import {ChangePasswordComponent} from "./change-password/change-password.component";

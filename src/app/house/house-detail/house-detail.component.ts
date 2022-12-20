@@ -8,10 +8,14 @@ import {Comments} from "../../model/comment";
 import {Rating} from "../../model/rating";
 import {HouseRatingService} from "../../service/house-rating.service";
 import {Order} from "../../model/order";
+import {User} from "../../model/user";
 
 import Swal from "sweetalert2";
 
 import {RatingDTO} from "../../model/ratingDTO";
+
+
+
 
 
 @Component({
@@ -24,6 +28,7 @@ export class HouseDetailComponent {
   comments:number = 0;
   houseForm: FormGroup | any;
   houseId! : any;
+  houseUser!: User;
   id: number | any;
   // @ts-ignore
   listImage: Image[];
@@ -51,38 +56,38 @@ export class HouseDetailComponent {
     houseId:0,
     rating: "",
   }
-  houseComment: Comments = {
-    userId: 0,
-    houseId:0,
-    comment: "",
-  }
+  houseComment!: Comments;
+
   commentForm = new FormGroup({
     comment: new FormControl()
   });
+  listPageNumberComment: number[] = [];
+  userCommentName: string[] = [];
   constructor(private houseService: HouseService,
               private router: Router,
               private activatedRoute: ActivatedRoute,
               private houseCommentService: HouseCommentService,
               private houseRatingService: HouseRatingService,
-              private commentService: HouseCommentService) {
+              private commentService: HouseCommentService,
+              ) {
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       // @ts-ignore
       this.id = +paramMap.get('id');
-
-      // @ts-ignore
-      this.page = +paramMap.get('start');
-
       this.userId = Number(localStorage.getItem('ID'));
       this.getHouse(this.id);
       this.initializeForm();
       this.getImage(this.id);
-      this.getComment(this.userId, this.page);
+      this.getComment(this.id, 0);
       this.getStar(this.id)
 
     });
   }
   ngOnInit() {
-
+    this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
+      // @ts-ignore
+      this.id = +paramMap.get('id');
+      this.findPageNumberMax();
+    })
 
   }
   initializeForm(){
@@ -107,16 +112,8 @@ export class HouseDetailComponent {
       this.description = house.description
       this.bedrooms = house.bedrooms
       this.bathrooms = house.bathrooms
-
-      // this.houseForm = new FormGroup({
-      //   Name: new FormControl(house.houseName),
-      //   Address: new FormControl(house.houseAddress),
-      //   Rent: new FormControl(house.rent),
-      //   description: new FormControl(house.description),
-      //   bedrooms: new FormControl(house.bedrooms),
-      //   bathrooms: new FormControl(house.bathrooms),
-      //   HouseStatus: new FormControl(house.status?.statusName)
-      // });
+      // @ts-ignore
+      this.houseUser = house.user;
     });
   }
   getImage(id: number){
@@ -130,9 +127,9 @@ export class HouseDetailComponent {
     })
   }
   getComment(id: number, page: number){
-    return this.houseCommentService.createComment(id).subscribe(commentList => {
+    return this.houseCommentService.getCommentByHouseIdPaging(id,page).subscribe(commentList => {
       this.listComment = commentList;
-      console.log(this.listComment)
+
     } )
   }
   checkStar(){
@@ -184,22 +181,22 @@ this.houseRatingService.createRating(Number(localStorage.getItem("ID")),Number(i
   createComment(){
         let userId = Number(localStorage.getItem("ID"))
         this.houseComment.comment = String(this.commentForm.get("comment")?.value);
-        this.houseComment.userId = userId;
+          this.houseComment.userId = userId;
         this.houseComment.houseId = this.id;
         this.houseCommentService.saveComment(this.houseComment).subscribe(() =>{
-          alert("Cảm ơn bạn đã nhận xét")
+
         },error => {
           console.log(error)
         })
       }
-  getPageNumberMax(id : number) {
-    this.commentService.getCommentByUserId(id).subscribe(res => {
-      this.listCommentByUserId = res;
-      this.lastpage = Math.floor(((this.listCommentByUserId.length)/5));
-      console.log(this.lastpage)
-      for (let i = 0; i <= Math.floor(this.listCommentByUserId.length/5); i++) {
-        this.listPageNumber.push((i+1));
+  findPageNumberMax(){
+    this.commentService.showCommentByHouseId(this.id).subscribe( res =>{
+      for (let i = 0; i < res.length/5; i++) {
+        this.listPageNumberComment.push(i+1);
       }
     })
   }
+// getUserCommentById(userCommentId : number){
+//     this.
+// }
 }
