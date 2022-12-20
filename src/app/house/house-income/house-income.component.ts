@@ -59,7 +59,7 @@ export class HouseIncomeComponent implements OnInit{
           sum += Number(this.orders[i].income);
 
         }
-        this.result = "Thu nhập của nhà " + this.houseName + " trong tháng"+ this.income.month + " là: " + sum + "VNĐ";
+        this.result = "Thu nhập của nhà " + this.houseName + " trong tháng "+ this.income.month?.slice(5,8) + " năm " + this.income.month?.slice(0,4) +" là: " + sum + "VNĐ";
       }
       else this.result = "Không có thu nhập nào trong tháng này";
 
