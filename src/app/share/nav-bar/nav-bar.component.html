@@ -1,3 +1,6 @@
+<div class="click-closed"></div>
+
+<!--/ Form Search Star /-->
 <nav class="navbar navbar-default navbar-trans navbar-expand-lg fixed-top">
   <div class="container">
     <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDefault"
@@ -17,7 +20,7 @@
           <a class="nav-link" routerLink="/home">Trang chủ</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/house/list">Tìm phòng</a>
+          <a class="nav-link" routerLink="/house/list">Danh sách phòng</a>
         </li>
         <li class="nav-item dropdown" >
           <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >Theo dõi</a>
@@ -25,6 +28,7 @@
             <a class="dropdown-item" [routerLink]="['/booking',0]">Lịch sử phiếu thuê nhà</a>
             <a class="dropdown-item" [routerLink]="['/orderPast',0]">Lịch sử thuê nhà</a>
             <a class="dropdown-item" [routerLink]="['/orderWait',0]">Phiếu thuê chờ xác nhận</a>
+            <a class="dropdown-item" routerLink="/house/houseIncome">Thu nhập</a>
           </div>
         </li>
         <li class="nav-item dropdown" >
@@ -56,9 +60,64 @@
 
       </ul>
     </div>
-    <button type="button" class="btn btn-info navbar-toggle-box-collapse d-none d-md-block" data-toggle="collapse"
-            data-target="#navbarTogglerDemo01" aria-expanded="false">
+    <button type="button" class="btn btn-info navbar-toggle-box-collapse d-none d-md-block" data-toggle="modal"
+            data-target="#myModal" aria-expanded="false">
       <span class="fa fa-search" aria-hidden="true"></span>
     </button>
   </div>
+
+<!--  </div>-->
 </nav>
+<!--<form >-->
+<!--<div class="modal-dialog modal-lg modal" id="myModal">-->
+<!--  <div class="modal-dialog modal-dialog-centered">-->
+<!--    <div class="modal-content">-->
+<!--      <div class="modal-header">-->
+<!--        <h4 class="modal-title">Modal Heading</h4>-->
+<!--        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>-->
+<!--      </div>-->
+<!--      <div class="modal-body">-->
+<!--        <label>Tên phòng trọ:</label>-->
+<!--        <input type="text" class="form-control form-control-lg form-control-a" placeholder="Tên phòng trọ">-->
+<!--      </div>-->
+<!--  <div class="modal-footer">-->
+<!--    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>-->
+<!--  </div>-->
+
+<!--    <div >-->
+<!--      <div class="form-group">-->
+<!--        <label for="Type">Khu vực</label>-->
+<!--        <select class="form-control form-control-lg form-control-a" id="Type">-->
+<!--          <option>Thủ Dầu Một</option>-->
+<!--          <option>Thuận An</option>-->
+<!--          <option>Tân Uyên</option>-->
+<!--          <option>Bến Cát</option>-->
+<!--        </select>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="">-->
+<!--      <div class="">-->
+<!--        <label for="city">Gần trường TDMU</label>-->
+<!--        <select class="form-control form-control-lg form-control-a" id="city">-->
+<!--          <option>Có</option>-->
+<!--          <option>Không</option>-->
+<!--        </select>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div >-->
+<!--      <div >-->
+<!--        <label >Giá</label>-->
+<!--        <select class="form-control form-control-lg form-control-a" id="rent">-->
+<!--          <option>Dưới 1 triệu</option>-->
+<!--          <option>1 triệu - 2 triệu</option>-->
+<!--          <option>Trên 2 triệu</option>-->
+<!--        </select>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="col-md-12">-->
+<!--      <button type="submit" class="btn btn-b">Tìm kiếm</button>-->
+<!--    </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+<!--</form>-->

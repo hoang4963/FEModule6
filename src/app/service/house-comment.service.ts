@@ -18,7 +18,7 @@ export class HouseCommentService {
   getAll(): Observable<Comments[]> {
     return this.httpClient.get<Comments[]>(API_URL + `/comment/list`);
   }
-createComment(id:number): Observable<Comments[]> {
+showCommentByHouseId(id:number): Observable<Comments[]> {
   return this.httpClient.get<Comments[]>(API_URL  + `/comment/createcomment/${id}`)
 }
 saveComment(houseCommentDTO: Comments): Observable<Comments> {
@@ -37,7 +37,11 @@ saveComment(houseCommentDTO: Comments): Observable<Comments> {
   CommentNotRead(userId: number): Observable<CommentFinal[]> {
     return this.httpClient.get<CommentFinal[]>(API_URL + `/comment/listCommentNotRead/${userId}`);
   }
-  updateIsRead(id : number):Observable<CommentFinal>{
-    return this.httpClient.put<CommentFinal>(API_URL + `/comment/updateIsRead/${id}`,id)
+  updateIsRead(id : number):Observable<CommentFinal> {
+    return this.httpClient.put<CommentFinal>(API_URL + `/comment/updateIsRead/${id}`, id)
+  }
+  getCommentByHouseIdPaging(id: number, start: number): Observable<Comments[]>{
+    return this.httpClient.get<Comments[]>(API_URL+`/comment/getCommentByHouseIdPaging/${id}/${start}`);
+
   }
 }
