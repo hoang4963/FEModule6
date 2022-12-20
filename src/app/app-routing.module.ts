@@ -13,6 +13,7 @@ import {ChangePasswordComponent} from "./change-password/change-password.compone
 import {OrderPastComponent} from "./order/order-past/order-past.component";
 import { BookingComponent } from './order/booking/booking.component';
 import {OrderWaitComponent} from "./order/order-wait/order-wait.component";
+import {CommentNoticeComponent} from "./house/comment-notice/comment-notice.component";
 
 
 
@@ -58,6 +59,11 @@ const routes: Routes = [
   {
     path: 'orderWait/:start',
     component: OrderWaitComponent
+  }
+  ,
+  {
+    path: 'hi',
+    component: CommentNoticeComponent
   }
   // {
   //   path:'change-password/:id',

@@ -17,6 +17,7 @@ import {MatButtonModule} from "@angular/material/button";
 import { HouseUpdateStatusComponent } from './house-update-status/house-update-status.component';
 import {MatIconModule} from "@angular/material/icon";
 import { List5houseComponent } from './list5house/list5house.component';
+import { CommentNoticeComponent } from './comment-notice/comment-notice.component';
 
 
 
@@ -33,6 +34,7 @@ import { List5houseComponent } from './list5house/list5house.component';
     HouseUpdateStatusComponent,
     HouseUpdateStatusComponent,
     List5houseComponent,
+    CommentNoticeComponent,
   ],
   exports: [
     HouseListComponent,
