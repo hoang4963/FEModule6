@@ -2,12 +2,12 @@ import {User} from "./user";
 
 export interface Comments {
   id?:number;
-  comment?: String;
+  comment?: string;
   houseId?:number;
-  user: User;
-  userName?:String;
+  user?: User;
+  userName?:string;
 
-  isRead?: Boolean;
+  isRead?: boolean;
 
   userId:any;
 

@@ -56,7 +56,13 @@ export class HouseDetailComponent {
     houseId:0,
     rating: "",
   }
-  houseComment!: Comments;
+  houseComment:  Comments = {
+    comment: "",
+    houseId:0,
+    userName:"",
+    isRead: false,
+    userId:0,
+  };
 
   commentForm = new FormGroup({
     comment: new FormControl()
@@ -179,12 +185,22 @@ this.houseRatingService.createRating(Number(localStorage.getItem("ID")),Number(i
   }
 
   createComment(){
+    debugger
+        let comment: any;
         let userId = Number(localStorage.getItem("ID"))
-        this.houseComment.comment = String(this.commentForm.get("comment")?.value);
+        // this.houseComment.comment = String(this.commentForm.get("comment")?.value);
+        comment = this.commentForm.value;
+        this.houseComment.comment = comment.comment;
+        console.log(this.houseComment.comment)
           this.houseComment.userId = userId;
         this.houseComment.houseId = this.id;
         this.houseCommentService.saveComment(this.houseComment).subscribe(() =>{
-
+            this.commentForm.reset();
+          Swal.fire(
+            ' ',
+            '<h2 style="color: green; font-size: 32px">Cảm ơn bạn đã nhận xét!!!</h2>',
+            'success')
+          location.reload();
         },error => {
           console.log(error)
         })
