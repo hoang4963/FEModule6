@@ -40,7 +40,12 @@ export class HouseDetailComponent {
   listRating: Rating[]=[];
   selectedRating = 0;
   star:any;
+  userId:number = 0;
+  page: number = 0;
   orders: Order[] = [];
+  lastpage! : number;
+  listCommentByUserId: Comments[] = [];
+  listPageNumber: number[] = [];
   houseRating: RatingDTO = {
     userId: 0,
     houseId:0,
@@ -58,15 +63,22 @@ export class HouseDetailComponent {
               private router: Router,
               private activatedRoute: ActivatedRoute,
               private houseCommentService: HouseCommentService,
-              private houseRatingService: HouseRatingService) {
+              private houseRatingService: HouseRatingService,
+              private commentService: HouseCommentService) {
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       // @ts-ignore
       this.id = +paramMap.get('id');
+
+      // @ts-ignore
+      this.page = +paramMap.get('start');
+
+      this.userId = Number(localStorage.getItem('ID'));
       this.getHouse(this.id);
       this.initializeForm();
       this.getImage(this.id);
-      this.getComment(this.id);
+      this.getComment(this.userId, this.page);
       this.getStar(this.id)
+
     });
   }
   ngOnInit() {
@@ -117,13 +129,12 @@ export class HouseDetailComponent {
       this.image3 = listImage[2].imageName;
     })
   }
-  getComment(id: number){
+  getComment(id: number, page: number){
     return this.houseCommentService.createComment(id).subscribe(commentList => {
       this.listComment = commentList;
       console.log(this.listComment)
     } )
   }
-
   checkStar(){
     // @ts-ignore
     document.getElementById("star" + this.stars).checked = true;
@@ -181,4 +192,14 @@ this.houseRatingService.createRating(Number(localStorage.getItem("ID")),Number(i
           console.log(error)
         })
       }
+  getPageNumberMax(id : number) {
+    this.commentService.getCommentByUserId(id).subscribe(res => {
+      this.listCommentByUserId = res;
+      this.lastpage = Math.floor(((this.listCommentByUserId.length)/5));
+      console.log(this.lastpage)
+      for (let i = 0; i <= Math.floor(this.listCommentByUserId.length/5); i++) {
+        this.listPageNumber.push((i+1));
+      }
+    })
+  }
 }

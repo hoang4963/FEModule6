@@ -23,4 +23,10 @@ createComment(id:number): Observable<Comments[]> {
 saveComment(houseCommentDTO: Comments): Observable<Comments> {
   return this.httpClient.post<Comments>(API_URL + `/comment/housecomment`,houseCommentDTO)
 }
+  getCommentByHouseOfUserID(id: number, start: number): Observable<Comments> {
+    return this.httpClient.get<Comments>(API_URL + `/comment/detail/${id}/${start}`)
+  }
+  getCommentByUserId(id: number): Observable<Comments[]>{
+    return this.httpClient.get<Comments[]>( API_URL+`/user/house/comment/${id}`);
+  }
 }

@@ -116,23 +116,6 @@
                     <strong>Bãi gửi xe:</strong>
                     <span>Có</span>
                   </li>
-
-                  <li class="d-flex justify-content-between">
-                    <strong>Nhận xét:</strong>
-                    <span>
-                      <table *ngFor="let comment of listComment">
-                         <tr>
-                          <p style="color: green"><td>{{comment.comment}}</td>
-                        </tr>
-                        </table>
-                      <form [formGroup]="commentForm" (ngSubmit)="createComment()">
-                        <textarea formControlName="comment" class="form-control p-4 " rows="6" id="description"
-                                  placeholder="Hãy nhập nhận xét của bạn"
-                                  required="required"></textarea>
-                        <button type="submit" class="btn btn-success">Xác nhận</button></form>
-                    </span>
-                  </li>
-
                   <li class="d-flex justify-content-between">
                     <strong>Đánh giá:</strong>
                     <span>
@@ -202,19 +185,41 @@
           </div>
         </div>
       </div>
-<<<<<<< HEAD
-<!--      <div>-->
-<!--        <strong>Nhận xét:</strong>-->
-<!--        <span>-->
-<!--          <table *ngFor="let houseComment of listComment">-->
-<!--            <tr>-->
-<!--              <p style="color: green"><td>{{houseComment.houseComment}}</td>-->
-<!--            </tr>-->
-<!--          </table>-->
-<!--        </span>-->
-<!--      </div>-->
-=======
->>>>>>> 9ce63ce8f29d6db253069fe98ebe7e53adecc6aa
+      <div class="col-md-10">
+        <strong>Nhận xét:</strong>
+          <div *ngFor="let houseComment of listComment">
+              <p style="color: green"><td>{{houseComment.comment}}</td>
+          </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <nav class="pagination-a">
+              <ul class="pagination justify-content-end">
+                <li class="page-item">
+                <a class="page-link" [routerLink]="['/comment',0]" tabindex="-1">
+                  <span class="ion-ios-arrow-back"></span>
+                  <span class="ion-ios-arrow-back"></span>
+                </a>
+                        <li class="page-item active" *ngFor="let page of listPageNumber; index as i">
+
+                <a class="page-link" [routerLink]="['/comment',i]">{{page}}</a>
+              </li>
+              <li class="page-item next">
+                <a class="page-link" [routerLink]="['/comment',lastpage]">
+                  <span class="ion-ios-arrow-forward"></span>
+                  <span class="ion-ios-arrow-forward"></span>
+                </a>
+              </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      <form [formGroup]="commentForm" (ngSubmit)="createComment()">
+                        <textarea formControlName="comment" class="form-control p-4 " rows="6" id="description"
+                                  placeholder="Hãy nhập nhận xét của bạn"
+                                  required="required"></textarea>
+                        <button type="submit" class="btn btn-success">Xác nhận</button></form>
+
+      </div>
       <div class="col-md-10 offset-md-1">
         <ul class="nav nav-pills-a nav-pills mb-3 section-t3" id="pills-tab" role="tablist">
           <li class="nav-item">
