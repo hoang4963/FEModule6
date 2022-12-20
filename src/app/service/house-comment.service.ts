@@ -6,6 +6,7 @@ import {environment} from "../../enviroments/environment";
 import {Comments} from "../model/comment";
 import {Order} from "../model/order";
 import {Rating} from "../model/rating";
+import {CommentFinal} from "../model/commentFinal";
 const API_URL = `${environment.apiUrl}`
 @Injectable({
   providedIn: 'root'
@@ -28,5 +29,15 @@ saveComment(houseCommentDTO: Comments): Observable<Comments> {
   }
   getCommentByUserId(id: number): Observable<Comments[]>{
     return this.httpClient.get<Comments[]>( API_URL+`/user/house/comment/${id}`);
+  }
+
+  CommentRead(userId: number): Observable<CommentFinal[]> {
+    return this.httpClient.get<CommentFinal[]>(API_URL + `/comment/listCommentRead/${userId}`);
+  }
+  CommentNotRead(userId: number): Observable<CommentFinal[]> {
+    return this.httpClient.get<CommentFinal[]>(API_URL + `/comment/listCommentNotRead/${userId}`);
+  }
+  updateIsRead(id : number):Observable<CommentFinal>{
+    return this.httpClient.put<CommentFinal>(API_URL + `/comment/updateIsRead/${id}`,id)
   }
 }
