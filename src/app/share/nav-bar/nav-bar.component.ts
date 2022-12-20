@@ -5,6 +5,8 @@ import {UserService} from "../../service/user.service";
 import {ActivatedRoute, ParamMap} from "@angular/router";
 import {HouseCommentService} from "../../service/house-comment.service";
 import {CommentFinal} from "../../model/commentFinal";
+import {MatDialog, MatDialogRef} from "@angular/material/dialog";
+import {SearchComponent} from "./search/search.component";
 
 @Component({
   selector: 'app-nav-bar',
@@ -22,7 +24,8 @@ export class NavBarComponent implements OnInit{
   constructor(private authenticationService: AuthenticationService,
               private activatedRoute: ActivatedRoute,
               private userService: UserService,
-              private commentService: HouseCommentService) {
+              private commentService: HouseCommentService,
+              private matDialog: MatDialog) {
     this.activatedRoute.paramMap.subscribe((paramMap : ParamMap) => {
       // @ts-ignore
       this.id = +paramMap.get('id');
@@ -66,4 +69,22 @@ export class NavBarComponent implements OnInit{
 
     })
   }
+
+  // @ts-ignore
+  matDialogRef: MatDialogRef<SearchComponent>;
+  name: string = "";
+
+  OpenModal() {
+    this.matDialogRef = this.matDialog.open(SearchComponent, {
+      data: { },
+      disableClose: true
+    });
+
+    // this.matDialogRef.afterClosed().subscribe(res => {
+    //   if ((res == true)) {
+    //     this.name = "";
+    //   }
+    // });
+  }
+
 }
