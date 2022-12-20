@@ -5,4 +5,5 @@ export interface Comments {
   houseId?:number;
   userId?:any;
   userName?:String;
+  isRead?: Boolean;
 }
