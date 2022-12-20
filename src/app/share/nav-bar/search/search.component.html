@@ -1,0 +1,85 @@
+<div style="width:800px; height: 600px">
+  <h2 mat-dialog-title>Tìm kiếm nâng cao</h2>
+  <div mat-dialog-content></div>
+  <div>
+      <div>
+        <form>
+          <div class="row" style="margin-left: 20px">
+            <div class="col-md-10 mb-2">
+              <div class="form-group">
+                <label>Địa chỉ</label>
+                <input type="text" class="form-control form-control-lg form-control-a" placeholder="Địa chỉ phòng trọ">
+              </div>
+            </div>
+            <div class="col-md-10 mb-2">
+              <div class="form-group">
+                <label>Ngày thuê</label>
+                <input type="date" class="form-control form-control-lg form-control-a">
+              </div>
+            </div>
+            <div class="col-md-5 mb-2">
+              <div class="form-group">
+                <label>Phòng Ngủ</label>
+                <select class="form-control form-control-lg form-control-a" >
+                  <option>1 Phòng</option>
+                  <option> 2 Phòng</option>
+                  <option> 3 Phòng</option>
+                  <option> 4 Phòng</option>
+                  <option> 5 Phòng</option>
+                  <option> 6 Phòng</option>
+                  <option> 7 Phòng</option>
+                  <option> 8 Phòng</option>
+                  <option> 9 Phòng</option>
+                  <option> 10 Phòng</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-5 mb-2">
+              <div class="form-group">
+                <label>Phòng tắm</label>
+                <select class="form-control form-control-lg form-control-a" >
+                  <option>1 Phòng</option>
+                  <option> 2 Phòng</option>
+                  <option> 3 Phòng</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6 mb-2">
+              <div class="form-group">
+                <label for="rent">Giá</label>
+                <select class="form-control form-control-lg form-control-a" id="rent">
+                  <option>Dưới 1 triệu</option>
+                  <option>1 triệu - 2 triệu</option>
+                  <option>Trên 2 triệu</option>
+                </select>
+              </div>
+            </div>
+            <div  >
+        <span style="margin-left: 250px">
+          <button
+            style="width: 100px"
+            class="btn btn-info"
+            type="button"
+
+            [mat-dialog-close]="true"
+          >
+            Tìm kiếm
+          </button>
+          <button
+            style="width: 100px"
+            class="btn btn-danger"
+            type="button"
+
+            (click)="CloseDialog()"
+          >
+            Hủy
+          </button>
+        </span>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+
+</div>
