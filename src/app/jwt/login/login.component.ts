@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {first} from "rxjs/operators";
 import {ActivatedRoute, Router} from "@angular/router";
 import { AuthenticationService } from 'src/app/service/authentication.service.service';
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import Swal from "sweetalert2";
 
 @Component({
@@ -13,8 +13,8 @@ import Swal from "sweetalert2";
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup = new FormGroup({
-    username: new FormControl(''),
-    password: new FormControl('')
+      username : new FormControl('',[Validators.required]),
+      password: new FormControl('',[Validators.required, Validators.minLength(6)]),
   });
   // returnUrl?: string;
   // adminUrl?: string;
