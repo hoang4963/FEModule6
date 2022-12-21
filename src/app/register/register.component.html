@@ -25,7 +25,7 @@
           <div class="wrap-input100 validate-input" data-validate = "Password is required">
             <label class="form-label">Mật khẩu
             <input class="input100" type="password" name="pass" formControlName="password" placeholder="Mật khẩu"></label>
-            <div *ngIf="!signupForm.get('password')?.valid && (signupForm.get('password')?.dirty ||signupForm.get('password')?.touched)">-->
+            <div *ngIf="!signupForm.get('password')?.valid && (signupForm.get('password')?.dirty ||signupForm.get('password')?.touched)">
               <div [hidden]="!signupForm.get('password')?.errors?.['required']">
                 <p class="text-danger">Mật khẩu không để trống </p>
               </div>
@@ -35,10 +35,6 @@
                 <div [hidden]="!signupForm.get('password')?.errors?.['maxlength']">
                   <p class="text-danger">Mật khẩu từ 6-8 ký tự</p>
                 </div>
-              <span class="focus-input100"></span>
-              <span class="symbol-input100">
-                  <i class="fas fa-key" aria-hidden="true"></i>
-              </span>
             </div>
           </div>
           <div class="wrap-input100 validate-input" data-validate = "Password is required">
@@ -57,8 +53,8 @@
           </div>
         <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
           <label class="form-label"> Email:
-            <input class="input100" formControlName="phone" type="phone" name="phone" placeholder="Số điện thoại"></label>
-          <div *ngIf="!signupForm.get('phone')?.valid && (signupForm.get('phone')?.dirty ||signupForm.get('phone')?.touched)">
+            <input class="input100" formControlName="email" type="phone" name="email" placeholder="Số điện thoại"></label>
+          <div *ngIf="!signupForm.get('email')?.valid && (signupForm.get('email')?.dirty ||signupForm.get('email')?.touched)">
             <div [hidden]="!signupForm.get('email')?.errors?.['required']">
               <p class="text-danger">Email không để trống</p>
             </div>
