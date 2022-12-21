@@ -14,6 +14,7 @@ import { BookingComponent } from './order/booking/booking.component';
 import {OrderWaitComponent} from "./order/order-wait/order-wait.component";
 import {HouseIncomeComponent} from "./house/house-income/house-income.component";
 import {CommentNoticeComponent} from "./house/comment-notice/comment-notice.component";
+import {HouseSearchComponent} from "./house/house-search/house-search.component";
 
 
 
@@ -66,8 +67,8 @@ const routes: Routes = [
   }
   ,
   {
-    path: 'hi',
-    component: CommentNoticeComponent
+    path: 'houseSearch',
+    component: HouseSearchComponent
   }
   // {
   //   path:'change-password/:id',
