@@ -5,7 +5,6 @@ import {LoginComponent} from "./jwt/login/login.component";
 
 import {HomeComponent} from "./home/home.component";
 import {UserProfileComponent} from "./user/user-profile/user-profile.component";
-import {UserService} from "./service/user.service";
 import {UserUpdteComponent} from "./user/user-updte/user-updte.component";
 
 import {ChangePasswordComponent} from "./change-password/change-password.component";
@@ -14,6 +13,7 @@ import {OrderPastComponent} from "./order/order-past/order-past.component";
 import { BookingComponent } from './order/booking/booking.component';
 import {OrderWaitComponent} from "./order/order-wait/order-wait.component";
 import {HouseIncomeComponent} from "./house/house-income/house-income.component";
+import {CommentNoticeComponent} from "./house/comment-notice/comment-notice.component";
 
 
 
@@ -63,6 +63,11 @@ const routes: Routes = [
   {
     path: 'income',
     component: HouseIncomeComponent
+  }
+  ,
+  {
+    path: 'hi',
+    component: CommentNoticeComponent
   }
   // {
   //   path:'change-password/:id',

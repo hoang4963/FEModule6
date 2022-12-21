@@ -1,8 +1,14 @@
+import {User} from "./user";
 
 export interface Comments {
   id?:number;
-  comment?: String;
+  comment?: string;
   houseId?:number;
-  userId?:any;
-  userName?:String;
+  user?: User;
+  userName?:string;
+
+  isRead?: boolean;
+
+  userId:any;
+
 }

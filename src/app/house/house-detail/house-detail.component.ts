@@ -8,10 +8,14 @@ import {Comments} from "../../model/comment";
 import {Rating} from "../../model/rating";
 import {HouseRatingService} from "../../service/house-rating.service";
 import {Order} from "../../model/order";
+import {User} from "../../model/user";
 
 import Swal from "sweetalert2";
 
 import {RatingDTO} from "../../model/ratingDTO";
+
+
+
 
 
 @Component({
@@ -24,6 +28,7 @@ export class HouseDetailComponent {
   comments:number = 0;
   houseForm: FormGroup | any;
   houseId! : any;
+  houseUser!: User;
   id: number | any;
   // @ts-ignore
   listImage: Image[];
@@ -40,37 +45,55 @@ export class HouseDetailComponent {
   listRating: Rating[]=[];
   selectedRating = 0;
   star:any;
+  userId:number = 0;
+  page: number = 0;
   orders: Order[] = [];
+  lastpage! : number;
+  listCommentByUserId: Comments[] = [];
+  listPageNumber: number[] = [];
   houseRating: RatingDTO = {
     userId: 0,
     houseId:0,
     rating: "",
   }
-  houseComment: Comments = {
-    userId: 0,
-    houseId:0,
+  houseComment:  Comments = {
     comment: "",
-  }
+    houseId:0,
+    userName:"",
+    isRead: false,
+    userId:0,
+  };
+
   commentForm = new FormGroup({
     comment: new FormControl()
   });
+  listPageNumberComment: number[] = [];
+  userCommentName: string[] = [];
   constructor(private houseService: HouseService,
               private router: Router,
               private activatedRoute: ActivatedRoute,
               private houseCommentService: HouseCommentService,
-              private houseRatingService: HouseRatingService) {
+              private houseRatingService: HouseRatingService,
+              private commentService: HouseCommentService,
+              ) {
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       // @ts-ignore
       this.id = +paramMap.get('id');
+      this.userId = Number(localStorage.getItem('ID'));
       this.getHouse(this.id);
       this.initializeForm();
       this.getImage(this.id);
-      this.getComment(this.id);
+      this.getComment(this.id, 0);
       this.getStar(this.id)
+
     });
   }
   ngOnInit() {
-
+    this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
+      // @ts-ignore
+      this.id = +paramMap.get('id');
+      this.findPageNumberMax();
+    })
 
   }
   initializeForm(){
@@ -95,16 +118,8 @@ export class HouseDetailComponent {
       this.description = house.description
       this.bedrooms = house.bedrooms
       this.bathrooms = house.bathrooms
-
-      // this.houseForm = new FormGroup({
-      //   Name: new FormControl(house.houseName),
-      //   Address: new FormControl(house.houseAddress),
-      //   Rent: new FormControl(house.rent),
-      //   description: new FormControl(house.description),
-      //   bedrooms: new FormControl(house.bedrooms),
-      //   bathrooms: new FormControl(house.bathrooms),
-      //   HouseStatus: new FormControl(house.status?.statusName)
-      // });
+      // @ts-ignore
+      this.houseUser = house.user;
     });
   }
   getImage(id: number){
@@ -117,13 +132,12 @@ export class HouseDetailComponent {
       this.image3 = listImage[2].imageName;
     })
   }
-  getComment(id: number){
-    return this.houseCommentService.createComment(id).subscribe(commentList => {
+  getComment(id: number, page: number){
+    return this.houseCommentService.getCommentByHouseIdPaging(id,page).subscribe(commentList => {
       this.listComment = commentList;
-      console.log(this.listComment)
+
     } )
   }
-
   checkStar(){
     // @ts-ignore
     document.getElementById("star" + this.stars).checked = true;
@@ -171,14 +185,34 @@ this.houseRatingService.createRating(Number(localStorage.getItem("ID")),Number(i
   }
 
   createComment(){
+    debugger
+        let comment: any;
         let userId = Number(localStorage.getItem("ID"))
-        this.houseComment.comment = String(this.commentForm.get("comment")?.value);
-        this.houseComment.userId = userId;
+        // this.houseComment.comment = String(this.commentForm.get("comment")?.value);
+        comment = this.commentForm.value;
+        this.houseComment.comment = comment.comment;
+        console.log(this.houseComment.comment)
+          this.houseComment.userId = userId;
         this.houseComment.houseId = this.id;
         this.houseCommentService.saveComment(this.houseComment).subscribe(() =>{
-          alert("Cảm ơn bạn đã nhận xét")
+            this.commentForm.reset();
+          Swal.fire(
+            ' ',
+            '<h2 style="color: green; font-size: 32px">Cảm ơn bạn đã nhận xét!!!</h2>',
+            'success')
+          location.reload();
         },error => {
           console.log(error)
         })
       }
+  findPageNumberMax(){
+    this.commentService.showCommentByHouseId(this.id).subscribe( res =>{
+      for (let i = 0; i < res.length/5; i++) {
+        this.listPageNumberComment.push(i+1);
+      }
+    })
+  }
+// getUserCommentById(userCommentId : number){
+//     this.
+// }
 }

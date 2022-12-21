@@ -43,6 +43,11 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
+          Swal.fire(
+            ' ',
+            '<h2 style="color: green; font-size: 32px">Đăng nhập thành công!!!</h2>',
+            'success'
+          )
           localStorage.setItem('ACCESS_TOKEN', data.accessToken);
           localStorage.setItem('ROLE', data.roles[0].authority);
           localStorage.setItem('USERNAME', data.username);
@@ -52,13 +57,8 @@ export class LoginComponent implements OnInit {
           } else
 
             if (data.roles[0].authority == "ROLE_USER") {
-              this.router.navigate(['/home']);
 
-              Swal.fire(
-                ' ',
-                '<h2 style="color: green; font-size: 32px">Đăng nhập thành công!!!</h2>',
-                'success'
-              )
+              this.router.navigate(['/home']);
             }
         },
         error => {
