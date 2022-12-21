@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {House} from "../model/house";
 import {environment} from "../../enviroments/environment";
@@ -49,5 +49,24 @@ export class HouseService {
   findByUserId(id: number): Observable<House[]> {
     return this.httpClient.get<House[]>(`${API_URL}/house/findByUser/${id}`)
   }
+  findByAll(bedrooms: string,
+            bathrooms: string,
+            address: string,
+            rentMin: number,
+            rentMax: number,
+            startTime: string,
+            endTime: string)
+            : Observable<House[]>{
+    let params = new HttpParams()
+      .set('bedrooms', bedrooms)
+      .set('bathrooms', bathrooms)
+      .set('address', address)
+      .set('rentMin', rentMin)
+      .set('rentMax', rentMax)
+      .set('endTime', endTime)
+      .set('startTime', startTime);
 
+    return this.httpClient.get<House[]>(`${API_URL}/house/search`, {params: params});
+
+  }
 }

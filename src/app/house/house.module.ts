@@ -19,6 +19,7 @@ import {MatIconModule} from "@angular/material/icon";
 import { List5houseComponent } from './list5house/list5house.component';
 import { HouseIncomeComponent } from './house-income/house-income.component';
 import { CommentNoticeComponent } from './comment-notice/comment-notice.component';
+import { HouseSearchComponent } from './house-search/house-search.component';
 
 
 
@@ -37,6 +38,7 @@ import { CommentNoticeComponent } from './comment-notice/comment-notice.componen
     List5houseComponent,
     HouseIncomeComponent,
     CommentNoticeComponent,
+    HouseSearchComponent,
   ],
     exports: [
         HouseListComponent,
