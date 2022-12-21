@@ -13,13 +13,12 @@ import {EmailService} from "../../service/email.service";
 import Swal from "sweetalert2";
 
 
-
 @Component({
   selector: 'app-oder-create',
-  templateUrl: './oder-create.component.html',
-  styleUrls: ['./oder-create.component.css']
+  templateUrl: './order-create.component.html',
+  styleUrls: ['./order-create.component.css']
 })
-export class OderCreateComponent implements OnInit {
+export class OrderCreateComponent implements OnInit {
   hostName: string = "";
   object!: Order;
   emailDetails: EmailDetails = {
@@ -43,6 +42,7 @@ export class OderCreateComponent implements OnInit {
 
   }
   orderForm: FormGroup | undefined | any;
+
   constructor(
     private emailService: EmailService,
     private userService: UserService,
@@ -116,32 +116,31 @@ export class OderCreateComponent implements OnInit {
     }
   }
 
-      sendMail()
-      {
-        this.emailDetails.subject = "Bạn có một đơn thuê nhà chờ xác nhận";
-        this.emailDetails.msgBody = "Bạn có 1 order của khách hàng tên: " + this.hostName + " đã tạo vào lúc" + this.order.createTime + " thời gian muốn thuê từ ngày " + this.order.startTime + " đến ngày " + this.order.endTime + " vui lòng vào kiểm tra và xác thực.";
-        this.emailService.sendMail(this.emailDetails).subscribe(res => {
-        })
+  sendMail() {
+    this.emailDetails.subject = "Bạn có một đơn thuê nhà chờ xác nhận";
+    this.emailDetails.msgBody = "Bạn có 1 order của khách hàng tên: " + this.hostName + " đã tạo vào lúc" + this.order.createTime + " thời gian muốn thuê từ ngày " + this.order.startTime + " đến ngày " + this.order.endTime + " vui lòng vào kiểm tra và xác thực.";
+    this.emailService.sendMail(this.emailDetails).subscribe(res => {
+    })
+  }
+
+  submit() {
+    this.order.houseId = this.id;
+    this.orderService.createOrder(this.order, this.id).subscribe(() => {
+        this.sendMail();
+        Swal.fire(
+          ' ',
+          '<h2 style="color: green; font-size: 32px">Đăng ký thành công</h2>',
+          'success'
+        )
+      }, error => {
+        Swal.fire(
+          ' ',
+          '<h2 style="color: red; font-size: 32px">Đã trùng ngày!!!</h2>',
+          'error'
+        )
       }
-      submit()
-      {
-        this.order.houseId = this.id;
-        this.orderService.createOrder(this.order, this.id).subscribe(() => {
-            this.sendMail();
-          Swal.fire(
-            ' ',
-            '<h2 style="color: green; font-size: 32px">Đăng ký thành công</h2>',
-            'success'
-          )
-          }, error => {
-          Swal.fire(
-            ' ',
-            '<h2 style="color: red; font-size: 32px">Đã trùng ngày!!!</h2>',
-            'error'
-          )
-          }
-        );
-        this.orderForm.reset();
-      }
+    );
+    this.orderForm.reset();
+  }
 
 }

@@ -5,7 +5,7 @@ import {HouseListComponent} from "./house-list/house-list.component";
 import {HouseDetailComponent} from "./house-detail/house-detail.component";
 
 import {HouseCreateComponent} from "./house-create/house-create.component";
-import {OderCreateComponent} from "./oder-create/oder-create.component";
+import {OrderCreateComponent} from "./order-create/order-create.component";
 import {HouseUpdateStatusComponent} from "./house-update-status/house-update-status.component";
 import {List5houseComponent} from "./list5house/list5house.component";
 import {HouseIncomeComponent} from "./house-income/house-income.component";
@@ -21,7 +21,7 @@ const routes: Routes = [
   },
   {
     path: 'orders/:id',
-    component: OderCreateComponent
+    component: OrderCreateComponent
   }, {
     path: 'create',
     component: HouseCreateComponent
