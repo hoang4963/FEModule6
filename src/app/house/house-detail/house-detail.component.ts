@@ -51,10 +51,11 @@ export class HouseDetailComponent {
   lastpage! : number;
   listCommentByUserId: Comments[] = [];
   listPageNumber: number[] = [];
-  houseRating: RatingDTO = {
+  houseRating: Rating = {
     userId: 0,
     houseId:0,
-    rating: "",
+    houseRating: "",
+
   }
   houseComment:  Comments = {
     comment: "",
@@ -160,10 +161,12 @@ export class HouseDetailComponent {
 this.houseRatingService.createRating(Number(localStorage.getItem("ID")),Number(id)).subscribe(orders => {
   this.orders = orders;
   if (this.orders.length != 0){
+    debugger
     let userId = Number(localStorage.getItem("ID"))
-    this.houseRating.rating = String(star);
+    this.houseRating.houseRating = String(star);
     this.houseRating.userId = userId;
     this.houseRating.houseId = this.id;
+    console.log(this.houseRating)
     this.houseRatingService.saveRating(this.houseRating).subscribe(() =>{
       Swal.fire(
         ' ',
