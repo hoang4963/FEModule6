@@ -29,26 +29,30 @@ export class SearchComponent {
   }
   searchAll(){
     this.search = this.formSearch.value;
-    if (this.search.address != null || this.search.address == ""){
+    if (this.search.address == null || this.search.address == ""){
       this.search.address = ".*";
     }
-    if (this.search.bedrooms != null || this.search.bathrooms == ""){
+    if (this.search.bedrooms == null || this.search.bathrooms == ""){
       this.search.bedrooms = ".*";
     }
-    if (this.search.bathrooms != null || this.search.bathrooms == ""){
+    if (this.search.bathrooms == null || this.search.bathrooms == ""){
       this.search.bathrooms = ".*";
     }
-    if (this.search.startTime != null || this.search.startTime == ""){
-      this.search.startTime = "1970-01-01";
-    }
-    if (this.search.endTime != null || this.search.endTime == ""){
-      this.search.endTime = "2100-01-01";
-    }
-    if (this.search.bathrooms != null || this.search.bathrooms == ""){
+    if (this.search.bathrooms == null || this.search.bathrooms == ""){
       this.search.address = ".*";
     }
-    if (this.search.rent != null || this.search.rent == ""){
+    if (this.search.rent == null || this.search.rent == ""){
       this.search.rent = "4";
+    }
+    if (this.search.startTime == null && this.search.endTime != null ){
+      this.search.startTime = this.search.endTime;
+    }
+    if (this.search.endTime == null && this.search.startTime != null){
+      this.search.endTime = this.search.startTime
+    }
+    if (this.search.startTime == null && this.search.endTime == null){
+      this.search.startTime = "2100-01-01";
+      this.search.endTime = "2100-02-01";
     }
   }
 }
