@@ -127,7 +127,6 @@ export class HouseDetailComponent {
     return this.houseService.findImageByHouseId(id).subscribe( listImage => {
         // @ts-ignore
       this.listImage = listImage;
-      console.log(listImage[0].imageName);
       this.image1 = listImage[0].imageName;
       this.image2 = listImage[1].imageName;
       this.image3 = listImage[2].imageName;
@@ -151,9 +150,8 @@ export class HouseDetailComponent {
 
       for (let i = 0; i < this.listRating.length; i++) {
           this.stars += Number(ratingList[i].rating)/this.listRating.length;
-
       }
-
+        this.stars = Math.floor(this.stars);
        this.checkStar();
     } )
   }
@@ -166,7 +164,6 @@ this.houseRatingService.createRating(Number(localStorage.getItem("ID")),Number(i
     this.houseRating.houseRating = String(star);
     this.houseRating.userId = userId;
     this.houseRating.houseId = this.id;
-    console.log(this.houseRating)
     this.houseRatingService.saveRating(this.houseRating).subscribe(() =>{
       Swal.fire(
         ' ',
@@ -194,7 +191,6 @@ this.houseRatingService.createRating(Number(localStorage.getItem("ID")),Number(i
         // this.houseComment.comment = String(this.commentForm.get("comment")?.value);
         comment = this.commentForm.value;
         this.houseComment.comment = comment.comment;
-        console.log(this.houseComment.comment)
           this.houseComment.userId = userId;
         this.houseComment.houseId = this.id;
         this.houseCommentService.saveComment(this.houseComment).subscribe(() =>{
