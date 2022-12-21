@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import {FormGroup, FormControl, FormBuilder, Validators, AbstractControl} from '@angular/forms';
 import { PasswordValidators } from '../jwt/helper/password.validators';
 import {UserService} from "../service/user.service";
 import Swal from "sweetalert2";
@@ -34,10 +34,10 @@ export class ChangePasswordComponent implements OnInit {
   initializeForm()
   {
     this.formchange = new FormGroup({
-      oldPassword: new FormControl (),
-      newPassword: new FormControl (),
-      cnfPassword: new FormControl ()
-    });
+      oldPassword: new FormControl ('',[Validators.required, Validators.minLength(6)]),
+      newPassword: new FormControl('',[Validators.required, Validators.minLength(6)]),
+      cnfPassword: new FormControl('',[Validators.required, Validators.minLength(6)]),
+    },{validators:this.validateAreEqual});
   }
   checkPass(){
     let formPassword = this.formchange.value;
@@ -74,5 +74,7 @@ export class ChangePasswordComponent implements OnInit {
   }
   ngOnInit() {
   }
-
+  public validateAreEqual(c: AbstractControl): {notSame: boolean} | null {
+    return  c.value.newPassword  ===  c.value.cnfPassword ? null : {notSame: true};
+  }
 }
