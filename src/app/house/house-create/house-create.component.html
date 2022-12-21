@@ -98,7 +98,7 @@
                           placeholder="Mô tả về ngôi nhà"
                           required="required" data-validation-required-message="Hãy nhập mô tả về ngôi nhà"></textarea>
                 <div *ngIf="description?.invalid && description?.touched">
-                  <div *ngIf="description?.errors?.['required']">
+                  <div *ngIf="description?.errors?.['required']" >
                     <p class="help-block text-danger text-center">Hãy nhập mô tả về ngôi nhà</p>
                   </div>
                 </div>
