@@ -15,10 +15,10 @@ import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-oder-create',
-  templateUrl: './oder-create.component.html',
-  styleUrls: ['./oder-create.component.css']
+  templateUrl: './order-create.component.html',
+  styleUrls: ['./order-create.component.css']
 })
-export class OderCreateComponent implements OnInit {
+export class OrderCreateComponent implements OnInit {
   hostName: string = "";
   object!: Order;
   emailDetails: EmailDetails = {
