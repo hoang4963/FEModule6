@@ -51,12 +51,19 @@ export class HouseDetailComponent {
   lastpage! : number;
   listCommentByUserId: Comments[] = [];
   listPageNumber: number[] = [];
-  houseRating: RatingDTO = {
+  houseRating: Rating = {
     userId: 0,
     houseId:0,
-    rating: "",
+    houseRating: "",
+
   }
-  houseComment!: Comments;
+  houseComment:  Comments = {
+    comment: "",
+    houseId:0,
+    userName:"",
+    isRead: false,
+    userId:0,
+  };
 
   commentForm = new FormGroup({
     comment: new FormControl()
@@ -154,10 +161,12 @@ export class HouseDetailComponent {
 this.houseRatingService.createRating(Number(localStorage.getItem("ID")),Number(id)).subscribe(orders => {
   this.orders = orders;
   if (this.orders.length != 0){
+    debugger
     let userId = Number(localStorage.getItem("ID"))
-    this.houseRating.rating = String(star);
+    this.houseRating.houseRating = String(star);
     this.houseRating.userId = userId;
     this.houseRating.houseId = this.id;
+    console.log(this.houseRating)
     this.houseRatingService.saveRating(this.houseRating).subscribe(() =>{
       Swal.fire(
         ' ',
@@ -179,12 +188,22 @@ this.houseRatingService.createRating(Number(localStorage.getItem("ID")),Number(i
   }
 
   createComment(){
+    debugger
+        let comment: any;
         let userId = Number(localStorage.getItem("ID"))
-        this.houseComment.comment = String(this.commentForm.get("comment")?.value);
+        // this.houseComment.comment = String(this.commentForm.get("comment")?.value);
+        comment = this.commentForm.value;
+        this.houseComment.comment = comment.comment;
+        console.log(this.houseComment.comment)
           this.houseComment.userId = userId;
         this.houseComment.houseId = this.id;
         this.houseCommentService.saveComment(this.houseComment).subscribe(() =>{
-
+            this.commentForm.reset();
+          Swal.fire(
+            ' ',
+            '<h2 style="color: green; font-size: 32px">Cảm ơn bạn đã nhận xét!!!</h2>',
+            'success')
+          location.reload();
         },error => {
           console.log(error)
         })

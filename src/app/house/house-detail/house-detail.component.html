@@ -181,7 +181,7 @@
           <br>
           <div *ngFor="let houseComment of listComment">
             <div>
-              <i>{{houseComment.user.username}}</i>
+              <i>{{houseComment.user?.username}}</i>
             </div>
             <div><p style="color: green; margin-left: 50px"> {{houseComment.comment}}</p></div>
 
