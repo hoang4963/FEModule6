@@ -26,11 +26,12 @@ export class HouseListComponent implements OnInit{
       // @ts-ignore
       this.page = +paramMap.get('start');
       this.getAllHouse(this.page);
+
     });
   }
 
   ngOnInit() {
-
+    this.getPageNumberMax();
   }
   getAllHouse(start: number){
     this.houseService.getAllHouse(start).subscribe(result => {
