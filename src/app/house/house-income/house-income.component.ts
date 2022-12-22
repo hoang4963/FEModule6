@@ -46,10 +46,8 @@ export class HouseIncomeComponent implements OnInit{
   submit(){
     let sum: number = 0;
     this.income = this.form.value;
-    console.log(this.income)
     this.orderService.getIncome(this.income).subscribe( res => {
       this.orders = res;
-      this.houseName = String(this.orders[0].house?.houseName);
       if (this.orders.length > 0) {
         this.check = true;
         this.houseName = String(this.orders[0].house?.houseName);
@@ -57,12 +55,10 @@ export class HouseIncomeComponent implements OnInit{
         this.image = String(this.orders[0].house?.image[0].imageName)
         for (let i = 0; i < this.orders.length; i++) {
           sum += Number(this.orders[i].income);
-
         }
         this.result = "Thu nhập của nhà " + this.houseName + " trong tháng "+ this.income.month?.slice(5,8) + " năm " + this.income.month?.slice(0,4) +" là: " + sum + "VNĐ";
       }
       else this.result = "Không có thu nhập nào trong tháng này";
-
     })
   }
 }
