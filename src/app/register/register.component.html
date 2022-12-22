@@ -52,11 +52,8 @@
           </div>
         <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
 
-          <label class="form-label"> Email :
-            <input class="input100" formControlName="phone" type="phone" name="phone" placeholder="Số điện thoại"></label>
-          <div *ngIf="!signupForm.get('phone')?.valid && (signupForm.get('phone')?.dirty ||signupForm.get('phone')?.touched)">
           <label class="form-label"> Email:
-            <input class="input100" formControlName="email" type="phone" name="email" placeholder="Số điện thoại"></label>
+            <input class="input100" formControlName="email" type="phone" name="email" placeholder="Email"></label>
           <div *ngIf="!signupForm.get('email')?.valid && (signupForm.get('email')?.dirty ||signupForm.get('email')?.touched)">
             <div [hidden]="!signupForm.get('email')?.errors?.['required']">
               <p class="text-danger">Email không để trống</p>

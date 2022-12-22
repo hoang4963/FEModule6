@@ -124,9 +124,7 @@ export class OrderCreateComponent implements OnInit {
   }
 
   submit() {
-    debugger
     this.order.houseId = this.id;
-    console.log(this.order)
     this.orderService.createOrder(this.order, this.id).subscribe(() => {
         this.sendMail();
         Swal.fire(
