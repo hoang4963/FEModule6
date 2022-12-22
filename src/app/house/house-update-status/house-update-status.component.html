@@ -72,13 +72,13 @@
           <!-- The slideshow/carousel -->
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img src="{{image1}}"  class="d-block" style="width:100%; height: 500px">
+              <img src="{{image1}}"  class="d-block" style="width:100%; height: 400px">
             </div>
             <div class="carousel-item active">
-              <img src="{{image2}}"  class="d-block" style="width:100%; height: 500px">
+              <img src="{{image2}}"  class="d-block" style="width:100%; height: 400px">
             </div>
             <div class="carousel-item active">
-              <img src="{{image3}}"  class="d-block" style="width:100%; height: 500px">
+              <img src="{{image3}}"  class="d-block" style="width:100%; height: 400px">
             </div>
           </div>
 
@@ -90,7 +90,16 @@
             <span class="carousel-control-next-icon"></span>
           </button>
         </div>
-
+        <div class="property-summary">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="title-box-d section-t4">
+                <h3 class="title-d" style="font-size: 24px">Tóm tắt</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="summary-list">
           <table cellpadding="10">
             <tr>
               <td class="infor"><span><strong>Tên nhà</strong></span></td>
@@ -126,7 +135,7 @@
                   <div class="modal-dialog">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title infor" id="exampleModalLabel">Update price</h5>
+                        <h5 class="modal-title infor" id="exampleModalLabel">Cập nhật trạng thái</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
@@ -140,8 +149,8 @@
                           </form>
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" (click)="updateHouseStatus()">Save changes</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        <button type="button" class="btn btn-primary" (click)="updateHouseStatus()">Xác nhận</button>
                       </div>
                     </div>
                   </div>
@@ -150,6 +159,7 @@
             </tr>
           </table>
         </div>
+      </div>
     </div>
   </div>
 </section>
