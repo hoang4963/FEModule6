@@ -8,6 +8,7 @@ import {HouseDTO} from "../../model/houseDTO";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {HouseNotImage} from "../../model/houseNotImage";
 import Swal from "sweetalert2";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-house-create',
@@ -44,6 +45,7 @@ export class HouseCreateComponent implements OnInit {
   constructor(private houseService: HouseService,
               private storage: AngularFireStorage,
               private houseStatus: HouseStatusService,
+              private router: Router
   ) {
   }
 
@@ -156,7 +158,7 @@ export class HouseCreateComponent implements OnInit {
         '<h2 style="color: green; font-size: 32px">Thành công!!!</h2>',
         'success'
       )
-
+      this.router.navigate(['house/list'])
     }, error => {
 
       console.log(error);

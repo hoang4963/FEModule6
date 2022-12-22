@@ -9,7 +9,7 @@ import { HouseDeleteComponent } from './house-delete/house-delete.component';
 import { HouseDetailComponent } from './house-detail/house-detail.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ShareModule} from "../share/share.module";
-import { OderCreateComponent } from './oder-create/oder-create.component';
+import { OrderCreateComponent } from './order-create/order-create.component';
 import { HouseStatusEditComponent } from './house-status-edit/house-status-edit.component';
 import {MatInputModule} from "@angular/material/input";
 import {MatDatepickerModule} from "@angular/material/datepicker";
@@ -19,6 +19,7 @@ import {MatIconModule} from "@angular/material/icon";
 import { List5houseComponent } from './list5house/list5house.component';
 import { HouseIncomeComponent } from './house-income/house-income.component';
 import { CommentNoticeComponent } from './comment-notice/comment-notice.component';
+import { HouseSearchComponent } from './house-search/house-search.component';
 
 
 
@@ -29,7 +30,7 @@ import { CommentNoticeComponent } from './comment-notice/comment-notice.componen
     HouseEditComponent,
     HouseDeleteComponent,
     HouseDetailComponent,
-    OderCreateComponent,
+    OrderCreateComponent,
 
     HouseStatusEditComponent,
     HouseUpdateStatusComponent,
@@ -37,6 +38,7 @@ import { CommentNoticeComponent } from './comment-notice/comment-notice.componen
     List5houseComponent,
     HouseIncomeComponent,
     CommentNoticeComponent,
+    HouseSearchComponent,
   ],
     exports: [
         HouseListComponent,

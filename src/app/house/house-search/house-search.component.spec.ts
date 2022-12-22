@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OderCreateComponent } from './oder-create.component';
+import { HouseSearchComponent } from './house-search.component';
 
-describe('OderCreateComponent', () => {
-  let component: OderCreateComponent;
-  let fixture: ComponentFixture<OderCreateComponent>;
+describe('HouseSearchComponent', () => {
+  let component: HouseSearchComponent;
+  let fixture: ComponentFixture<HouseSearchComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ OderCreateComponent ]
+      declarations: [ HouseSearchComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(OderCreateComponent);
+    fixture = TestBed.createComponent(HouseSearchComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

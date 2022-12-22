@@ -11,13 +11,7 @@
       <div class="col-md-12 col-lg-4">
         <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-              <a routerLink="/home">Trang chủ</a>
 
-            </li>
-             <li class="breadcrumb-item">
-              <a [routerLink]="['/user',id]">{{user?.username}}</a>
-            </li>
             <li class="breadcrumb-item active" aria-current="page">
               Sửa thông tin
             </li>
@@ -52,19 +46,21 @@
               <div class="agent-content mb-3">
                 <p class="content-d color-text-a">
                 </p>
-                <div class="info-agents color-a" style="font-size: 24px">
-                    Tên chủ nhà:
-                  <input type="text" formControlName="fullName">
+                  <label class="form-label">Tên chủ nhà:
+                  <input class="input100" type="text" name="email" formControlName="fullName">
+                  </label>
                   <br>
-                    Địa chỉ:
-                  <input type="text" formControlName="userAddress">
+                <label class="form-label"> Địa chỉ:
+                  <input class="input100" type="text" name="address" formControlName="userAddress">
+                </label>
                   <br>
-                    Số điện thoại:
-                  <input type="text" formControlName="phoneNumber">
+                <label class="form-label">Số điện thoại:
+                  <input class="input100" type="text" name="phone" formControlName="phoneNumber">
+                </label>
                   <br>
-                    Email:
-                    <input type="text" formControlName="email">
-
+                <label class="form-label">Email:
+                  <input class="input100" type="text" name="email" formControlName="email">
+                </label>
                 </div>
               </div>
               <div class="socials-footer">
@@ -97,7 +93,6 @@
                 </ul>
               </div>
               <button class="btn btn-info" >Cập nhật</button>
-            </div>
           </form>
           </div>
         </div>
