@@ -19,6 +19,9 @@ export class HouseService {
   getAll(): Observable<House[]> {
     return this.httpClient.get<House[]>(API_URL + `/house/list`);
   }
+  getAllHouse(start: number): Observable<House[]> {
+    return this.httpClient.get<House[]>(API_URL + `/house/list/${start}`);
+  }
 
   saveHouse(house: House, id: number): Observable<House> {
     return this.httpClient.post<House>(API_URL + `/house/create/${id}`, house);
