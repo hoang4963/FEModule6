@@ -133,7 +133,7 @@
                       </div>
                       <div class="modal-body">
                         <form [formGroup]="statusForm" (ngSubmit)="updateHouseStatus()">
-                          <label for="status">Cap nhat trang thai:</label>
+                          <label for="status">Câp nhật trạng thái:</label>
                           <select formControlName="id" id="status">
                             <option *ngFor="let status of listStatus; index as i" value="{{status.id}}">{{status.statusName}}</option>
                           </select>

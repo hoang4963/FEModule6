@@ -8,10 +8,9 @@
       </div>
       <form>
       <form class="login100-form validate-form" [formGroup]="signupForm" (ngSubmit)="signUp()">
-                        <span class="login100-form-title">
-                            ĐĂNG KÝ
-                        </span>
-
+        <span class="login100-form-title">
+            ĐĂNG KÝ
+        </span>
         <div class="wrap-input100 validate-input">
           <div class="mb-3">
             <label class="form-label">Tên tài khoản
@@ -52,6 +51,10 @@
               </div>
           </div>
         <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+
+          <label class="form-label"> Email :
+            <input class="input100" formControlName="phone" type="phone" name="phone" placeholder="Số điện thoại"></label>
+          <div *ngIf="!signupForm.get('phone')?.valid && (signupForm.get('phone')?.dirty ||signupForm.get('phone')?.touched)">
           <label class="form-label"> Email:
             <input class="input100" formControlName="email" type="phone" name="email" placeholder="Số điện thoại"></label>
           <div *ngIf="!signupForm.get('email')?.valid && (signupForm.get('email')?.dirty ||signupForm.get('email')?.touched)">
@@ -64,7 +67,7 @@
           </div>
         </div>
           <div class="wrap-input100 validate-input" data-validate = "Valid phone is required: 09********">
-            <label class="form-label"> Số điện thoại
+            <label class="form-label"> Số điện thoại :
             <input class="input100" formControlName="phone" type="phone" name="phone" placeholder="Số điện thoại"></label>
             <div *ngIf="!signupForm.get('phone')?.valid && (signupForm.get('phone')?.dirty ||signupForm.get('phone')?.touched)">
               <div [hidden]="!signupForm.get('phone')?.errors?.['required']">
