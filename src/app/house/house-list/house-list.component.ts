@@ -3,6 +3,7 @@ import {Component, OnInit} from '@angular/core';
 import {House} from "../../model/house";
 import {HouseService} from "../../service/house.service";
 import {Image} from "../../model/Image";
+import {ActivatedRoute, ParamMap} from "@angular/router";
 
 
 @Component({
@@ -13,16 +14,26 @@ import {Image} from "../../model/Image";
 export class HouseListComponent implements OnInit{
   id: number = 0;
   houses: House[] = [];
+  listHouse!: House[]
+  lastPage!: number;
   listImage: Image[] = [];
   listFirstImage: string[] = [];
-  constructor(private houseService: HouseService) {
+  listPageNumber: number[] = [];
+  page: number = 0;
+  constructor(private houseService: HouseService,
+              private activatedRoute: ActivatedRoute) {
+    this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
+      // @ts-ignore
+      this.page = +paramMap.get('start');
+      this.getAllHouse(this.page);
+    });
   }
 
   ngOnInit() {
-    this.getAllHouse();
+
   }
-  getAllHouse(){
-    this.houseService.getAll().subscribe(result => {
+  getAllHouse(start: number){
+    this.houseService.getAllHouse(start).subscribe(result => {
         this.houses = result;
       // console.log(this.houses)
 
@@ -35,4 +46,16 @@ export class HouseListComponent implements OnInit{
       }
     )
   }
+
+  getPageNumberMax() {
+    this.houseService.getAll().subscribe(res => {
+      this.listHouse = res;
+      this.lastPage = Math.floor(((this.listHouse.length) / 9));
+      for (let i = 0; i <= Math.floor(this.listHouse.length / 9); i++) {
+        this.listPageNumber.push((i + 1));
+      }
+    })
+  }
+
+
 }

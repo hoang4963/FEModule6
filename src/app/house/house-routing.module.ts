@@ -16,7 +16,7 @@ const routes: Routes = [
     component: HouseDetailComponent
   },
   {
-    path:'list',
+    path:'list/:start',
     component: HouseListComponent
   },
   {
