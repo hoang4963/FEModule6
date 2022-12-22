@@ -212,7 +212,9 @@ this.houseRatingService.createRating(Number(localStorage.getItem("ID")),Number(i
           '<h2 style="color: red; font-size: 32px">Bạn cần phải thuê nhà 1 lần!!!</h2>',
           'error'
         )
-      }})
+      }
+    this.commentForm.reset()
+    })
       }
   findPageNumberMax(){
     this.commentService.showCommentByHouseId(this.id).subscribe( res =>{
