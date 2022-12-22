@@ -3,6 +3,9 @@ import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {UserService} from "../../service/user.service";
 import {User} from "../../model/user";
 import {FormControl, FormGroup} from "@angular/forms";
+import {HouseService} from "../../service/house.service";
+import {House} from "../../model/house";
+import {Image} from "../../model/Image";
 
 @Component({
   selector: 'app-user-profile',
@@ -11,6 +14,9 @@ import {FormControl, FormGroup} from "@angular/forms";
 })
 export class UserProfileComponent implements OnInit{
 
+  houses!: House[]
+  listImage: Image[] = [];
+  listFirstImage: string[] = [];
   userForm:FormGroup | any;
       userId! : any;
       userName: any;
@@ -25,10 +31,12 @@ export class UserProfileComponent implements OnInit{
   }
   constructor(private userService: UserService,
               private router: Router,
+              private houseService: HouseService,
               private activatedRoute: ActivatedRoute  ) {
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       // @ts-ignore
       this.id = +paramMap.get('id');
+      this.getHouseByUserId(this.id);
       this.initializeForm();
       this.getUser(this.id)
     });
@@ -53,5 +61,16 @@ export class UserProfileComponent implements OnInit{
       this.email = userr.email
       this.phoneNumber = userr.phoneNumber
     });
+  }
+  getHouseByUserId(id: number) {
+    return this.houseService.findByUserId(id).subscribe(house => {
+      this.houses = house;
+      for (let i = 0; i < this.houses.length; i++) {
+        // @ts-ignore
+        this.listFirstImage.push(String(this.houses[i].image[0].imageName))
+      }
+    }, error => {
+      console.log(error);
+    })
   }
 }
