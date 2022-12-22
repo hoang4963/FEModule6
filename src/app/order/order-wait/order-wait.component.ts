@@ -33,7 +33,7 @@ export class OrderWaitComponent {
     attachment: "",
   }
   ngOnInit(): void {
-    this.getPageNumberWaitMax(this.id);
+    this.getPageNumberWaitMax(Number(localStorage.getItem("ID")));
   }
 
   constructor(private orderService: OrderService,
@@ -62,8 +62,9 @@ export class OrderWaitComponent {
   getPageNumberWaitMax(id : number) {
     this.orderService.getOrderWaitByUserId(id).subscribe(res => {
       this.listOrderByUserId = res;
+      console.log(this.listOrderByUserId.length)
       this.lastpage = Math.floor(((this.listOrderByUserId.length)/5));
-      for (let i = 0; i <= Math.floor(this.listOrderByUserId.length/5); i++) {
+      for (let i = 0; i <= this.listOrderByUserId.length/5; i++) {
         this.listPageNumber.push((i+1));
       }
     })
@@ -87,7 +88,7 @@ export class OrderWaitComponent {
       this.check =true;
         this.orderService.cancelOrderByUser(idNumber).subscribe( () =>{
           this.orderService.showOrderById(idNumber).subscribe( res => {
-            msgBody = "khách hàng " + res.user?.fullName + " đã hủy đơn thuê nhà: " + res.house?.houseName + " lúc " + Date.now();
+            msgBody = "khách hàng " + res.user?.fullName + " đã hủy đơn thuê nhà: " + res.house?.houseName;
             recipient = String(res.user?.email);
             this.sendMail("Khách hàng đã hủy đơn", msgBody,recipient);
           })
