@@ -159,7 +159,6 @@ export class HouseDetailComponent {
 this.houseRatingService.createRating(Number(localStorage.getItem("ID")),Number(id)).subscribe(orders => {
   this.orders = orders;
   if (this.orders.length != 0){
-    debugger
     let userId = Number(localStorage.getItem("ID"))
     this.houseRating.houseRating = String(star);
     this.houseRating.userId = userId;
@@ -185,7 +184,7 @@ this.houseRatingService.createRating(Number(localStorage.getItem("ID")),Number(i
   }
 
   createComment(){
-    debugger
+
         let comment: any;
         let userId = Number(localStorage.getItem("ID"))
         // this.houseComment.comment = String(this.commentForm.get("comment")?.value);
@@ -193,16 +192,27 @@ this.houseRatingService.createRating(Number(localStorage.getItem("ID")),Number(i
         this.houseComment.comment = comment.comment;
           this.houseComment.userId = userId;
         this.houseComment.houseId = this.id;
-        this.houseCommentService.saveComment(this.houseComment).subscribe(() =>{
-            this.commentForm.reset();
+    this.houseRatingService.createRating(Number(localStorage.getItem("ID")),Number(this.id)).subscribe(orders => {
+      this.orders = orders;
+      if (this.orders.length != 0) {
+        this.houseCommentService.saveComment(this.houseComment).subscribe(() => {
+          this.commentForm.reset();
           Swal.fire(
             ' ',
             '<h2 style="color: green; font-size: 32px">Cảm ơn bạn đã nhận xét!!!</h2>',
             'success')
           location.reload();
-        },error => {
+        }, error => {
           console.log(error)
         })
+      }
+      else {
+        Swal.fire(
+          ' ',
+          '<h2 style="color: red; font-size: 32px">Bạn cần phải thuê nhà 1 lần!!!</h2>',
+          'error'
+        )
+      }})
       }
   findPageNumberMax(){
     this.commentService.showCommentByHouseId(this.id).subscribe( res =>{
