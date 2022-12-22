@@ -27,7 +27,6 @@ export class HouseSearchComponent implements OnInit{
     this.startTime =  String(localStorage.getItem("startTime"));
     this.endTime =  String(localStorage.getItem("endTime"));
     this.getRent(this.rent);
-    console.log(this.bedrooms)
     this.searchHouse(this.bedrooms, this.bathrooms, this.address, this.rentMin, this.rentMax, this.startTime, this.endTime)
   }
 
